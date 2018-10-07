@@ -1,0 +1,29 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="openPage(homePage)">
+        Home
+      </button>
+      <button ion-item (click)="abrirAvenida()">
+        A Avenida
+      </button>
+      <button ion-item (click)="abrirComoChegar()">
+        Como Chegar
+      </button>
+      <button ion-item (click)="abrirLista()">
+        Buscar por Empresas
+      </button>
+      <button ion-item (click)="abrirPromocoes()">
+        Promoções e Eventos
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+
