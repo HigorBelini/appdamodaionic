@@ -4,26 +4,28 @@
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content>
+  <ion-content class="bg-image">
     <ion-list>
+        <button ion-item (click)="abrirLogin()">
+            <ion-icon name="contact"></ion-icon> Faça Login
+          </button>
       <button ion-item (click)="openPage(homePage)">
-        Home
+        <ion-icon name="home"></ion-icon> Home
       </button>
       <button ion-item (click)="abrirAvenida()">
-        A Avenida
+          <ion-icon name="map"></ion-icon> A Avenida
       </button>
       <button ion-item (click)="abrirComoChegar()">
-        Como Chegar
+          <ion-icon name="navigate"></ion-icon> Como Chegar
       </button>
       <button ion-item (click)="abrirLista()">
-        Buscar por Empresas
+        <ion-icon name="search"></ion-icon> Buscar por Lojas
       </button>
       <button ion-item (click)="abrirPromocoes()">
-        Promoções e Eventos
+          <ion-icon name="pricetags"></ion-icon> Promoções e Eventos
       </button>
     </ion-list>
   </ion-content>
 </ion-menu>
 
 <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
-

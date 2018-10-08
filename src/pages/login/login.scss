@@ -1,3 +1,122 @@
 page-login {
+    .background
+    {
+        background-image: url('../assets/imgs/igrejapenha.jpg');
+    }
+    .scroll-content {
+
+        align-content: center;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;    
+    }
+    
+    ion-card.card {
+        margin-top: 120px;
+        box-shadow: none;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+    }
+
+    @media (max-height: 1280px) and (max-width: 800px) {
+        ion-card.card {margin-top: 330px;}
+    }
+
+    @media (max-height: 1024px) and (max-width: 768px) {
+        ion-card.card {margin-top: 200px;}
+    }
+
+    @media (max-height: 1024px) and (max-width: 600px) {
+        ion-card.card {margin-top: 250px;}
+    }
+
+    @media (max-height: 950px) and (max-width: 1280px) {
+        ion-card.card {margin-top: 250px;}
+    }
+
+    @media (max-height: 900px) and (max-width: 1440px) {
+        ion-card.card {margin-top: 230px;}
+    }
+
+    @media (max-height: 854px) and (max-width: 480px) {
+        ion-card.card {margin-top: 220px;}
+    }
+
+    @media (max-height: 823px) and (max-width: 411px) {
+        ion-card.card {margin-top: 180px;}
+    }
+
+    @media (max-height: 736px) and (max-width: 414px) {
+        ion-card.card {margin-top: 125px;}
+    }
+
+    @media (max-height: 732px) and (max-width: 412px) {
+        ion-card.card {margin-top: 150px;}
+    }
+
+    @media (max-height: 667px) and (max-width: 375px) {
+        ion-card.card {margin-top: 110px;}
+    }
+
+    @media (max-height: 640px) and (max-width: 384px) {
+        ion-card.card {margin-top: 120px;}
+    }
+
+    @media (max-height: 640px) and (max-width: 360px) {
+        ion-card.card {margin-top: 120px;}
+    }
+
+    @media (max-height: 568px) and (max-width: 320px) {
+        ion-card.card {margin-top: 65px;}
+    }
+
+    @media (max-height: 533px) and (max-width: 320px) {
+        ion-card.card {margin-top: 70px;}
+    }
+
+    @media (max-height: 480px) and (max-width: 320px) {
+        ion-card.card {margin-top: 10px;}
+    }
+
+    @media (max-height: 360px) and (max-width: 640px) {
+        ion-card.card {margin-top: 10px;}
+    }
+
+    a, p, form,
+    ion-card-header.card-header {
+        color: #fff!important;
+    }
+
+    .list > .item-block:first-child{
+        border: medium none;
+    }
+
+    .item{
+        margin-bottom: 10px;
+        background: rgba(255, 255, 255, 0.5);
+        border: medium none;
+        .text-input {
+            color: #fff!important;
+        }
+        input::-moz-placeholder{
+            color: #fff!important;
+        }
+        input:-moz-placeholder {
+            color: #fff!important;
+        }
+        *:-webkit-input-placeholder{
+            color: #fff!important;
+        }
+        *:-ms-input-placeholder{
+            color: #fff!important;
+        }
+        *:-moz-placeholder{
+            color: #fff!important;
+        }
+    }
+
+    .icon {
+        padding-right: 10px;
+    }
 
 }

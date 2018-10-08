@@ -7,12 +7,24 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>lista</ion-title>
+    <ion-title>promocoes</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <ion-searchbar (input)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider color="light">A</ion-item-divider>
+      <ion-item>Angola</ion-item>
+      <ion-item>Argentina</ion-item>
+      <ion-item-divider color="light">B</ion-item-divider>
+      <ion-item>Brasil</ion-item>
+      <ion-item>Bélgica</ion-item>
+      <ion-item-divider color="light">C</ion-item-divider>
+      <ion-item>Corinthians</ion-item>
+      <ion-item>Coritiba</ion-item>
+    </ion-item-group>
+  </ion-list>
 </ion-content>

@@ -6,16 +6,150 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-      <button ion-button icon-only menuToggle>
-        <ion-icon name="menu"></ion-icon>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="assets/imgs/logo.png" alt="" style=" height:70px; width: 70px;">
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal">
+        <ion-icon name="search"></ion-icon>
       </button>
-      <ion-title>Home</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
-  
-  
-  <ion-content padding>
-    Essa é minha home
-  </ion-content>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div id="slides" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+      <li data-target="#slides" data-slide-to="0" class="active"></li>
+      <li data-target="#slides" data-slide-to="1"></li>
+      <li data-target="#slides" data-slide-to="2"></li>
+      <li data-target="#slides" data-slide-to="3"></li>
+    </ul>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/imgs/teste 2.jpeg">
+        <div class="carousel-caption">
+          <h1 class="display-2">Bootstrap</h1>
+          <h3>Complete Website Layout</h3>
+          <button type="button" class="btn btn-outline-light btn-lg">VIEW DEMO</button>
+          <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="assets/imgs/teste 1.jpeg">
+        <div class="carousel-caption">
+          <h1 class="display-2">Bootstrap</h1>
+          <h3>Complete Website Layout</h3>
+          <button type="button" class="btn btn-outline-light btn-lg">VIEW DEMO</button>
+          <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="assets/imgs/teste 3.jpeg">
+        <div class="carousel-caption">
+          <h1 class="display-2">Bootstrap</h1>
+          <h3>Complete Website Layout</h3>
+          <button type="button" class="btn btn-outline-light btn-lg">VIEW DEMO</button>
+          <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="assets/imgs/teste 4.jpeg">
+        <div class="carousel-caption">
+          <h1 class="display-2">Bootstrap</h1>
+          <h3>Complete Website Layout</h3>
+          <button type="button" class="btn btn-outline-light btn-lg">VIEW DEMO</button>
+          <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row botoesMenuPrincipal">
+      <!-- ./col -->
+      <div class="col-lg-3 col-4">
+        <!-- small box -->
+        <div class="small-box bg-white">
+          <div (click)="abrirAvenidaBot()" class="inner">
+
+            <i class="fas fa-road" style="color:#475871;"></i>
+
+            <h5>Avenida da Moda</h5>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-4">
+        <!-- small box -->
+        <div class="small-box bg-white">
+          <div (click)="abrirComoChegarBot()" class="inner">
+
+            <i class="fas fa-map-marker-alt" style="color:#475871;"></i>
+
+            <h5>Como Chegar</h5>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-4">
+        <!-- small box -->
+        <div class="small-box bg-white">
+          <div (click)="abrirListaBot()" class="inner">
+
+            <i class="fas fa-search" style="color:#475871;"></i>
+
+            <h5>Buscar Lojas</h5>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-4">
+        <!-- small box -->
+        <div class="small-box bg-white">
+          <div (click)="abrirPromocoesBot()" class="inner">
+
+            <i class="fas fa-gift" style="color:#475871;"></i>
+
+            <h5>Eventos Avenida</h5>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-4">
+        <!-- small box -->
+        <div class="small-box bg-white">
+          <div (click)="abrirPromocoesBot()" class="inner">
+
+            <i class="fas fa-star" style="color:#475871;"></i>
+
+            <h4>Mais Buscados</h4>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-4">
+        <!-- small box -->
+        <div class="small-box bg-white">
+          <div (click)="abrirPromocoesBot()" class="inner">
+
+              <i class="fas fa-shopping-bag"></i>
+
+            <h5>Pró Moda</h5>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+
+    </div>
+    <!-- /.row -->
+  </section>
+
+</ion-content>

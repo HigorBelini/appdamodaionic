@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NovouserPage } from '../novouser/novouser';
 
 /**
- * Generated class for the LoginPage page.
+ * Generated class for the SobrePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,20 +10,16 @@ import { NovouserPage } from '../novouser/novouser';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-sobre',
+  templateUrl: 'sobre.html',
 })
-export class LoginPage {
-
-  abrirRegisterBot(){
-    this.navCtrl.push(NovouserPage);
-  }
+export class SobrePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    console.log('ionViewDidLoad SobrePage');
   }
 
 }

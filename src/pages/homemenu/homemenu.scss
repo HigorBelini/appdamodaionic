@@ -1,3 +1,229 @@
 page-homemenu {
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+
+ion-content {
+    
+    background: #5099c3 !important; font-family: 'Poppins', sans-serif;
+
+    .carousel-inner img{
+        width: 100%;
+        height: 100%;
+      }
+      
+      .carousel-caption{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%); 
+      }
+      
+      .carousel-caption h1{
+        font-size: 500%;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 15px #000;
+      }
+      
+      .carousel-caption h3{
+        font-size: 200%;
+        font-weight: 500;
+        text-shadow: 1px 1px 10px #000;
+        padding-bottom: 1rem; 
+      }
+      
+      @media (max-width: 768px) {
+        .carousel-caption{
+        top: 45%;
+      }
+      
+      .carousel-caption h1{
+        font-size: 350%;
+      }
+      
+      .carousel-caption h3{
+        font-size: 140%;
+        font-weight: 400;
+        padding-bottom: .2rem; 
+      }
+      
+      .carousel-caption .btn{
+        font-size: 95%;
+        padding: 8px 14px;
+      }
+    }
+
+    @media (max-width: 576px) {
+        .carousel-caption{
+       top: 40%;
+     }
+     
+     .carousel-caption h1{
+       font-size: 250%;
+     }
+     
+     .carousel-caption h3{
+       font-size: 110%; 
+     }
+     
+     .carousel-caption .btn{
+       font-size: 90%;
+       padding: 4px 8px;
+     }
+     
+     }
+
+     .botoesMenuPrincipal i { font-size: 3.5rem; color:#475871;}
+     .botoesMenuPrincipal h5 {font-size: 2.1rem; font-family: 'Questrial', sans-serif; color:#475871;}
+     .botoesMenuPrincipal h4 {font-size: 2.1rem; font-family: 'Questrial', sans-serif; color:#475871;}
+     
+     @media (max-height: 1366px) and (max-width: 1024px) {
+     
+     .botoesMenuPrincipal i { font-size: 7.5rem;}
+     .botoesMenuPrincipal h5 {font-size: 3rem; font-family: 'Questrial', sans-serif; text-align: center;}
+     .botoesMenuPrincipal h4 {font-size: 3rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+     
+     @media (max-height: 1280px) and (max-width: 800px) {
+     
+     .botoesMenuPrincipal i {font-size: 7.5rem;}
+     .botoesMenuPrincipal h5 {font-size: 5rem; font-family: 'Questrial', sans-serif; text-align: center;}
+     .botoesMenuPrincipal h4 {font-size: 4.825rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+
+      @media (max-height: 1366px) and (max-width: 1024px) {
+     
+        .botoesMenuPrincipal i {font-size: 7rem;}
+        .botoesMenuPrincipal h5 { font-size: 3.7rem; font-family: 'Questrial', sans-serif;}
+        .botoesMenuPrincipal h4 { font-size: 3.7rem; font-family: 'Questrial', sans-serif; text-align: center;}
+         }
+     
+     @media (max-height: 1024px) and (max-width: 768px) {
+     
+     .botoesMenuPrincipal i { font-size: 7rem;}
+     .botoesMenuPrincipal h5 {font-size: 2.6rem; font-family: 'Questrial', sans-serif;}
+     .botoesMenuPrincipal h4 {font-size: 2.6rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+     
+     @media (max-height: 1024px) and (max-width: 600px) {
+     
+     .botoesMenuPrincipal i {font-size: 7rem;}
+     .botoesMenuPrincipal h5 { font-size: 3.472rem; font-family: 'Questrial', sans-serif;}
+     .botoesMenuPrincipal h4 { font-size: 3.338rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+     
+     @media (max-height: 960px) and (max-width: 600px) {
+     
+     .botoesMenuPrincipal i {font-size: 6rem;}
+     .botoesMenuPrincipal h5 {font-size: 3.2rem; font-family: 'Questrial', sans-serif;}
+      }
+     
+     @media (max-height: 950px) and (max-width: 1280px) {
+     
+     .botoesMenuPrincipal i {font-size: 5rem; text-align: center;}
+     .botoesMenuPrincipal h5 {font-size: 2.7rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+     
+     @media (max-height: 900px) and (max-width: 1440px) {
+     
+     .botoesMenuPrincipal i {font-size: 6rem; text-align: center;}
+     .botoesMenuPrincipal h5 {font-size: 3.2rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+     
+     @media (max-height: 854px) and (max-width: 480px) {
+     
+     .botoesMenuPrincipal i {font-size: 5rem; text-align: center;}
+     .botoesMenuPrincipal h5 {font-size: 2.4rem; font-family: 'Questrial', sans-serif; text-align: center;}
+     .botoesMenuPrincipal h4 {font-size: 2.4rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+     
+     @media (max-height: 823px) and (max-width: 411px) {
+     
+     .botoesMenuPrincipal i {font-size: 4.7rem; text-align: center;}
+     .botoesMenuPrincipal h5 {font-size: 2.11rem; font-family: 'Questrial', sans-serif; text-align: center;}
+     .botoesMenuPrincipal h4 {font-size: 1.935rem; font-family: 'Questrial', sans-serif; text-align: center;}
+     
+      }
+     
+     @media (max-height: 812px) and (max-width: 375px) {
+     
+     .botoesMenuPrincipal i {font-size: 4rem; text-align: center;}
+     .botoesMenuPrincipal h5 {font-size: 1.8rem; font-family: 'Questrial', sans-serif; text-align: center;}
+     .botoesMenuPrincipal h4 {font-size: 1.67rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+     
+     @media (max-height: 800px) and (max-width: 1280px) {
+     
+     .botoesMenuPrincipal i {font-size: 5rem; text-align: center;}
+     .botoesMenuPrincipal h5 {font-size: 2.7rem; font-family: 'Questrial', sans-serif; text-align: center;}
+     .botoesMenuPrincipal h4 {font-size: 2.7rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+     
+     @media (max-height: 736px) and (max-width: 414px) {
+     
+     .botoesMenuPrincipal i {font-size: 4.4rem; text-align: center;}
+     .botoesMenuPrincipal h5 {font-size: 2.1rem; font-family: 'Questrial', sans-serif; text-align: center;}
+     .botoesMenuPrincipal h4 {font-size: 1.96rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+     
+     @media (max-height: 732px) and (max-width: 412px) {
+     
+     .botoesMenuPrincipal i {font-size: 5rem; text-align: center;}
+     .botoesMenuPrincipal h5 {font-size: 1.8rem; font-family: 'Questrial', sans-serif; text-align: center;}
+     .botoesMenuPrincipal h4 {font-size: 1.8rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+     
+     @media (max-height: 667px) and (max-width: 375px) {
+     
+     .botoesMenuPrincipal i {font-size: 3.7rem;}
+     .botoesMenuPrincipal h5 {font-size: 1.83rem; font-family: 'Questrial', sans-serif;}
+     .botoesMenuPrincipal h4 {font-size: 1.672rem; font-family: 'Questrial', sans-serif;}
+      }
+     
+     @media (max-height: 640px) and (max-width: 384px) {
+     
+     .botoesMenuPrincipal i {font-size: 3.5rem;}
+     .botoesMenuPrincipal h5 {font-size: 1.9rem; font-family: 'Questrial', sans-serif;}
+     .botoesMenuPrincipal h4 {font-size: 1.735rem; font-family: 'Questrial', sans-serif; text-align: center;}
+      }
+     
+     @media (max-height: 640px) and (max-width: 360px) {
+     
+     .botoesMenuPrincipal i {font-size: 3.5rem;}
+     .botoesMenuPrincipal h5 {font-size: 1.709rem; font-family: 'Questrial', sans-serif;}
+     .botoesMenuPrincipal h4 {font-size: 1.559rem; font-family: 'Questrial', sans-serif;}
+      }
+     
+     @media (max-height: 568px) and (max-width: 320px) {
+     
+     .botoesMenuPrincipal i {font-size: 3.5rem;}
+     .botoesMenuPrincipal h5 {font-size: 1.382rem; font-family: 'Questrial', sans-serif;}
+     .botoesMenuPrincipal h4 {font-size: 1.25rem; font-family: 'Questrial', sans-serif;}
+      }
+     
+     @media (max-height: 533px) and (max-width: 320px) {
+     
+     .botoesMenuPrincipal i {font-size: 2.2rem;}
+     .botoesMenuPrincipal h5 {font-size: 1.3rem; font-family: 'Questrial', sans-serif;}
+      }
+     
+     @media (max-height: 480px) and (max-width: 320px) {
+     
+     .botoesMenuPrincipal i {font-size: 3rem;}
+     .botoesMenuPrincipal h5 {font-size: 1.37rem; font-family: 'Questrial', sans-serif;}
+      }
+     
+     @media (max-height: 360px) and (max-width: 640px) {
+     
+     .botoesMenuPrincipal i {font-size: 2.5rem;}
+     .botoesMenuPrincipal h5 {font-size: 1.7rem; font-family: 'Questrial', sans-serif;}
+     .botoesMenuPrincipal h4 {font-size: 1.7rem; font-family: 'Questrial', sans-serif;}
+      }
+     
+      .padding {
+       padding-bottom: 2rem;
+       padding-top: 2rem;
+     }
+
+
+}
 
 }

@@ -7,6 +7,7 @@ import { ComochegarPage } from '../comochegar/comochegar';
 import { ListaPage } from '../lista/lista';
 import { PromocoesPage } from '../promocoes/promocoes';
 import { HomemenuPage } from '../homemenu/homemenu';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -18,6 +19,10 @@ export class HomePage {
 	public users = [];
 
   rootPage = HomemenuPage;
+
+  abrirLogin(){
+    this.navCtrl.push(LoginPage);
+  }
 
   abrirAvenida(){
     this.navCtrl.push(AvenidaPage);

@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,12 +23,12 @@ import { PromocoesPageModule } from '../pages/promocoes/promocoes.module';
 import { UpdateuserPageModule } from '../pages/updateuser/updateuser.module';
 import { HomemenuPageModule } from '../pages/homemenu/homemenu.module';
 import { IntroPageModule } from '../pages/intro/intro.module';
+import { FavoritosPageModule } from '../pages/favoritos/favoritos.module';
+import { SobrePageModule } from '../pages/sobre/sobre.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
     TabsPage
   ],
@@ -49,14 +47,14 @@ import { IntroPageModule } from '../pages/intro/intro.module';
     PromocoesPageModule,
     UpdateuserPageModule,
     HomemenuPageModule,
-    IntroPageModule
+    IntroPageModule,
+    FavoritosPageModule,
+    SobrePageModule
 
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
     TabsPage
   ],
