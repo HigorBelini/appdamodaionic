@@ -7,12 +7,52 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>empresa</ion-title>
+    <ion-title>{{itens?.nome}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-card>
 
+    <img [src]="itens?.img">
+    <ion-fab right top>
+      <button ion-fab>
+        <ion-icon name="pin"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-card-content>
+      <h2>{{itens?.nome}}</h2>
+      <br>
+      <p align="justify">{{itens?.descricao}}</p>
+    </ion-card-content>
+    <br>
+    <ion-card-content>
+      <h2>Ramo de Atuação</h2>
+      <br>
+      <p>{{itens?.ramo}}</p>
+    </ion-card-content>
+
+    <ion-item>
+      <button ion-button icon-start clear>
+        <ion-icon name="navigate" style="font-size:3rem;"></ion-icon>
+        Favorito
+      </button>
+      <button ion-button icon-start clear>
+        <ion-icon name="navigate" style="font-size:3rem;"></ion-icon>
+        Ver promoções
+      </button>
+      <button ion-button icon-start clear>
+        <ion-icon name="navigate" style="font-size:3rem;"></ion-icon>
+        Endereço
+      </button>
+      <button ion-button icon-start clear>
+        <ion-icon name="navigate" style="font-size:3rem;"></ion-icon>
+        Localização
+      </button>
+    </ion-item>
+
+  </ion-card>
 </ion-content>

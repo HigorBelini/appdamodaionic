@@ -15,7 +15,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class EmpresaPage {
 
+  itens = {};
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.itens = this.navParams.get('dados');
+
   }
 
   ionViewDidLoad() {
