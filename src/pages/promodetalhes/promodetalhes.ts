@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { MapaPage } from '../mapa/mapa';
+import { IListaPromocoes } from '../../interfaces/IListaPromocoes';
+import { PromocoesProvider } from '../../providers/promocoes/promocoes';
 import { DomSanitizer } from '@angular/platform-browser';
-import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
-import { EmpresasProvider } from '../../providers/empresas/empresas';
-
 /**
- * Generated class for the EmpresaPage page.
+ * Generated class for the PromodetalhesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -14,23 +12,19 @@ import { EmpresasProvider } from '../../providers/empresas/empresas';
 
 @IonicPage()
 @Component({
-  selector: 'page-empresa',
-  templateUrl: 'empresa.html',
+  selector: 'page-promodetalhes',
+  templateUrl: 'promodetalhes.html',
 })
-export class EmpresaPage {
+export class PromodetalhesPage {
 
-  itens:IListaEmpresas;
-
-  abrirPagMapa(itens){
-    this.navCtrl.push(MapaPage,{dados:itens});
-  }
+  itens:IListaPromocoes;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer) {
     this.itens = this.navParams.get('dados');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EmpresaPage');
+    console.log('ionViewDidLoad PromodetalhesPage');
   }
 
 }

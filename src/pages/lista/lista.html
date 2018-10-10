@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Empresas</ion-title>
+    <ion-title style="font-family: 'Poppins', sans-serif;">Empresas</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -13,10 +13,10 @@
       <ion-item-sliding #item>
           <ion-item>
               <ion-avatar item-start>
-                <img [src]="itens?.img">
+                <img [src]="itens?.logo">
               </ion-avatar>
-              <h3>{{ itens?.nome }}</h3>
-              <p>{{ itens?.ramo }}</p>
+              <h3 style="font-family: 'Poppins', sans-serif;">{{ itens?.fantasyname }}</h3>
+              <p>{{ itens?.industry }}</p>
             </ion-item>
         <ion-item-options side="right">
           <button ion-button color="danger" (click)="favorites()">Favoritos</button>

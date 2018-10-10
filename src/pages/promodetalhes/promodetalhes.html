@@ -1,0 +1,27 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title style="font-family: 'Poppins', sans-serif;">Promoções e Eventos</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+      <ion-card>
+        <img [src]="itens?.promotionimage" />
+        <ion-card-content>
+          <ion-card-title>
+            {{itens?.name}}
+          </ion-card-title>
+          <p>
+            {{itens?.descriptive}}
+          </p>
+          <ion-row class="row" no-padding="">
+            <ion-col class="col">
+              <button ion-button block>Participar</button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+  </ion-content>

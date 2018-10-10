@@ -1,28 +1,32 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
+    <ion-toolbar color="tema">
+      <ion-title style="font-family: 'Poppins', sans-serif;">Menu</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="bg-image">
     <ion-list>
-        <button ion-item (click)="abrirLogin()">
-            <ion-icon name="contact"></ion-icon> Faça Login
-          </button>
+      <ion-item>
+        <ion-avatar item-start (click)="abrirLogin()">
+          <img src="assets/imgs/logo.png" (click)="abrirLogin()">
+        </ion-avatar>
+        <h2 (click)="abrirLogin()" style="font-family: 'Poppins', sans-serif;">Faça Login</h2>
+        <p (click)="abrirRegisterBot()">Ou cadastre-se</p>
+      </ion-item>
       <button ion-item (click)="openPage(homePage)">
         <ion-icon name="home"></ion-icon> Home
       </button>
       <button ion-item (click)="abrirAvenida()">
-          <ion-icon name="map"></ion-icon> A Avenida
+        <ion-icon name="map"></ion-icon> A Avenida
       </button>
       <button ion-item (click)="abrirComoChegar()">
-          <ion-icon name="navigate"></ion-icon> Como Chegar
+        <ion-icon name="navigate"></ion-icon> Como Chegar
       </button>
       <button ion-item (click)="abrirLista()">
         <ion-icon name="search"></ion-icon> Buscar por Lojas
       </button>
       <button ion-item (click)="abrirPromocoes()">
-          <ion-icon name="pricetags"></ion-icon> Promoções e Eventos
+        <ion-icon name="pricetags"></ion-icon> Promoções e Eventos
       </button>
     </ion-list>
   </ion-content>

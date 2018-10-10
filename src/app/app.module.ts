@@ -25,6 +25,10 @@ import { HomemenuPageModule } from '../pages/homemenu/homemenu.module';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { FavoritosPageModule } from '../pages/favoritos/favoritos.module';
 import { SobrePageModule } from '../pages/sobre/sobre.module';
+import { MapaPageModule } from '../pages/mapa/mapa.module';
+import { EmpresasProvider } from '../providers/empresas/empresas';
+import { PromocoesProvider } from '../providers/promocoes/promocoes';
+import { PromodetalhesPageModule } from '../pages/promodetalhes/promodetalhes.module';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,9 @@ import { SobrePageModule } from '../pages/sobre/sobre.module';
     HomemenuPageModule,
     IntroPageModule,
     FavoritosPageModule,
-    SobrePageModule
+    SobrePageModule,
+    MapaPageModule,
+    PromodetalhesPageModule
 
   ],
   bootstrap: [IonicApp],
@@ -62,7 +68,9 @@ import { SobrePageModule } from '../pages/sobre/sobre.module';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    UserProvider
+    UserProvider,
+    EmpresasProvider,
+    PromocoesProvider
   ]
 })
 export class AppModule { }

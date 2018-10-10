@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{itens?.nome}}</ion-title>
+    <ion-title style="font-family: 'Poppins', sans-serif;">{{itens?.fantasyname}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,43 +16,63 @@
 <ion-content>
   <ion-card>
 
-    <img [src]="itens?.img">
+    <img [src]="itens?.logo">
     <ion-fab right top>
-      <button ion-fab>
+      <button ion-fab (click)="abrirPagMapa(itens)">
         <ion-icon name="pin"></ion-icon>
       </button>
     </ion-fab>
 
     <ion-card-content>
-      <h2>{{itens?.nome}}</h2>
+      <h2 style="font-family: 'Poppins', sans-serif;">{{itens?.fantasyname}}</h2>
       <br>
-      <p align="justify">{{itens?.descricao}}</p>
+      <p align="justify">{{itens?.descriptive}}</p>
     </ion-card-content>
     <br>
     <ion-card-content>
-      <h2>Ramo de Atuação</h2>
+      <h2 style="font-family: 'Poppins', sans-serif;">Ramo de Atuação</h2>
       <br>
-      <p>{{itens?.ramo}}</p>
+      <p>{{itens?.industry}}</p>
     </ion-card-content>
 
-    <ion-item>
-      <button ion-button icon-start clear>
-        <ion-icon name="navigate" style="font-size:3rem;"></ion-icon>
-        Favorito
-      </button>
-      <button ion-button icon-start clear>
-        <ion-icon name="navigate" style="font-size:3rem;"></ion-icon>
-        Ver promoções
-      </button>
-      <button ion-button icon-start clear>
-        <ion-icon name="navigate" style="font-size:3rem;"></ion-icon>
-        Endereço
-      </button>
-      <button ion-button icon-start clear>
-        <ion-icon name="navigate" style="font-size:3rem;"></ion-icon>
-        Localização
-      </button>
-    </ion-item>
+    <ion-row class="row" no-padding="">
+      <ion-col class="col">
+        <button clear="" color="danger" icon-start="" ion-button="" small="" class="disable-hover button button-ios button-clear button-clear-ios button-small button-small-ios button-clear-ios-danger">
+          <span class="button-inner">
+            <i class="fas fa-map-marked-alt" style="margin-right:5px;"></i>
+            Localização
+          </span>
+          <div class="button-effect"></div>
+        </button>
+      </ion-col>
+      <ion-col class="col">
+        <button clear="" color="danger" icon-start="" ion-button="" small="" class="disable-hover button button-ios button-clear button-clear-ios button-small button-small-ios button-clear-ios-danger">
+          <span class="button-inner">
+            <i class="fas fa-shopping-bag" style="margin-right:5px;"></i>
+            Promoções
+          </span>
+          <div class="button-effect"></div>
+        </button>
+      </ion-col>
+      <ion-col class="col">
+        <button clear="" color="danger" icon-start="" ion-button="" small="" class="disable-hover button button-ios button-clear button-clear-ios button-small button-small-ios button-clear-ios-danger">
+          <span class="button-inner">
+              <i class="fas fa-globe" style="margin-right:5px;"></i>
+            Site Oficial
+          </span>
+          <div class="button-effect"></div>
+        </button>
+      </ion-col>
+      <ion-col class="col">
+        <button clear="" color="danger" icon-start="" ion-button="" small="" class="disable-hover button button-ios button-clear button-clear-ios button-small button-small-ios button-clear-ios-danger">
+          <span class="button-inner">
+              <i class="fas fa-heart" style="margin-right:5px;"></i>
+            Favoritos
+          </span>
+          <div class="button-effect"></div>
+        </button>
+      </ion-col>
+    </ion-row>
 
   </ion-card>
 </ion-content>
