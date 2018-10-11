@@ -29,6 +29,7 @@ import { MapaPageModule } from '../pages/mapa/mapa.module';
 import { EmpresasProvider } from '../providers/empresas/empresas';
 import { PromocoesProvider } from '../providers/promocoes/promocoes';
 import { PromodetalhesPageModule } from '../pages/promodetalhes/promodetalhes.module';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { PromodetalhesPageModule } from '../pages/promodetalhes/promodetalhes.mo
     FavoritosPageModule,
     SobrePageModule,
     MapaPageModule,
-    PromodetalhesPageModule
+    PromodetalhesPageModule,
+    IonicStorageModule.forRoot()
 
   ],
   bootstrap: [IonicApp],

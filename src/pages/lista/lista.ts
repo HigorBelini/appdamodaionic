@@ -68,7 +68,14 @@ export class ListaPage {
       console.log(res);
     }, erro => {
       console.log("erro" + erro.message)
+    });
+
+    this.empresaProvider.show(data).subscribe(res =>{
+      console.log(res);
+    }, erro => {
+      console.log("erro" + erro.message)
     });*/
+
   }
 
   ionViewDidLoad() {

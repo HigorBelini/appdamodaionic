@@ -1,16 +1,31 @@
 {
   "companies": [
     {
-      "id": 2,
-      "socialname": "Talento",
-      "fantasyname": "Talento",
-      "number": 3000,
-      "logo": "http://www.curriculonarede.com.br/img_empresas/363/destaque.jpg",
+      "id": 1,
+      "socialname": "Kimika",
+      "fantasyname": "Kimika",
+      "number": 2000,
+      "logo": "https://scontent.ffrc5-1.fna.fbcdn.net/v/t1.0-9/26730970_1572789662756978_5864536003222822185_n.png?_nc_cat=100&oh=01bdfde7b6014dd32042a1a89321cbd7&oe=5C18CA1A",
       "shopfacade": "",
       "latitude": 100,
       "longitude": 200,
-      "industry": "Moda Feminina Plus-Size",
-      "descriptive": "Fundada em Outubro de 1984, a TALENTO se destaca por sua especialização em estampas exclusivas e uma linha variada da moda feminina plus size. Crescemos devido a constante busca pela perfeição, utilizando de pesquisas de mercado internacional. Hoje a TALENTO atinge seus objetivos posicionando-se na vanguarda da moda feminina plus size.",
+      "industry": "Moda Feminina",
+      "descriptive": "A busca pelo novo e a mistura de materiais é o que da charme e essência as peças produzidas pela Kímika. ",
+      "keywords": "",
+      "date": "",
+      "user_id": 1
+    },
+    {
+      "id": 2,
+      "socialname": "Preto e Branco Calçados",
+      "fantasyname": "Preto e Branco Calçados",
+      "number": 8000,
+      "logo": "https://scontent.ffrc5-1.fna.fbcdn.net/v/t1.0-9/21032575_1132807973487185_2904497181765316242_n.png?_nc_cat=101&oh=9297f6b7dc6fdb74978ac5b30a934046&oe=5C5BDFA2",
+      "shopfacade": "",
+      "latitude": 100,
+      "longitude": 200,
+      "industry": "Calçados",
+      "descriptive": "A busca pelo novo e a mistura de materiais é o que da charme e essência as peças produzidas pela Kímika.",
       "keywords": "",
       "date": "",
       "user_id": 1
@@ -109,23 +124,47 @@
   "promotions": [
     {
       "id": 1,
-      "company_id": 1,
-      "name": "Blusas de Inverno 50% OFF",
-      "startdate": "2018-12-12",
-      "finaldate": "2018-12-31",
-      "descriptive": "Atenção! Neste final de ano estamos liquidando nosso estoque de inverno. Venha aproveitar.",
-      "user_id": 1,
-      "promotionimage": "https://secondchanceskamloops.files.wordpress.com/2017/07/8898172-50-off-rubber-stamp-stock-vector-half.jpg"
-    },
-    {
-      "id": 2,
       "company_id": 2,
-      "name": "Sapatos e Sandálias",
+      "name": "Sapatos, Sandálias e Moda Praia",
       "startdate": "2018-12-05",
       "finaldate": "2018-12-20",
       "descriptive": "Atenção! Neste final de ano estamos liquidando nosso estoque para renovação. Venha aproveitar. Temos produtos com até 50% de desconto",
       "user_id": 1,
       "promotionimage": "http://s3.amazonaws.com/mapa-da-obra-producao/wp-content/uploads/2018/01/queima-de-estoque.jpg"
+    },
+    {
+      "id": 3,
+      "company_id": 2,
+      "name": "Sapatos, Sandálias e Moda Praia",
+      "startdate": "2018-12-05",
+      "finaldate": "2018-12-20",
+      "descriptive": "Atenção! Neste final de ano estamos liquidando nosso estoque para renovação. Venha aproveitar. Temos produtos com até 50% de desconto",
+      "user_id": 1,
+      "promotionimage": "http://s3.amazonaws.com/mapa-da-obra-producao/wp-content/uploads/2018/01/queima-de-estoque.jpg"
+    },
+    {
+      "id": 2,
+      "company_id": 2,
+      "name": "Sapatos, Sandálias e Moda Praia",
+      "startdate": "2018-12-05",
+      "finaldate": "2018-12-20",
+      "descriptive": "Atenção! Neste final de ano estamos liquidando nosso estoque para renovação. Venha aproveitar. Temos produtos com até 50% de desconto",
+      "user_id": 1,
+      "promotionimage": "http://s3.amazonaws.com/mapa-da-obra-producao/wp-content/uploads/2018/01/queima-de-estoque.jpg"
+    }
+  ],
+  "users": [
+    {
+      "name": "Higor Belini44444444",
+      "email": "belini.higor@gmail.com",
+      "password": "flamengo2015HB",
+      "id": 1
+    },
+    {
+      "name": "Cláudio Maia",
+      "email": "contatoclaudiomaia@gmail.com",
+      "password": "123456",
+      "id": 2
     }
   ]
 }

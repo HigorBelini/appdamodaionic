@@ -8,6 +8,7 @@ import { ListaPage } from '../lista/lista';
 import { PromocoesPage } from '../promocoes/promocoes';
 import { HomemenuPage } from '../homemenu/homemenu';
 import { LoginPage } from '../login/login';
+import { NovouserPage } from '../novouser/novouser';
 
 @Component({
   selector: 'page-home',
@@ -20,8 +21,16 @@ export class HomePage {
 
   rootPage = HomemenuPage;
 
+  abrirHome(){
+    this.navCtrl.push(HomemenuPage);
+  }
+
   abrirLogin(){
     this.navCtrl.push(LoginPage);
+  }
+
+  abrirCadastro(){
+    this.navCtrl.push(NovouserPage);
   }
 
   abrirAvenida(){
@@ -40,18 +49,7 @@ export class HomePage {
     this.navCtrl.push(PromocoesPage);
   }
 
-	public userCadastro = {"name":"", "email":"", "password":null};
-
   constructor(public navCtrl: NavController, private userService:UserProvider) {
-  	this.getUsers();
-  }
-
-  public getUsers(){
-  	this.userService.findAll().subscribe(response => this.users = response);
-  }
-
-  public salvarUser(){
-  	this.userService.salvar(this.userCadastro).subscribe(response => this.getUsers());
   }
 
 }

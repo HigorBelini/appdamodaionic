@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NovouserPage } from '../novouser/novouser';
+import { IUsuario } from '../../interfaces/IUsuario';
+import { UserProvider} from '../../providers/user/user';
 
 /**
  * Generated class for the LoginPage page.
@@ -19,12 +21,22 @@ export class LoginPage {
   abrirRegisterBot(){
     this.navCtrl.push(NovouserPage);
   }
+  
+  user:IUsuario = {email:'', password:''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    
+  }
+
+  loginUsuario(){
+    this.userProvider.loginUsuario(this.user).subscribe(res => {
+      this.userProvider.setStorage("user",res);
+    }, erro => {
+      console.log("Erro: " + erro.message);
+    });
   }
 
 }

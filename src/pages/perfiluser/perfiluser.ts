@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { IUsuario } from '../../interfaces/IUsuario';
+import { UserProvider} from '../../providers/user/user';
+import { LoginPage } from '../login/login';
+import { HomemenuPage } from '../homemenu/homemenu';
+
 /**
  * Generated class for the PerfiluserPage page.
  *
@@ -15,11 +20,39 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PerfiluserPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user:IUsuario = {name:'', email:'', password:''};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PerfiluserPage');
+
+    this.userProvider.getStorage("user","").then( user =>{ 
+      if(user){
+        this.user = user;
+        this.userProvider.showUsuario(user).subscribe(res => {
+          this.user = res;
+        }, erro => {
+          console.log("Erro: " + erro.message);
+        });
+      }else{
+        this.cancelar();
+      }
+    });
+
+   
+  }
+
+  cancelar(){
+    this.navCtrl.setRoot(HomemenuPage);
+  }
+
+  editUser(){
+    this.userProvider.editUsuario(this.user).subscribe(res => {
+      this.user = res;
+    }, erro => {
+      console.log("Erro: " + erro.message);
+    });
   }
 
 }

@@ -7,21 +7,17 @@
       <ion-list inset no line>
         <ion-item>
           <ion-label style="color:#fff;">Nome</ion-label>
-          <ion-input input="text"></ion-input>
+          <ion-input type="text" name="name" [(ngModel)]="user.name"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label style="color:#fff;">E-mail</ion-label>
-          <ion-input input="mail"></ion-input>
+          <ion-input type="text" name="email" [(ngModel)]="user.email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label style="color:#fff;">Senha</ion-label>
-          <ion-input input="password"></ion-input>
+          <ion-input type="password" name="password" [(ngModel)]="user.password"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label style="color:#fff;">Confirmar Senha</ion-label>
-          <ion-input input="password"></ion-input>
-        </ion-item>
-        <button ion-button block outline color="light">Cadastrar</button>
+        <button ion-button block outline color="light" (click)="addUser()">Cadastrar</button>
         <button ion-button clear full color="light" (click)="abrirLogBot()">Já tem uma conta? Acesse</button>
       </ion-list>
     </ion-card-content>
