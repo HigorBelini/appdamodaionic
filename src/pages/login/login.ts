@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NovouserPage } from '../novouser/novouser';
 import { IUsuario } from '../../interfaces/IUsuario';
-import { UserProvider} from '../../providers/user/user';
+import { UserProvider } from '../../providers/user/user';
 import { MenuController } from 'ionic-angular';
 import { HomemenuPage } from '../homemenu/homemenu';
 import { HomePage } from '../home/home';
@@ -22,17 +22,17 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
-  abrirRegisterBot(){
+  abrirRegisterBot() {
     this.navCtrl.push(NovouserPage);
   }
-  
-  user:IUsuario = {email:'', password:''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public menuCtrl: MenuController) {
+  user: IUsuario = { email: '', password: '' };
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController) {
   }
 
   ionViewDidLoad() {
-    
+
   }
 
   ativaMenuLogin() {
@@ -40,15 +40,26 @@ export class LoginPage {
     this.menuCtrl.enable(false, 'userSemLogin');
   }
 
-  cancelar(){
+  cancelar() {
     this.navCtrl.setRoot(HomePage);
   }
 
-  loginUsuario(){
+  loginUsuario() {
     this.userProvider.loginUsuario(this.user).subscribe(res => {
-      this.userProvider.setStorage("user",res);
-      this.ativaMenuLogin();
-      this.cancelar();
+      if (res) {
+        if (res.token) {
+          console.log(res);
+          this.userProvider.setStorage("user", res);
+          localStorage.setItem('token', res.token);
+          this.ativaMenuLogin();
+          this.cancelar();
+        } else {
+          console.log(res); //validação
+        }
+      } else {
+        // Login com erro!
+      }
+
     }, erro => {
       console.log("Erro: " + erro.message);
     });

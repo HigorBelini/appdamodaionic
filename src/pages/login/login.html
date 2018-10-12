@@ -17,11 +17,11 @@
       <ion-list inset no line>
         <ion-item>
           <ion-label style="color:#fff;">E-mail</ion-label>
-          <ion-input input="text"></ion-input>
+          <ion-input input="text" type="text" [(ngModel)]="user.email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label style="color:#fff;">Senha</ion-label>
-          <ion-input input="password"></ion-input>
+          <ion-input input="password" type="password" [(ngModel)]="user.password"></ion-input>
         </ion-item>
         <a style="color:#fff;">Esqueceu sua senha?
           <b>Nós te ajudamos</b>

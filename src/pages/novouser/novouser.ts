@@ -33,6 +33,8 @@ export class NovouserPage {
   addUser(){
     this.userProvider.addUsuario(this.user).subscribe(res => {
       console.log(res);
+      localStorage.setItem('token', res.token);
+      this.userProvider.setStorage("user", res);
     }, erro => {
       console.log("Erro: " + erro.message);
     });

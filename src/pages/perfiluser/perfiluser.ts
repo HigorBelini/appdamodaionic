@@ -32,6 +32,7 @@ export class PerfiluserPage {
       if(user){
         this.user = user;
         this.userProvider.showUsuario(user).subscribe(res => {
+          console.log(res);
           this.user = res;
         }, erro => {
           console.log("Erro: " + erro.message);

@@ -14,7 +14,9 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class UserProvider {
 
-  url: string = 'http://localhost:3000/';
+  //url: string = 'http://localhost:3000/';
+  url: string = 'http://localhost:8000/api/';
+
   headers: any;
   constructor(public http: HttpClient, private storage: Storage) {
     //this.headers = {"headers": {"authorization": "Bearer "+this.token}};
@@ -30,7 +32,7 @@ export class UserProvider {
   }
 
   showUsuario(data: IUsuario) {
-    return this.http.get<IUsuario>(this.url + 'users/' + data.id);
+    return this.http.get<IUsuario>(this.url + 'user', {"headers": {"authorization": "Bearer "+localStorage.getItem('token')}});
   }
 
   addUsuario(data: IUsuario) {
@@ -42,7 +44,7 @@ export class UserProvider {
   }
 
   loginUsuario(data: IUsuario) {
-    return this.http.get<IUsuario>(this.url + 'users/1');
+    return this.http.post<IUsuario>(this.url + 'login', data);
   }
 
 }
