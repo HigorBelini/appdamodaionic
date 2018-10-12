@@ -1,35 +1,45 @@
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar color="tema">
-      <ion-title style="font-family: 'Poppins', sans-serif;">Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="bg-image">
-    <ion-list>
-      <ion-item>
-        <ion-avatar item-start (click)="abrirLogin()">
-          <img src="assets/imgs/logo.png" (click)="abrirLogin()">
-        </ion-avatar>
-        <h2 (click)="abrirLogin()" style="font-family: 'Poppins', sans-serif;">Faça Login</h2>
-        <p (click)="abrirCadastro()">Ou cadastre-se</p>
-      </ion-item>
-      <button ion-item (click)="abrirHome()">
-        <ion-icon name="home"></ion-icon> Home
-      </button>
-      <button ion-item (click)="abrirAvenida()">
-        <ion-icon name="map"></ion-icon> A Avenida
-      </button>
-      <button ion-item (click)="abrirComoChegar()">
-        <ion-icon name="navigate"></ion-icon> Como Chegar
-      </button>
-      <button ion-item (click)="abrirLista()">
-        <ion-icon name="search"></ion-icon> Buscar por Lojas
-      </button>
-      <button ion-item (click)="abrirPromocoes()">
-        <ion-icon name="pricetags"></ion-icon> Promoções e Eventos
-      </button>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+<ion-menu [content]="content" id="userSemLogin">
+    <ion-header>
+      <ion-toolbar color="tema">
+        <ion-title style="font-family: 'Poppins', sans-serif;">Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="bg-image">
+      <ion-list>
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/imgs/logo.png">
+          </ion-avatar>
+          <h2 (click)="abrirLogin()" style="font-family: 'Poppins', sans-serif;">Faça Login</h2>
+          <p (click)="abrirCadastro()">Ou cadastre-se</p>
+        </ion-item>
+        <button ion-item *ngFor="let p of pages1" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-menu [content]="content" id="userComLogin">
+    <ion-header>
+      <ion-toolbar color="tema">
+        <ion-title style="font-family: 'Poppins', sans-serif;">Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="bg-image">
+      <ion-list>
+        <ion-item>
+          <ion-avatar item-start (click)="abrirLogin()">
+            <img src="assets/imgs/logo.png" (click)="abrirLogin()">
+          </ion-avatar>
+          <h2 (click)=" perfilUserPage()" style="font-family: 'Poppins', sans-serif;">Meu Perfil</h2>
+          <p menuClose (click)="sair()">Sair</p>
+        </ion-item>
+        <button menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-nav id="nav" #content [root]="rootPage"></ion-nav>

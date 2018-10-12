@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NovouserPage } from '../novouser/novouser';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider} from '../../providers/user/user';
+import { MenuController } from 'ionic-angular';
+import { HomemenuPage } from '../homemenu/homemenu';
+import { HomePage } from '../home/home';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -24,16 +28,27 @@ export class LoginPage {
   
   user:IUsuario = {email:'', password:''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public menuCtrl: MenuController) {
   }
 
   ionViewDidLoad() {
     
   }
 
+  ativaMenuLogin() {
+    this.menuCtrl.enable(true, 'userComLogin');
+    this.menuCtrl.enable(false, 'userSemLogin');
+  }
+
+  cancelar(){
+    this.navCtrl.setRoot(HomePage);
+  }
+
   loginUsuario(){
     this.userProvider.loginUsuario(this.user).subscribe(res => {
       this.userProvider.setStorage("user",res);
+      this.ativaMenuLogin();
+      this.cancelar();
     }, erro => {
       console.log("Erro: " + erro.message);
     });

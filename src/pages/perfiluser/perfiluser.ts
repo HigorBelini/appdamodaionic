@@ -5,6 +5,7 @@ import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider} from '../../providers/user/user';
 import { LoginPage } from '../login/login';
 import { HomemenuPage } from '../homemenu/homemenu';
+import { MenuController } from 'ionic-angular';
 
 /**
  * Generated class for the PerfiluserPage page.
@@ -22,12 +23,12 @@ export class PerfiluserPage {
 
   user:IUsuario = {name:'', email:'', password:''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public menuCtrl: MenuController) {
   }
 
   ionViewDidLoad() {
 
-    this.userProvider.getStorage("user","").then( user =>{ 
+    this.userProvider.getStorage("user").then( user =>{ 
       if(user){
         this.user = user;
         this.userProvider.showUsuario(user).subscribe(res => {
@@ -40,7 +41,6 @@ export class PerfiluserPage {
       }
     });
 
-   
   }
 
   cancelar(){

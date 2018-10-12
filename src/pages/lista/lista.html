@@ -1,6 +1,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title style="font-family: 'Poppins', sans-serif;">Empresas</ion-title>
   </ion-navbar>
 
@@ -11,13 +14,13 @@
   <ion-list>
     <div *ngFor="let itens of lista" (click)="abrirPagEmpresa(itens)">
       <ion-item-sliding #item>
-          <ion-item>
-              <ion-avatar item-start>
-                <img [src]="itens?.logo">
-              </ion-avatar>
-              <h3 style="font-family: 'Poppins', sans-serif;">{{ itens?.fantasyname }}</h3>
-              <p>{{ itens?.industry }}</p>
-            </ion-item>
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="itens?.logo">
+          </ion-avatar>
+          <h3 style="font-family: 'Poppins', sans-serif;">{{ itens?.fantasyname }}</h3>
+          <p>{{ itens?.industry }}</p>
+        </ion-item>
         <ion-item-options side="right">
           <button ion-button color="danger" (click)="favorites()">Favoritos</button>
         </ion-item-options>
