@@ -21,7 +21,7 @@ import { MenuController } from 'ionic-angular';
 })
 export class PerfiluserPage {
 
-  user:IUsuario = {name:'', email:'', password:''};
+  user:IUsuario = {name:'', email:'', password:'',city:'', uf:'', gender:'', datebirth:'', profileimage:''};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public menuCtrl: MenuController) {
   }
@@ -50,7 +50,16 @@ export class PerfiluserPage {
 
   editUser(){
     this.userProvider.editUsuario(this.user).subscribe(res => {
-      this.user = res;
+      if (res) {
+        if (res.token) {
+          console.log(res);
+          this.userProvider.setStorage("user", res);
+        } else {
+          console.log(res); //validação
+        }
+      } else {
+        // Login com erro!
+      }
     }, erro => {
       console.log("Erro: " + erro.message);
     });

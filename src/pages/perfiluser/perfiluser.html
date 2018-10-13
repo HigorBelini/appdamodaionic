@@ -24,6 +24,22 @@
             <ion-label style="color:#fff;">Senha</ion-label>
             <ion-input type="password" name="password" [(ngModel)]="user.password"></ion-input>
           </ion-item>
+          <ion-item>
+            <ion-label style="color:#fff;">Cidade</ion-label>
+            <ion-input type="text" name="city" [(ngModel)]="user.city"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label style="color:#fff;">Estado</ion-label>
+            <ion-input type="text" name="uf" [(ngModel)]="user.uf"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label style="color:#fff;">Sexo</ion-label>
+            <ion-input type="text" name="gender" [(ngModel)]="user.gender"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label style="color:#fff;">Data de nascimento</ion-label>
+            <ion-input type="text" name="datebirth" [(ngModel)]="user.datebirth"></ion-input>
+          </ion-item>
           <button ion-button block outline color="light" (click)="editUser()">Atualizar</button>
           <button ion-button clear full color="light" (click)="abrirLogBot()">Já tem uma conta? Acesse</button>
         </ion-list>

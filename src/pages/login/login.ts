@@ -50,7 +50,6 @@ export class LoginPage {
         if (res.token) {
           console.log(res);
           this.userProvider.setStorage("user", res);
-          localStorage.setItem('token', res.token);
           this.ativaMenuLogin();
           this.cancelar();
         } else {

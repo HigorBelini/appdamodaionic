@@ -31,16 +31,16 @@ export class UserProvider {
    return this.storage.get(chave);
   }
 
-  showUsuario(data: IUsuario) {
-    return this.http.get<IUsuario>(this.url + 'user', {"headers": {"authorization": "Bearer "+localStorage.getItem('token')}});
+  showUsuario(user: IUsuario) {
+    return this.http.get<IUsuario>(this.url + 'user', {"headers": {"authorization": "Bearer " + user.token}});
   }
 
   addUsuario(data: IUsuario) {
-    return this.http.post<IUsuario>(this.url + 'users', data);
+    return this.http.post<IUsuario>(this.url + 'user', data);
   }
 
-  editUsuario(data: IUsuario) {
-    return this.http.put<IUsuario>(this.url + 'users/' + data.id, data);
+  editUsuario(user: IUsuario) {
+    return this.http.put<IUsuario>(this.url + 'user', user, {"headers": {"authorization": "Bearer " + user.token}});
   }
 
   loginUsuario(data: IUsuario) {

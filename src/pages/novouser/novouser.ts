@@ -32,9 +32,17 @@ export class NovouserPage {
 
   addUser(){
     this.userProvider.addUsuario(this.user).subscribe(res => {
-      console.log(res);
-      localStorage.setItem('token', res.token);
-      this.userProvider.setStorage("user", res);
+
+      if (res) {
+        if (res.token) {
+          console.log(res);
+          this.userProvider.setStorage("user", res);
+        } else {
+          console.log(res); //validação
+        }
+      } else {
+        // Login com erro!
+      }
     }, erro => {
       console.log("Erro: " + erro.message);
     });
