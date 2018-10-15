@@ -20,17 +20,20 @@ import { AlertController } from 'ionic-angular';
 export class PromodetalhesPage {
 
   itens:IListaPromocoes;
-
+  public loader;
   constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
     this.itens = this.navParams.get('dados');
   }
 
-  carregar() {
-    const loader = this.loadingCtrl.create({
-      content: "Aguarde...",
-      duration: 500
-    });
-    loader.present();
+  carregar(){
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando detalhes...",
+    }); 
+    this.loader.present();
+  }
+
+  fechacarregar(){
+    this.loader.dismiss();
   }
 
   showAlertSuccess(){
@@ -49,8 +52,10 @@ export class PromodetalhesPage {
     alert.present();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PromodetalhesPage');
+  ionViewDidEnter() {
+    this.carregar();
+    console.log('ionViewDidEnter PromodetalhesPage');
+    this.fechacarregar();
   }
 
 }

@@ -21,7 +21,7 @@ import { LoadingController } from 'ionic-angular';
 export class EmpresaPage {
 
   itens:IListaEmpresas;
-
+  public loader;
   abrirPagMapa(itens){
     this.navCtrl.push(MapaPage,{dados:itens});
   }
@@ -29,17 +29,21 @@ export class EmpresaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController) {
     this.itens = this.navParams.get('dados');
   }
-
-  carregar() {
-    const loader = this.loadingCtrl.create({
-      content: "Aguarde...",
-      duration: 4000
-    });
-    loader.present();
+  carregar(){
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando empresa...",
+    }); 
+    this.loader.present();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EmpresaPage');
+  fechacarregar(){
+    this.loader.dismiss();
+  }
+
+  ionViewDidEnter() {
+    this.carregar();
+    console.log('ionViewDidEnter EmpresaPage');
+    this.fechacarregar();
   }
 
 }

@@ -20,17 +20,20 @@ import { LoadingController } from 'ionic-angular';
 export class PromocoesPage {
 
   lista: IListaPromocoes[];
-
+  public loader;
   abrirPagPromoDetalhes(itens){
     this.navCtrl.push(PromodetalhesPage,{dados:itens});
   }
 
-  carregar() {
-    const loader = this.loadingCtrl.create({
-      content: "Aguarde...",
-      duration: 1250
-    });
-    loader.present();
+  carregar(){
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando promoções...",
+    }); 
+    this.loader.present();
+  }
+
+  fechacarregar(){
+    this.loader.dismiss();
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public promocaoProvider: PromocoesProvider, public loadingCtrl: LoadingController) {
@@ -38,15 +41,14 @@ export class PromocoesPage {
   }
 
   ionViewDidEnter(){
+    this.carregar();
     this.promocaoProvider.all().subscribe(res =>{
       this.lista = res;
     }, erro => {
       console.log("erro" + erro.message)
    });
-  }
-  
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PromocoesPage');
+   console.log('ionViewDidEnter PromocoesPage');
+   this.fechacarregar();
   }
 
 }

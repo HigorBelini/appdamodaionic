@@ -12,7 +12,7 @@
 
 <ion-content>
   <ion-searchbar (input)="getItems($event)"></ion-searchbar>
-  <div *ngFor="let itens of lista" (click)="abrirPagPromoDetalhes(itens)" (click)="carregar()">
+  <div *ngFor="let itens of lista" (click)="abrirPagPromoDetalhes(itens)">
     <ion-card>
       <ion-item>
         <ion-avatar item-start>

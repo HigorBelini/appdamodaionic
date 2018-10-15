@@ -10,10 +10,10 @@
           <ion-avatar item-start>
             <img src="assets/imgs/logo.png">
           </ion-avatar>
-          <h2 (click)="abrirLogin()" (click)="carregarlogin()" style="font-family: 'Poppins', sans-serif;">Faça Login</h2>
-          <p (click)="abrirCadastro()" (click)="carregarlogin()">Ou cadastre-se</p>
+          <h2 (click)="abrirLogin()" style="font-family: 'Poppins', sans-serif;">Faça Login</h2>
+          <p (click)="abrirCadastro()">Ou cadastre-se</p>
         </ion-item>
-        <button menuClose ion-item *ngFor="let p of pages1" (click)="openPage(p)" (click)="carregar()">
+        <button menuClose ion-item *ngFor="let p of pages1" (click)="openPage(p)">
           {{p.title}}
         </button>
       </ion-list>
@@ -29,13 +29,13 @@
     <ion-content class="bg-image">
       <ion-list>
         <ion-item>
-          <ion-avatar item-start (click)="abrirLogin()" (click)="carregarlogin()">
-            <img src="assets/imgs/logo.png" (click)="abrirLogin()" (click)="carregarlogin()">
+          <ion-avatar item-start (click)="abrirLogin()">
+            <img src="assets/imgs/logo.png" (click)="abrirLogin()">
           </ion-avatar>
-          <h2 (click)=" perfilUserPage()" (click)="carregarlogin()" style="font-family: 'Poppins', sans-serif;">Meu Perfil</h2>
-          <p menuClose (click)="sair()" (click)="carregarloginflash()">Sair</p>
+          <h2 (click)=" perfilUserPage()" style="font-family: 'Poppins', sans-serif;">Meu Perfil</h2>
+          <p menuClose (click)="sair()">Sair</p>
         </ion-item>
-        <button menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)"  (click)="carregar()">
+        <button menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
           {{p.title}}
         </button>
       </ion-list>

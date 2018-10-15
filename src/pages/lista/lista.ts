@@ -20,17 +20,20 @@ import { LoadingController } from 'ionic-angular';
 })
 export class ListaPage {
   lista: IListaEmpresas[];
-
+  public loader;
     abrirPagEmpresa(itens){
       this.navCtrl.push(EmpresaPage,{dados:itens});
     }
 
     carregar(){
-      const loader = this.loadingCtrl.create({
-        content: "Aguarde...",
-        duration: 300
-      });
-      loader.present();
+      this.loader = this.loadingCtrl.create({
+        content: "Carregando empresas...",
+      }); 
+      this.loader.present();
+    }
+
+    fechacarregar(){
+      this.loader.dismiss();
     }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public empresaProvider: EmpresasProvider, public loadingCtrl: LoadingController) {
@@ -39,16 +42,14 @@ export class ListaPage {
   }
 
   ionViewDidEnter(){
+    this.carregar();
     this.empresaProvider.listaEmpresas().subscribe(res =>{
       this.lista = res;
     }, erro => {
       console.log("erro" + erro.message)
     });
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListaPage');
+    console.log('ionViewDidEnter ListaPage');
+    this.fechacarregar();
   }
 
 }

@@ -26,7 +26,7 @@ import { LoadingController } from 'ionic-angular';
 export class HomePage {
   @ViewChild(Nav) nav: Nav;
   public users = [];
-
+  public loader;
   rootPage: any = HomemenuPage;
 
   pages1: Array<{ title: string, component: any }>;
@@ -89,22 +89,28 @@ export class HomePage {
   }
 
   sair() {
+    this.carregar();
     this.userProvider.setStorage("user", null);
     this.menuCtrl.enable(false, 'userComLogin');
     this.menuCtrl.enable(true, 'userSemLogin');
+    this.fechacarregar();
     this.showAlertSuccess();
   }
 
-  carregar() {
-    const loader = this.loadingCtrl.create({
-      content: "Aguarde...",
-      duration: 1250
-    });
-    loader.present();
+  carregar(){
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando conteúdo...",
+    }); 
+    this.loader.present();
+  }
+
+  fechacarregar(){
+    this.loader.dismiss();
   }
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public navCtrl: NavController, private userProvider: UserProvider, public menuCtrl: MenuController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     this.initializeApp();
+    this.carregar();
 
     // used for an example of ngFor and navigation
     this.pages1 = [
@@ -134,7 +140,7 @@ export class HomePage {
         this.menuCtrl.enable(true, 'userSemLogin');
       }
     })
-
+    this.fechacarregar();
   }
 
   initializeApp() {

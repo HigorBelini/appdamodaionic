@@ -7,6 +7,7 @@ import { MenuController } from 'ionic-angular';
 import { HomemenuPage } from '../homemenu/homemenu';
 import { HomePage } from '../home/home';
 import { AlertController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 
 
 /**
@@ -28,12 +29,14 @@ export class LoginPage {
   }
 
   user: IUsuario = { email: '', password: '' };
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController, public alertCtrl: AlertController) {
+  public loader;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
   }
 
-  ionViewDidLoad() {
-
+  ionViewDidEnter() {
+    this.carregar();
+    console.log('ionViewDidEnter LoginPage');
+    this.fechacarregar();
   }
 
   ativaMenuLogin() {
@@ -43,6 +46,17 @@ export class LoginPage {
 
   cancelar() {
     this.navCtrl.setRoot(HomePage);
+  }
+
+  carregar(){
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando...",
+    }); 
+    this.loader.present();
+  }
+
+  fechacarregar(){
+    this.loader.dismiss();
   }
 
   showAlertSuccess(){
@@ -62,6 +76,7 @@ export class LoginPage {
   }
 
   loginUsuario() {
+    this.carregar();
     this.userProvider.loginUsuario(this.user).subscribe(res => {
       if (res) {
         if (res.token) {
@@ -83,6 +98,7 @@ export class LoginPage {
       console.log("Erro: " + erro.message);
       this.showAlertDenied();
     });
+    this.fechacarregar();
   }
 
 }

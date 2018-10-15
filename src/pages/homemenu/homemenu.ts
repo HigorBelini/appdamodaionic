@@ -19,13 +19,16 @@ import { LoadingController } from 'ionic-angular';
   templateUrl: 'homemenu.html',
 })
 export class HomemenuPage {
-
+  public loader;
   carregar() {
-    const loader = this.loadingCtrl.create({
+    this.loader = this.loadingCtrl.create({
       content: "Aguarde...",
-      duration: 1250
     });
-    loader.present();
+    this.loader.present();
+  }
+
+  fechacarregar(){
+    this.loader.dismiss();
   }
 
   abrirAvenidaBot(){
@@ -48,7 +51,9 @@ export class HomemenuPage {
   }
 
   ionViewDidLoad() {
+    this.carregar();
     console.log('ionViewDidLoad HomemenuPage');
+    this.fechacarregar();
   }
 
 }

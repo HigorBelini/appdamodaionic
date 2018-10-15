@@ -7,6 +7,7 @@ import { LoginPage } from '../login/login';
 import { HomemenuPage } from '../homemenu/homemenu';
 import { MenuController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 
 /**
@@ -24,12 +25,30 @@ import { HomePage } from '../home/home';
 export class PerfiluserPage {
 
   user:IUsuario = {name:'', email:'', password:'',city:'', uf:'', gender:'', datebirth:'', profileimage:''};
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public menuCtrl: MenuController, public alertCtrl: AlertController) {
+  public loader;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public menuCtrl: MenuController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
   }
 
-  ionViewDidLoad() {
+  carregar(){
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando perfil...",
+    }); 
+    this.loader.present();
+  }
 
+  carregarEdicao(){
+    this.loader = this.loadingCtrl.create({
+      content: "Atualizando informações...",
+    }); 
+    this.loader.present();
+  }
+
+  fechacarregar(){
+    this.loader.dismiss();
+  }
+
+  ionViewDidEnter() {
+    this.carregar();
     this.userProvider.getStorage("user").then( user =>{ 
       if(user){
         this.user = user;
@@ -43,7 +62,7 @@ export class PerfiluserPage {
         this.cancelar();
       }
     });
-
+    this.fechacarregar();
   }
 
   cancelar(){
@@ -79,6 +98,7 @@ export class PerfiluserPage {
   }
 
   editUser(){
+    this.carregarEdicao();
     this.userProvider.editUsuario(this.user).subscribe(res => {
       if (res) {
         if (res.token) {
@@ -98,6 +118,7 @@ export class PerfiluserPage {
       console.log("Erro: " + erro.message);
       this.showAlertDenied();
     });
+    this.fechacarregar();
   }
 
 }

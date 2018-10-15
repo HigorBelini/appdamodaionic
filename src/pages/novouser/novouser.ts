@@ -4,6 +4,7 @@ import { LoginPage } from '../login/login';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider} from '../../providers/user/user';
 import { AlertController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 /**
  * Generated class for the NovouserPage page.
  *
@@ -19,16 +20,29 @@ import { AlertController } from 'ionic-angular';
 export class NovouserPage {
 
   user:IUsuario = {name:'', email:'', password:''};
-
+  public loader;
   abrirLogBot(){
     this.navCtrl.push(LoginPage);
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
   }
 
-  ionViewDidLoad() {
-    
+  ionViewDidEnter() {
+    this.carregar();
+    console.log('ionViewDidEnter NovouserPage');
+    this.fechacarregar();
+  }
+
+  carregar(){
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando promoções...",
+    }); 
+    this.loader.present();
+  }
+
+  fechacarregar(){
+    this.loader.dismiss();
   }
 
   showAlertSuccess(){
