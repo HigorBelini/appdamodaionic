@@ -6,6 +6,8 @@ import { UserProvider} from '../../providers/user/user';
 import { LoginPage } from '../login/login';
 import { HomemenuPage } from '../homemenu/homemenu';
 import { MenuController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the PerfiluserPage page.
@@ -23,7 +25,7 @@ export class PerfiluserPage {
 
   user:IUsuario = {name:'', email:'', password:'',city:'', uf:'', gender:'', datebirth:'', profileimage:''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public menuCtrl: MenuController, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -48,20 +50,53 @@ export class PerfiluserPage {
     this.navCtrl.setRoot(HomemenuPage);
   }
 
+  ok() {
+    this.navCtrl.setRoot(HomePage);
+  }
+
+  showAlertSuccess(){
+    const alert = this.alertCtrl.create({
+      title: 'Seus dados foram atualizados com sucesso!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showAlertDenied(){
+    const alert = this.alertCtrl.create({
+      title: 'Houve um erro na atualização de seus dados. Por favor, tente novamente.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showAlertEmail(){
+    const alert = this.alertCtrl.create({
+      title: 'Não foi possível atualizar seus dados pois este e-mail já está sendo utilizado por outro usuário.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   editUser(){
     this.userProvider.editUsuario(this.user).subscribe(res => {
       if (res) {
         if (res.token) {
           console.log(res);
+          this.showAlertSuccess();
           this.userProvider.setStorage("user", res);
+          this.ok();
         } else {
           console.log(res); //validação
+          this.showAlertEmail();
         }
       } else {
         // Login com erro!
+        this.showAlertDenied();
       }
     }, erro => {
       console.log("Erro: " + erro.message);
+      this.showAlertDenied();
     });
   }
 

@@ -4,6 +4,7 @@ import { EmpresaPage } from '../empresa/empresa';
 
 import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
 import { EmpresasProvider } from '../../providers/empresas/empresas';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the ListaPage page.
@@ -24,7 +25,15 @@ export class ListaPage {
       this.navCtrl.push(EmpresaPage,{dados:itens});
     }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public empresaProvider: EmpresasProvider) {
+    carregar(){
+      const loader = this.loadingCtrl.create({
+        content: "Aguarde...",
+        duration: 300
+      });
+      loader.present();
+    }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public empresaProvider: EmpresasProvider, public loadingCtrl: LoadingController) {
    //this.lista = this.empresaProvider.all();
    
   }

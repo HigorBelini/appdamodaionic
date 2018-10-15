@@ -26,7 +26,7 @@ export class EmpresasProvider {
   }
 
   add(data:IListaEmpresas){
-    return this.http.post<IListaEmpresas>('http://localhost:3000/companies', data);
+    return this.http.post<IListaEmpresas>('http://localhost:3000/companies/', data);
   }
 
   edit(data:IListaEmpresas){

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+//import { Observable } from 'rxjs/Observable';
 import { IUsuario } from '../../interfaces/IUsuario';
 
 import { Storage } from '@ionic/storage';
@@ -36,7 +36,7 @@ export class UserProvider {
   }
 
   addUsuario(data: IUsuario) {
-    return this.http.post<IUsuario>(this.url + 'user', data);
+    return this.http.post<IUsuario>(this.url + 'register', data);
   }
 
   editUsuario(user: IUsuario) {

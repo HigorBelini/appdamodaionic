@@ -6,6 +6,7 @@ import { UserProvider } from '../../providers/user/user';
 import { MenuController } from 'ionic-angular';
 import { HomemenuPage } from '../homemenu/homemenu';
 import { HomePage } from '../home/home';
+import { AlertController } from 'ionic-angular';
 
 
 /**
@@ -28,7 +29,7 @@ export class LoginPage {
 
   user: IUsuario = { email: '', password: '' };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -44,6 +45,22 @@ export class LoginPage {
     this.navCtrl.setRoot(HomePage);
   }
 
+  showAlertSuccess(){
+    const alert = this.alertCtrl.create({
+      title: 'Seu login foi efetuado com sucesso. Aproveite!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showAlertDenied(){
+    const alert = this.alertCtrl.create({
+      title: 'Erro. E-mail e/ou senha incorreto(s).',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   loginUsuario() {
     this.userProvider.loginUsuario(this.user).subscribe(res => {
       if (res) {
@@ -51,16 +68,20 @@ export class LoginPage {
           console.log(res);
           this.userProvider.setStorage("user", res);
           this.ativaMenuLogin();
+          this.showAlertSuccess();
           this.cancelar();
         } else {
           console.log(res); //validação
+          this.showAlertDenied();
         }
       } else {
         // Login com erro!
+        this.showAlertDenied();
       }
 
     }, erro => {
       console.log("Erro: " + erro.message);
+      this.showAlertDenied();
     });
   }
 

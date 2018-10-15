@@ -27,6 +27,10 @@
           <ion-label style="color:#fff;">Senha</ion-label>
           <ion-input type="password" name="password" [(ngModel)]="user.password"></ion-input>
         </ion-item>
+        <ion-item>
+          <ion-label style="color:#fff;">Confirmar senha</ion-label>
+          <ion-input type="password" name="password_confirmation" [(ngModel)]="user.password_confirmation"></ion-input>
+        </ion-item>
         <button ion-button block outline color="light" (click)="addUser()">Cadastrar</button>
         <button ion-button clear full color="light" (click)="abrirLogBot()">Já tem uma conta? Acesse</button>
       </ion-list>

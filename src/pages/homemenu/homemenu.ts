@@ -4,6 +4,7 @@ import { AvenidaPage } from '../avenida/avenida';
 import { ComochegarPage } from '../comochegar/comochegar';
 import { ListaPage } from '../lista/lista';
 import { PromocoesPage } from '../promocoes/promocoes';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the HomemenuPage page.
@@ -18,6 +19,14 @@ import { PromocoesPage } from '../promocoes/promocoes';
   templateUrl: 'homemenu.html',
 })
 export class HomemenuPage {
+
+  carregar() {
+    const loader = this.loadingCtrl.create({
+      content: "Aguarde...",
+      duration: 1250
+    });
+    loader.present();
+  }
 
   abrirAvenidaBot(){
     this.navCtrl.push(AvenidaPage);
@@ -35,7 +44,7 @@ export class HomemenuPage {
     this.navCtrl.push(PromocoesPage);
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {

@@ -19,9 +19,9 @@
 <ion-content>
   <ion-card>
 
-    <img [src]="itens?.logo">
+    <img [src]="itens?.shopfacade">
     <ion-fab right top>
-      <button ion-fab (click)="abrirPagMapa(itens)">
+      <button ion-fab (click)="abrirPagMapa(itens)" (click)="carregar()">
         <ion-icon name="pin"></ion-icon>
       </button>
     </ion-fab>

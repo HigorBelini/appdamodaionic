@@ -12,8 +12,16 @@
 
 <ion-content>
   <ion-searchbar (input)="getItems($event)"></ion-searchbar>
-  <div *ngFor="let itens of lista" (click)="abrirPagPromoDetalhes(itens)">
+  <div *ngFor="let itens of lista" (click)="abrirPagPromoDetalhes(itens)" (click)="carregar()">
     <ion-card>
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="itens?.logo">
+        </ion-avatar>
+        <h2>{{itens?.company_id}}</h2>
+        <p>November 5, 1955</p>
+      </ion-item>
+      
       <img [src]="itens?.promotionimage" />
       <ion-card-content>
         <ion-card-title>

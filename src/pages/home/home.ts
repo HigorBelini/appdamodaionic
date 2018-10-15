@@ -14,6 +14,8 @@ import { HomemenuPage } from '../homemenu/homemenu';
 import { LoginPage } from '../login/login';
 import { NovouserPage } from '../novouser/novouser';
 import { MenuController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 
 
 @Component({
@@ -29,6 +31,22 @@ export class HomePage {
 
   pages1: Array<{ title: string, component: any }>;
   pages2: Array<{ title: string, component: any }>;
+
+  carregarlogin(){
+    const loader = this.loadingCtrl.create({
+      content: "Aguarde...",
+      duration: 750
+    });
+    loader.present();
+  }
+
+  carregarloginflash(){
+    const loader = this.loadingCtrl.create({
+      content: "Aguarde...",
+      duration: 1
+    });
+    loader.present();
+  }
 
   abrirHome() {
     this.navCtrl.push(HomemenuPage);
@@ -62,13 +80,30 @@ export class HomePage {
     this.navCtrl.push(PerfiluserPage);
   }
 
+  showAlertSuccess(){
+    const alert = this.alertCtrl.create({
+      title: 'Você foi desconectado!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   sair() {
     this.userProvider.setStorage("user", null);
     this.menuCtrl.enable(false, 'userComLogin');
     this.menuCtrl.enable(true, 'userSemLogin');
+    this.showAlertSuccess();
   }
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public navCtrl: NavController, private userProvider: UserProvider, public menuCtrl: MenuController) {
+  carregar() {
+    const loader = this.loadingCtrl.create({
+      content: "Aguarde...",
+      duration: 1250
+    });
+    loader.present();
+  }
+
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public navCtrl: NavController, private userProvider: UserProvider, public menuCtrl: MenuController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
