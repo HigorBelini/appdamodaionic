@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider} from '../../providers/user/user';
-import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 /**
  * Generated class for the NovouserPage page.
  *
@@ -19,13 +19,13 @@ import { LoadingController } from 'ionic-angular';
 })
 export class NovouserPage {
 
-  user:IUsuario = {name:'', email:'', password:''};
+  user:IUsuario = {name:'', email:'', password:'', password_confirmation:""};
   public loader;
   abrirLogBot(){
     this.navCtrl.push(LoginPage);
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
   }
 
   ionViewDidEnter() {
@@ -36,30 +36,13 @@ export class NovouserPage {
 
   carregar(){
     this.loader = this.loadingCtrl.create({
-      content: "Carregando promoções...",
+      content: "Carregando...",
     }); 
     this.loader.present();
   }
 
   fechacarregar(){
     this.loader.dismiss();
-  }
-
-  showAlertSuccess(){
-    const alert = this.alertCtrl.create({
-      title: 'Seu perfil foi criado com sucesso. Aproveite!',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  showAlertDenied(){
-    const alert = this.alertCtrl.create({
-      title: 'Houve um erro na criação de seu perfil.',
-      subTitle: 'Certifique-se que suas senhas estão iguais e tem mais de 6 digitos ou troque o e-mail que está utilizando.',
-      buttons: ['OK']
-    });
-    alert.present();
   }
 
   ok() {
@@ -72,21 +55,49 @@ export class NovouserPage {
       if (res) {
         if (res.token) {
           console.log(res);
-          this.showAlertSuccess();
           this.userProvider.setStorage("user", res);
           this.ok();
+          this.exibeMensagem('top', 'Conta criada com sucesso!');
         } else {
-          console.log(res); //validação
-          this.showAlertDenied();
+          let erros = "";
+          if (res.name) {
+            for (let erro of res.name) {
+              erros += erro + " ";
+            }
+          }
+          if (res.email) {
+            for (let erro of res.email) {
+              erros += erro + " ";
+            }
+          }
+          if (res.password) {
+            for (let erro of res.password) {
+              erros += erro + " ";
+            }
+          }
+          if (res.password_confirmation) {
+            for (let erro of res.password_confirmation) {
+              erros += erro + " ";
+            }
+          }
+          this.exibeMensagem('top', erros, 5000);
         }
       } else {
         // Login com erro!
-        this.showAlertDenied();
+        
       }
     }, erro => {
       console.log("Erro: " + erro.message);
-      this.showAlertDenied();
+      
     });
   }
 
+  exibeMensagem(position: string, msg: string, tempo: number = 3000) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: tempo,
+      position: position
+    });
+    toast.present();
+  }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the AvenidaPage page.
@@ -14,12 +15,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'avenida.html',
 })
 export class AvenidaPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public loader;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  }
+  carregar(){
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando...",
+    }); 
+    this.loader.present();
   }
 
-  ionViewDidLoad() {
+  fechacarregar(){
+    this.loader.dismiss();
+  }
+
+  ionViewDidEnter() {
+    this.carregar();
     console.log('ionViewDidLoad AvenidaPage');
+    this.fechacarregar();
   }
 
 }

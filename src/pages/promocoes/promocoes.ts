@@ -21,6 +21,8 @@ export class PromocoesPage {
 
   lista: IListaPromocoes[];
   public loader;
+  public refresher;
+  public isRefreshing: boolean = false;
   abrirPagPromoDetalhes(itens){
     this.navCtrl.push(PromodetalhesPage,{dados:itens});
   }
@@ -36,16 +38,34 @@ export class PromocoesPage {
     this.loader.dismiss();
   }
 
+  recarregar(refresher) {
+    this.refresher = refresher;
+    this.isRefreshing = true;
+    this.carregarLista();
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public promocaoProvider: PromocoesProvider, public loadingCtrl: LoadingController) {
     //this.lista = this.promocaoProvider.all();
   }
 
   ionViewDidEnter(){
+    this.carregarLista();
+  }
+
+  carregarLista(){
     this.carregar();
     this.promocaoProvider.all().subscribe(res =>{
       this.lista = res;
+      if(this.isRefreshing){
+        this.refresher.complete();
+        this.isRefreshing = false;
+      }
     }, erro => {
       console.log("erro" + erro.message)
+      if(this.isRefreshing){
+        this.refresher.complete();
+        this.isRefreshing = false;
+      }
    });
    console.log('ionViewDidEnter PromocoesPage');
    this.fechacarregar();

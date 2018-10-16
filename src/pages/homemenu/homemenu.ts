@@ -22,7 +22,7 @@ export class HomemenuPage {
   public loader;
   carregar() {
     this.loader = this.loadingCtrl.create({
-      content: "Aguarde...",
+      content: "Carregando...",
     });
     this.loader.present();
   }
@@ -32,25 +32,33 @@ export class HomemenuPage {
   }
 
   abrirAvenidaBot(){
+    this.carregar();
     this.navCtrl.push(AvenidaPage);
+    this.fechacarregar();
   }
 
   abrirComoChegarBot(){
+    this.carregar();
     this.navCtrl.push(ComochegarPage);
+    this.fechacarregar();
   }
 
   abrirListaBot(){
+    this.carregar();
     this.navCtrl.push(ListaPage);
+    this.fechacarregar();
   }
 
   abrirPromocoesBot(){
+    this.carregar();
     this.navCtrl.push(PromocoesPage);
+    this.fechacarregar();
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.carregar();
     console.log('ionViewDidLoad HomemenuPage');
     this.fechacarregar();

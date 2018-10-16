@@ -3,6 +3,7 @@ export interface IUsuario{
     name?: string;
     email:string;
     password?:string;
+    password_confirmation?:string;
     city?:string;
     uf?:string;
     gender?:string;

@@ -6,7 +6,7 @@ import { UserProvider } from '../../providers/user/user';
 import { MenuController } from 'ionic-angular';
 import { HomemenuPage } from '../homemenu/homemenu';
 import { HomePage } from '../home/home';
-import { AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
 
@@ -30,7 +30,7 @@ export class LoginPage {
 
   user: IUsuario = { email: '', password: '' };
   public loader;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
   }
 
   ionViewDidEnter() {
@@ -48,31 +48,15 @@ export class LoginPage {
     this.navCtrl.setRoot(HomePage);
   }
 
-  carregar(){
+  carregar() {
     this.loader = this.loadingCtrl.create({
       content: "Carregando...",
-    }); 
+    });
     this.loader.present();
   }
 
-  fechacarregar(){
+  fechacarregar() {
     this.loader.dismiss();
-  }
-
-  showAlertSuccess(){
-    const alert = this.alertCtrl.create({
-      title: 'Seu login foi efetuado com sucesso. Aproveite!',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  showAlertDenied(){
-    const alert = this.alertCtrl.create({
-      title: 'Erro. E-mail e/ou senha incorreto(s).',
-      buttons: ['OK']
-    });
-    alert.present();
   }
 
   loginUsuario() {
@@ -83,22 +67,42 @@ export class LoginPage {
           console.log(res);
           this.userProvider.setStorage("user", res);
           this.ativaMenuLogin();
-          this.showAlertSuccess();
+          this.exibeMensagem('top', 'Login realizado com sucesso!');
           this.cancelar();
         } else {
           console.log(res); //validação
-          this.showAlertDenied();
+          let erros = "";
+          if (res.email) {
+            for (let erro of res.email) {
+              erros += erro + " ";
+            }
+          }
+          if (res.password) {
+            for (let erro of res.password) {
+              erros += erro + " ";
+            }
+          }
+          this.exibeMensagem('top', erros, 5000);
         }
       } else {
         // Login com erro!
-        this.showAlertDenied();
+        this.exibeMensagem('top', 'Senha incorreta', 5000);
       }
 
     }, erro => {
       console.log("Erro: " + erro.message);
-      this.showAlertDenied();
+      this.exibeMensagem('top', 'Senha incorreta', 5000);
     });
     this.fechacarregar();
   }
 
+
+  exibeMensagem(position: string, msg: string, tempo: number = 3000) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: tempo,
+      position: position
+    });
+    toast.present();
+  }
 }

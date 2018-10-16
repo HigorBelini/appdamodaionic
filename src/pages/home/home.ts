@@ -14,9 +14,8 @@ import { HomemenuPage } from '../homemenu/homemenu';
 import { LoginPage } from '../login/login';
 import { NovouserPage } from '../novouser/novouser';
 import { MenuController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
-
+import { ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -80,12 +79,13 @@ export class HomePage {
     this.navCtrl.push(PerfiluserPage);
   }
 
-  showAlertSuccess(){
-    const alert = this.alertCtrl.create({
-      title: 'Você foi desconectado!',
-      buttons: ['OK']
+  exibeMensagem(position: string, msg: string, tempo: number = 3000) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: tempo,
+      position: position
     });
-    alert.present();
+    toast.present();
   }
 
   sair() {
@@ -94,12 +94,13 @@ export class HomePage {
     this.menuCtrl.enable(false, 'userComLogin');
     this.menuCtrl.enable(true, 'userSemLogin');
     this.fechacarregar();
-    this.showAlertSuccess();
+    this.exibeMensagem('top', 'Logout realizado com sucesso!');
+    
   }
 
   carregar(){
     this.loader = this.loadingCtrl.create({
-      content: "Carregando conteúdo...",
+      content: "Carregando...",
     }); 
     this.loader.present();
   }
@@ -108,9 +109,8 @@ export class HomePage {
     this.loader.dismiss();
   }
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public navCtrl: NavController, private userProvider: UserProvider, public menuCtrl: MenuController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public navCtrl: NavController, private userProvider: UserProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
     this.initializeApp();
-    this.carregar();
 
     // used for an example of ngFor and navigation
     this.pages1 = [
@@ -140,7 +140,6 @@ export class HomePage {
         this.menuCtrl.enable(true, 'userSemLogin');
       }
     })
-    this.fechacarregar();
   }
 
   initializeApp() {

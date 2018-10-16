@@ -21,6 +21,12 @@ import { LoadingController } from 'ionic-angular';
 export class ListaPage {
   lista: IListaEmpresas[];
   public loader;
+  public refresher;
+  public isRefreshing: boolean = false;
+
+  public obj: any;
+  public result: any;
+
     abrirPagEmpresa(itens){
       this.navCtrl.push(EmpresaPage,{dados:itens});
     }
@@ -36,20 +42,45 @@ export class ListaPage {
       this.loader.dismiss();
     }
 
+    recarregar(refresher) {
+      this.refresher = refresher;
+      this.isRefreshing = true;
+      this.carregarLista();
+    }
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public empresaProvider: EmpresasProvider, public loadingCtrl: LoadingController) {
    //this.lista = this.empresaProvider.all();
    
   }
 
   ionViewDidEnter(){
-    this.carregar();
+    this.carregarLista();
+  }
+
+carregarLista(){
+  this.carregar();
     this.empresaProvider.listaEmpresas().subscribe(res =>{
       this.lista = res;
+      if(this.isRefreshing){
+        this.refresher.complete();
+        this.isRefreshing = false;
+      }
     }, erro => {
       console.log("erro" + erro.message)
+      if(this.isRefreshing){
+        this.refresher.complete();
+        this.isRefreshing = false;
+      }
     });
     console.log('ionViewDidEnter ListaPage');
     this.fechacarregar();
+    /*if(this.isRefreshing){
+      this.refresher.complete();
+      this.isRefreshing = false;
+    }*/
   }
 
+  busca(){
+    this.empresaProvider.listaEmpresas();
+  }
 }

@@ -11,6 +11,9 @@
 
 
 <ion-content>
+  <ion-refresher (ionRefresh)="recarregar($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-searchbar (input)="getItems($event)"></ion-searchbar>
   <div *ngFor="let itens of lista" (click)="abrirPagPromoDetalhes(itens)">
     <ion-card>
@@ -21,7 +24,7 @@
         <h2>{{itens?.company_id}}</h2>
         <p>November 5, 1955</p>
       </ion-item>
-      
+
       <img [src]="itens?.promotionimage" />
       <ion-card-content>
         <ion-card-title>

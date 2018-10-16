@@ -24,7 +24,7 @@ export class PromocoesProvider {
   }
 
   add(data:IListaPromocoes){
-    return this.http.post<IListaPromocoes>('http://localhost:8000/api/promotions/', data);
+    return this.http.post<IListaPromocoes>('http:/localhost:8000/api/promotions/', data);
   }
 
   edit(data:IListaPromocoes){
@@ -32,7 +32,7 @@ export class PromocoesProvider {
   }
 
   delete(data:IListaPromocoes){
-    return this.http.delete<IListaPromocoes>('http://localhost:8000/api/promotions/'+ data.id);
+    return this.http.delete<IListaPromocoes>('http:/localhost:8000/api/promotions/'+ data.id);
   }
 
 }

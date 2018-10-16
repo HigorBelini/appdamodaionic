@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { IUsuario } from '../../interfaces/IUsuario';
-import { UserProvider} from '../../providers/user/user';
+import { UserProvider } from '../../providers/user/user';
 import { LoginPage } from '../login/login';
 import { HomemenuPage } from '../homemenu/homemenu';
 import { MenuController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the PerfiluserPage page.
@@ -24,33 +24,33 @@ import { HomePage } from '../home/home';
 })
 export class PerfiluserPage {
 
-  user:IUsuario = {name:'', email:'', password:'',city:'', uf:'', gender:'', datebirth:'', profileimage:''};
+  user: IUsuario = { name: '', email: '', password: '', city: '', uf: '', gender: '', datebirth: '', profileimage: '' };
   public loader;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public menuCtrl: MenuController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
   }
 
-  carregar(){
+  carregar() {
     this.loader = this.loadingCtrl.create({
       content: "Carregando perfil...",
-    }); 
+    });
     this.loader.present();
   }
 
-  carregarEdicao(){
+  carregarEdicao() {
     this.loader = this.loadingCtrl.create({
       content: "Atualizando informações...",
-    }); 
+    });
     this.loader.present();
   }
 
-  fechacarregar(){
+  fechacarregar() {
     this.loader.dismiss();
   }
 
   ionViewDidEnter() {
     this.carregar();
-    this.userProvider.getStorage("user").then( user =>{ 
-      if(user){
+    this.userProvider.getStorage("user").then(user => {
+      if (user) {
         this.user = user;
         this.userProvider.showUsuario(user).subscribe(res => {
           console.log(res);
@@ -58,14 +58,14 @@ export class PerfiluserPage {
         }, erro => {
           console.log("Erro: " + erro.message);
         });
-      }else{
+      } else {
         this.cancelar();
       }
     });
     this.fechacarregar();
   }
 
-  cancelar(){
+  cancelar() {
     this.navCtrl.setRoot(HomemenuPage);
   }
 
@@ -73,52 +73,53 @@ export class PerfiluserPage {
     this.navCtrl.setRoot(HomePage);
   }
 
-  showAlertSuccess(){
-    const alert = this.alertCtrl.create({
-      title: 'Seus dados foram atualizados com sucesso!',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  showAlertDenied(){
-    const alert = this.alertCtrl.create({
-      title: 'Houve um erro na atualização de seus dados. Por favor, tente novamente.',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  showAlertEmail(){
-    const alert = this.alertCtrl.create({
-      title: 'Não foi possível atualizar seus dados pois este e-mail já está sendo utilizado por outro usuário.',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  editUser(){
+  editUser() {
     this.carregarEdicao();
     this.userProvider.editUsuario(this.user).subscribe(res => {
       if (res) {
         if (res.token) {
           console.log(res);
-          this.showAlertSuccess();
           this.userProvider.setStorage("user", res);
+          this.exibeMensagem('top', 'Perfil atualizado com sucesso!');
           this.ok();
         } else {
           console.log(res); //validação
-          this.showAlertEmail();
+          let erros = "";
+          if (res.name) {
+            for (let erro of res.name) {
+              erros += erro + " ";
+            }
+          }
+          if (res.email) {
+            for (let erro of res.email) {
+              erros += erro + " ";
+            }
+          }
+          if (res.password) {
+            for (let erro of res.password) {
+              erros += erro + " ";
+            }
+          }
+          this.exibeMensagem('top', erros, 5000);
         }
       } else {
         // Login com erro!
-        this.showAlertDenied();
+
       }
     }, erro => {
       console.log("Erro: " + erro.message);
-      this.showAlertDenied();
+
     });
     this.fechacarregar();
+  }
+
+  exibeMensagem(position: string, msg: string, tempo: number = 3000) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: tempo,
+      position: position
+    });
+    toast.present();
   }
 
 }
