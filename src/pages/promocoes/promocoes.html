@@ -19,13 +19,13 @@
     <ion-card>
       <ion-item>
         <ion-avatar item-start>
-          <img [src]="itens?.logo">
+            <img [src]="itens?.logocompany">
         </ion-avatar>
         <h2>{{itens?.company_id}}</h2>
-        <p>November 5, 1955</p>
+        <p>De {{itens?.startdate}} a {{itens?.finaldate}}</p>
       </ion-item>
 
-      <img [src]="itens?.promotionimage" />
+      <img [src]="itens?.promotionimage"/>
       <ion-card-content>
         <ion-card-title>
           {{itens?.name}}

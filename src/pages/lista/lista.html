@@ -14,7 +14,7 @@
   <ion-refresher (ionRefresh)="recarregar($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-searchbar placeholder="Pesquisar empresa..." (ionInput)="Buscar($event)"></ion-searchbar>
+  <ion-searchbar placeholder="Pesquisar empresa..." (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
     <div *ngFor="let itens of lista" (click)="abrirPagEmpresa(itens)">
       <ion-item-sliding #item>

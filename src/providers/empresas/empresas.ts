@@ -12,29 +12,29 @@ import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
 */
 @Injectable()
 export class EmpresasProvider {
-
+  data: any;
   constructor(public http: HttpClient) {
     console.log('Hello EmpresasProvider Provider');
   }
 
-  listaEmpresas(){
+  listaEmpresas() {
     return this.http.get<IListaEmpresas[]>('http://localhost:8000/api/companies');
   }
 
-  show(data:IListaEmpresas){
-    return this.http.get<IListaEmpresas>('http://localhost:8000/api/companies/'+data.id);
+  show(data: IListaEmpresas) {
+    return this.http.get<IListaEmpresas>('http://localhost:8000/api/companies/' + data.id);
   }
 
-  add(data:IListaEmpresas){
+  add(data: IListaEmpresas) {
     return this.http.post<IListaEmpresas>('http://localhost:8000/api/companies/', data);
   }
 
-  edit(data:IListaEmpresas){
-    return this.http.put<IListaEmpresas>('http://localhost:8000/api/companies/'+data.id, data);
+  edit(data: IListaEmpresas) {
+    return this.http.put<IListaEmpresas>('http://localhost:8000/api/companies/' + data.id, data);
   }
 
-  delete(data:IListaEmpresas){
-    return this.http.delete<IListaEmpresas>('http://localhost:8000/api/companies/'+data.id);
+  delete(data: IListaEmpresas) {
+    return this.http.delete<IListaEmpresas>('http://localhost:8000/api/companies/' + data.id);
   }
 
 }

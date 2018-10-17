@@ -23,10 +23,7 @@ export class ListaPage {
   public loader;
   public refresher;
   public isRefreshing: boolean = false;
-
-  public obj: any;
-  public result: any;
-
+  
     abrirPagEmpresa(itens){
       this.navCtrl.push(EmpresaPage,{dados:itens});
     }
@@ -79,8 +76,6 @@ carregarLista(){
       this.isRefreshing = false;
     }*/
   }
-
-  busca(){
-    this.empresaProvider.listaEmpresas();
-  }
+  
+  
 }

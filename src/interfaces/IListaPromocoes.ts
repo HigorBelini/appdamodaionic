@@ -7,5 +7,6 @@ export interface IListaPromocoes{
     descriptive: string;
     user_id:number;
     promotionimage:string;
+    logocompany:string;
 
 }

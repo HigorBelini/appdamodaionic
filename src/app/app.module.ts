@@ -30,12 +30,15 @@ import { EmpresasProvider } from '../providers/empresas/empresas';
 import { PromocoesProvider } from '../providers/promocoes/promocoes';
 import { PromodetalhesPageModule } from '../pages/promodetalhes/promodetalhes.module';
 import { IonicStorageModule } from '@ionic/storage';
+import { SearchPipe } from '../pipes/search/search';
+import { ConfigProvider } from '../providers/config/config';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    TabsPage
+    TabsPage,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,8 @@ import { IonicStorageModule } from '@ionic/storage';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserProvider,
     EmpresasProvider,
-    PromocoesProvider
+    PromocoesProvider,
+    ConfigProvider
   ]
 })
 export class AppModule { }
