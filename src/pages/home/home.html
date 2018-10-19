@@ -32,7 +32,7 @@
           <ion-avatar item-start (click)="abrirLogin()">
             <img src="assets/imgs/logo.png" (click)="abrirLogin()">
           </ion-avatar>
-          <h2 (click)=" perfilUserPage()" style="font-family: 'Poppins', sans-serif;">Meu Perfil</h2>
+          <h2 (click)="perfilUserPage()" style="font-family: 'Poppins', sans-serif;">Meu Perfil</h2>
           <p menuClose (click)="sair()">Sair</p>
         </ion-item>
         <button menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">

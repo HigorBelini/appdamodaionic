@@ -7,12 +7,34 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>updateuser</ion-title>
+    <ion-title style="font-family: 'Poppins', sans-serif;">Usuário</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
+    <ion-content class="bg-image">
+      <ion-list>
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/imgs/logo.png">
+          </ion-avatar>
+          <h2 (click)="abrirLogin()" style="font-family: 'Poppins', sans-serif;">Higor</h2>
+          <p (click)="abrirCadastro()">Usuário desde: 28/08/2018</p>
+        </ion-item>
+        <button ion-item (click)="perfilPage()">
+          Editar Perfil
+        </button>
+        <button ion-item>
+          Promoções Cadastradas
+        </button>
+        <button ion-item>
+          Meus Favoritos
+        </button>
+      </ion-list>
+    </ion-content>
+
+  <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
 </ion-content>

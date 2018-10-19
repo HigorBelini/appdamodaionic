@@ -26,7 +26,7 @@ export class PromocoesPage {
   abrirPagPromoDetalhes(itens){
     this.navCtrl.push(PromodetalhesPage,{dados:itens});
   }
-
+  
   carregar(){
     this.loader = this.loadingCtrl.create({
       content: "Carregando promoções...",

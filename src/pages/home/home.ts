@@ -16,6 +16,7 @@ import { NovouserPage } from '../novouser/novouser';
 import { MenuController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
+import { UpdateuserPage } from '../updateuser/updateuser';
 
 @Component({
   selector: 'page-home',
@@ -76,7 +77,7 @@ export class HomePage {
   }
 
   perfilUserPage() {
-    this.navCtrl.push(PerfiluserPage);
+    this.navCtrl.push(UpdateuserPage);
   }
 
   exibeMensagem(position: string, msg: string, tempo: number = 3000) {
@@ -127,7 +128,7 @@ export class HomePage {
       { title: 'A Avenida', component: AvenidaPage },
       { title: 'Como Chegar', component: ComochegarPage },
       { title: 'Buscar por Lojas', component: ListaPage },
-      { title: 'Promoções e Eventos', component: PromocoesPage }
+      { title: 'Promoções e Eventos', component: PromocoesPage },
 
     ];
 
