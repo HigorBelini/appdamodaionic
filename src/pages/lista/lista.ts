@@ -3,8 +3,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EmpresaPage } from '../empresa/empresa';
 
 import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
+
 import { EmpresasProvider } from '../../providers/empresas/empresas';
 import { LoadingController } from 'ionic-angular';
+import { IFavoritos } from '../../interfaces/IFavoritos';
+import { IUsuario } from '../../interfaces/IUsuario';
+import { UserProvider} from '../../providers/user/user';
+import { FavoritosProvider } from '../../providers/favoritos/favoritos';
 
 /**
  * Generated class for the ListaPage page.
@@ -20,6 +25,8 @@ import { LoadingController } from 'ionic-angular';
 })
 export class ListaPage {
   lista: IListaEmpresas[];
+  favoritos: IFavoritos[];
+  user: IUsuario;
   public loader;
   public refresher;
   public isRefreshing: boolean = false;
@@ -45,9 +52,17 @@ export class ListaPage {
       this.carregarLista();
     }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public empresaProvider: EmpresasProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public empresaProvider: EmpresasProvider, public loadingCtrl: LoadingController, public userProvider:UserProvider, public favoritoProvider: FavoritosProvider) {
    //this.lista = this.empresaProvider.all();
    
+  }
+
+  ionViewDidLoad(){
+    this.userProvider.getStorage("user").then(user => {
+      if (user) {
+        this.user = user;
+      }
+    });
   }
 
   ionViewDidEnter(){
@@ -76,6 +91,17 @@ carregarLista(){
       this.isRefreshing = false;
     }*/
   }
+
+  /*favorito(){
+    console.log('Favorito');
+    this.favoritoProvider.favorito(this.lista, this.user).subscribe(res => {
+      if(res){
+        console.log(res);
+      }
+    }, erro =>{
+      console.log("Erro: "+erro.message);
+    });
+  }*/
   
   
 }

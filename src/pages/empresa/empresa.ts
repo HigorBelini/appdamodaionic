@@ -6,6 +6,13 @@ import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
 import { EmpresasProvider } from '../../providers/empresas/empresas';
 import { LoadingController } from 'ionic-angular';
 
+
+import { IFavoritos } from '../../interfaces/IFavoritos';
+import { IUsuario } from '../../interfaces/IUsuario';
+import { UserProvider } from '../../providers/user/user';
+import { FavoritosProvider } from '../../providers/favoritos/favoritos';
+
+
 /**
  * Generated class for the EmpresaPage page.
  *
@@ -20,30 +27,51 @@ import { LoadingController } from 'ionic-angular';
 })
 export class EmpresaPage {
 
-  itens:IListaEmpresas;
+  itens: IListaEmpresas;
+  user: IUsuario;
   public loader;
-  abrirPagMapa(itens){
-    this.navCtrl.push(MapaPage,{dados:itens});
+  abrirPagMapa(itens) {
+    this.navCtrl.push(MapaPage, { dados: itens });
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider) {
     this.itens = this.navParams.get('dados');
   }
-  carregar(){
+  carregar() {
     this.loader = this.loadingCtrl.create({
       content: "Carregando empresa...",
-    }); 
+    });
     this.loader.present();
   }
 
-  fechacarregar(){
+  fechacarregar() {
     this.loader.dismiss();
+  }
+
+  ionViewDidLoad() {
+    this.userProvider.getStorage("user").then(user => {
+      if (user) {
+        this.user = user;
+      }
+    });
   }
 
   ionViewDidEnter() {
     this.carregar();
     console.log('ionViewDidEnter EmpresaPage');
+
     this.fechacarregar();
+  }
+
+  favorito() {
+    console.log('Favorito');
+    this.favoritoProvider.favorito(this.itens, this.user).subscribe(res => {
+      if (res) {
+        console.log(res);
+      }
+    }, erro => {
+      console.log("Erro: " + erro.message);
+    });
   }
 
 }

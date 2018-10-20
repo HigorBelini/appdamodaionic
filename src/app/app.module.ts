@@ -32,6 +32,7 @@ import { PromodetalhesPageModule } from '../pages/promodetalhes/promodetalhes.mo
 import { IonicStorageModule } from '@ionic/storage';
 import { SearchPipe } from '../pipes/search/search';
 import { ConfigProvider } from '../providers/config/config';
+import { FavoritosProvider } from '../providers/favoritos/favoritos';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { ConfigProvider } from '../providers/config/config';
     UserProvider,
     EmpresasProvider,
     PromocoesProvider,
-    ConfigProvider
+    ConfigProvider,
+    FavoritosProvider
   ]
 })
 export class AppModule { }
