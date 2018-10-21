@@ -20,7 +20,7 @@ export class FavoritosProvider {
 
   favorito(company: IListaEmpresas, user: IUsuario) {
     let company_id = company.id;
-    return this.http.post(this.url + 'favorites', company_id, { "headers": { "authorization": "Bearer " + user.token } });
+    return this.http.post<IFavoritos>(this.url + 'favorites', company_id, { "headers": { "authorization": "Bearer " + user.token } });
   }
 
 }

@@ -5,12 +5,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
 import { EmpresasProvider } from '../../providers/empresas/empresas';
 import { LoadingController } from 'ionic-angular';
-
-
-import { IFavoritos } from '../../interfaces/IFavoritos';
+//import { IFavoritos } from '../../interfaces/IFavoritos';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider } from '../../providers/user/user';
 import { FavoritosProvider } from '../../providers/favoritos/favoritos';
+import { AlertController } from 'ionic-angular';
 
 
 /**
@@ -34,7 +33,7 @@ export class EmpresaPage {
     this.navCtrl.push(MapaPage, { dados: itens });
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider, public alertCtrl: AlertController) {
     this.itens = this.navParams.get('dados');
   }
   carregar() {
@@ -45,6 +44,17 @@ export class EmpresaPage {
   }
 
   fechacarregar() {
+    this.loader.dismiss();
+  }
+
+  carregar2() {
+    this.loader = this.loadingCtrl.create({
+      content: "Processando...",
+    });
+    this.loader.present();
+  }
+
+  fechacarregar2() {
     this.loader.dismiss();
   }
 
@@ -63,12 +73,23 @@ export class EmpresaPage {
     this.fechacarregar();
   }
 
+  showAlertSuccess(){
+    const alert = this.alertCtrl.create({
+      title: 'Adicionado a sua lista de favoritos!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   favorito() {
     console.log('Favorito');
+    this.carregar2();
     this.favoritoProvider.favorito(this.itens, this.user).subscribe(res => {
       if (res) {
         console.log(res);
+        this.showAlertSuccess();
       }
+    this.fechacarregar2();
     }, erro => {
       console.log("Erro: " + erro.message);
     });

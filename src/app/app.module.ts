@@ -33,6 +33,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { SearchPipe } from '../pipes/search/search';
 import { ConfigProvider } from '../providers/config/config';
 import { FavoritosProvider } from '../providers/favoritos/favoritos';
+import { UserpromotionProvider } from '../providers/userpromotion/userpromotion';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { FavoritosProvider } from '../providers/favoritos/favoritos';
     EmpresasProvider,
     PromocoesProvider,
     ConfigProvider,
-    FavoritosProvider
+    FavoritosProvider,
+    UserpromotionProvider
   ]
 })
 export class AppModule { }

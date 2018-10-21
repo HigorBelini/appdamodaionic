@@ -5,6 +5,11 @@ import { PromocoesProvider } from '../../providers/promocoes/promocoes';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+
+import { IUsuario } from '../../interfaces/IUsuario';
+import { UserProvider } from '../../providers/user/user';
+import { UserpromotionProvider } from '../../providers/userpromotion/userpromotion';
+
 /**
  * Generated class for the PromodetalhesPage page.
  *
@@ -20,8 +25,9 @@ import { AlertController } from 'ionic-angular';
 export class PromodetalhesPage {
 
   itens:IListaPromocoes;
+  user: IUsuario;
   public loader;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public alertCtrl: AlertController , public userProvider: UserProvider, public userpromotionProvider: UserpromotionProvider, public promocoesProvider: PromocoesProvider) {
     this.itens = this.navParams.get('dados');
   }
 
@@ -52,10 +58,29 @@ export class PromodetalhesPage {
     alert.present();
   }
 
+  ionViewDidLoad() {
+    this.userProvider.getStorage("user").then(user => {
+      if (user) {
+        this.user = user;
+      }
+    });
+  }
+
   ionViewDidEnter() {
     this.carregar();
     console.log('ionViewDidEnter PromodetalhesPage');
     this.fechacarregar();
   }
 
+  cadastroempromocao() {
+    console.log('Cadastrado na promoção');
+    this.userpromotionProvider.userpromotion(this.itens, this.user).subscribe(res => {
+      if (res) {
+        console.log(res);
+        this.showAlertSuccess();
+      }
+    }, erro => {
+      console.log("Erro: " + erro.message);
+    });
+  }
 }

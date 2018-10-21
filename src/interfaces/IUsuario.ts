@@ -10,4 +10,7 @@ export interface IUsuario{
     datebirth?:string;
     profileimage?:string;
     token?:string;
+    created_at?:string;
+    updated_at?:string;
+    deleted_at?:string;
 }
