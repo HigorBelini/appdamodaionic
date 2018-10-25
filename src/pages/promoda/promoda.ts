@@ -4,7 +4,7 @@ import { LoadingController } from 'ionic-angular';
 import { ListaPage } from '../lista/lista';
 
 /**
- * Generated class for the AvenidaPage page.
+ * Generated class for the PromodaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,13 +12,15 @@ import { ListaPage } from '../lista/lista';
 
 @IonicPage()
 @Component({
-  selector: 'page-avenida',
-  templateUrl: 'avenida.html',
+  selector: 'page-promoda',
+  templateUrl: 'promoda.html',
 })
-export class AvenidaPage {
+export class PromodaPage {
   public loader;
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }
+
+
   carregar(){
     this.loader = this.loadingCtrl.create({
       content: "Carregando...",
@@ -32,7 +34,7 @@ export class AvenidaPage {
 
   ionViewDidEnter() {
     this.carregar();
-    console.log('ionViewDidLoad AvenidaPage');
+    console.log('ionViewDidLoad PromodaPage');
     this.fechacarregar();
   }
 

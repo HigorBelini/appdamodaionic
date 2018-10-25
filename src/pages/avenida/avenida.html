@@ -9,12 +9,36 @@
     <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>avenida</ion-title>
+    <ion-title>A Avenida da Moda</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  Essa é a pagina da avenida
+<ion-content>
+  
+    <ion-card>
+      <img src="assets/imgs/avenidamoda.jpg"/>
+        <ion-card-content>
+          <ion-card-title>
+            Conheça a Avenida
+            </ion-card-title>
+          <p>
+            A Avenida Comendador Francisco Avelino Maia, na cidade de Passos, Minas Gerais, é conhecida por moradores e turistas da região como Avenida da Moda.
+          </p>
+          <br>
+          <p>
+            Ela é um verdadeiro shopping a céu aberto, que é referência para toda a região. O polo confeccionista que nela se encontra é bem extenso. Só no ramo da confecção, existem mais de 170 lojas, e este fator atrai e muito o público consumidor e o turismo na região. 
+          </p>
+          <br>
+          <p>Além desta grande variedade em moda, há uma enorme diversidade de produtos e serviços: do sorvete ao restaurante, de decoração à compra do próprio imóvel, de acessórios para celular a sistemas de gestão para empresas - tudo isso e muito mais, você encontra aqui.</p>
+          <br>
+          <p>Para maior comodidade dos clientes, as lojas atuam com um horário comercial exclusivo: Seg à Sexta - até as 18:30 e aos Sábados até as 17:00!</p>
+          <br>
+          <p>
+            Quer saber o que está na moda? Saiba quais são as empresas da avenida <a (click)="abrirLista()">clicando aqui</a>.
+          </p>
+        </ion-card-content>
+    </ion-card>
+
 </ion-content>

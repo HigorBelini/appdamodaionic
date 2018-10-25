@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { ListaPage } from '../lista/lista';
 
 /**
  * Generated class for the SobrePage page.
@@ -18,7 +19,7 @@ export class SobrePage {
   public loader;
   carregar() {
     this.loader = this.loadingCtrl.create({
-      content: "Carregando favoritos...",
+      content: "Carregando...",
     });
     this.loader.present();
   }
@@ -33,6 +34,10 @@ export class SobrePage {
     this.carregar();
     console.log('ionViewDidLoad SobrePage');
     this.fechacarregar();
+  }
+
+  abrirLista() {
+    this.navCtrl.push(ListaPage);
   }
 
 }

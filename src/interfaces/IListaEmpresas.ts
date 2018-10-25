@@ -10,6 +10,7 @@ export interface IListaEmpresas {
     industry?: string;
     descriptive?: string;
     keywords?: string;
+    url?: string;
     date?: string;
     user_id?: number;
     created_at?:string;

@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoadingController } from 'ionic-angular';
-import { IUsuario } from '../../interfaces/IUsuario';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
-import { IFavoritos } from '../../interfaces/IFavoritos';
-import { EmpresaPage } from '../empresa/empresa';
+import { ICadastroPromocoes } from '../../interfaces/ICadastroPromocoes';
 
 /**
- * Generated class for the FavoritosPage page.
+ * Generated class for the PromocoescadastradasPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -15,12 +12,13 @@ import { EmpresaPage } from '../empresa/empresa';
 
 @IonicPage()
 @Component({
-  selector: 'page-favoritos',
-  templateUrl: 'favoritos.html',
+  selector: 'page-promocoescadastradas',
+  templateUrl: 'promocoescadastradas.html',
 })
-export class FavoritosPage {
+export class PromocoescadastradasPage {
+  promocoes:ICadastroPromocoes[];
   public loader;
-  favoritos:IFavoritos[];
+  
   carregar() {
     this.loader = this.loadingCtrl.create({
       content: "Carregando favoritos...",
@@ -28,13 +26,10 @@ export class FavoritosPage {
     this.loader.present();
   }
 
-  abrirPagEmpresa(itens){
-    this.navCtrl.push(EmpresaPage,{dados:itens});
-  }
-
   fechacarregar(){
     this.loader.dismiss();
   }
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public userProvider: UserProvider) {
   }
 
@@ -42,22 +37,16 @@ export class FavoritosPage {
     this.carregar();
     this.userProvider.getStorage("user").then(user => {
       if (user) {
-        
-        this.userProvider.listaFavoritos(user).subscribe(res => {
+       
+        this.userProvider.listaPromocoes(user).subscribe(res => {
           console.log(res);
-          this.favoritos = res;
+          this.promocoes = res;
         }, erro => {
           console.log("Erro: " + erro.message);
         });
-      } 
+      }
     });
     this.fechacarregar();
-  }
-
-  datafavoritos(date:string){
-    let aux = date.split('-');
-    let aux2 = date.split(':');
-    return aux2[0] + ':' + aux2[1] + ':' + aux2[2];
   }
 
 }

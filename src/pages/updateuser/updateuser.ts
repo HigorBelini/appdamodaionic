@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PerfiluserPage } from '../perfiluser/perfiluser';
+import { PromocoescadastradasPage } from '../promocoescadastradas/promocoescadastradas';
 
 /**
  * Generated class for the UpdateuserPage page.
@@ -21,6 +22,10 @@ export class UpdateuserPage {
 
   perfilPage() {
     this.navCtrl.push(PerfiluserPage);
+  }
+
+  promotionsPage() {
+    this.navCtrl.push(PromocoescadastradasPage);
   }
 
   ionViewDidLoad() {

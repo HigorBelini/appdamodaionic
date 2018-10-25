@@ -81,6 +81,14 @@ export class EmpresaPage {
     alert.present();
   }
 
+  showAlertDenied(){
+    const alert = this.alertCtrl.create({
+      title: 'Ocorreu um erro inesperado. Certifique-se que você está logado no aplicativo',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   favorito() {
     console.log('Favorito');
     this.carregar2();
@@ -91,7 +99,9 @@ export class EmpresaPage {
       }
     this.fechacarregar2();
     }, erro => {
+      this.showAlertDenied();
       console.log("Erro: " + erro.message);
+      this.fechacarregar2();
     });
   }
 

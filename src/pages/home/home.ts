@@ -17,6 +17,7 @@ import { MenuController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { UpdateuserPage } from '../updateuser/updateuser';
+import { PromodaPage } from '../promoda/promoda';
 
 @Component({
   selector: 'page-home',
@@ -80,6 +81,10 @@ export class HomePage {
     this.navCtrl.push(UpdateuserPage);
   }
 
+  abrirPromoda() {
+    this.navCtrl.push(PromodaPage);
+  }
+
   exibeMensagem(position: string, msg: string, tempo: number = 3000) {
     let toast = this.toastCtrl.create({
       message: msg,
@@ -119,7 +124,8 @@ export class HomePage {
       { title: 'A Avenida', component: AvenidaPage },
       { title: 'Como Chegar', component: ComochegarPage },
       { title: 'Buscar por Lojas', component: ListaPage },
-      { title: 'Promoções e Eventos', component: PromocoesPage }
+      { title: 'Promoções e Eventos', component: PromocoesPage },
+      { title: 'A Promoda', component: PromodaPage }
 
     ];
 
@@ -129,7 +135,8 @@ export class HomePage {
       { title: 'Como Chegar', component: ComochegarPage },
       { title: 'Buscar por Lojas', component: ListaPage },
       { title: 'Promoções e Eventos', component: PromocoesPage },
-
+      { title: 'A Promoda', component: PromodaPage }
+      
     ];
 
     this.userProvider.getStorage("user").then(user => {

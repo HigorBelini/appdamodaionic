@@ -34,6 +34,8 @@ import { SearchPipe } from '../pipes/search/search';
 import { ConfigProvider } from '../providers/config/config';
 import { FavoritosProvider } from '../providers/favoritos/favoritos';
 import { UserpromotionProvider } from '../providers/userpromotion/userpromotion';
+import { PromodaPageModule } from '../pages/promoda/promoda.module';
+import { PromocoescadastradasPageModule } from '../pages/promocoescadastradas/promocoescadastradas.module';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { UserpromotionProvider } from '../providers/userpromotion/userpromotion'
     SobrePageModule,
     MapaPageModule,
     PromodetalhesPageModule,
+    PromodaPageModule,
+    PromocoescadastradasPageModule,
     IonicStorageModule.forRoot()
 
   ],

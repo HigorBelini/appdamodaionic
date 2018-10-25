@@ -1,7 +1,8 @@
 export interface IFavoritos{
     id?: number;
-    company_id?:string;
-    user_id?: string;
+    company_id?:number;
+    company_socialname:string;
+    user_id?: number;
     date?:string;
     created_at?:string;
     updated_at?:string;

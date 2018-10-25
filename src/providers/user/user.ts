@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { IUsuario } from '../../interfaces/IUsuario';
 
 import { Storage } from '@ionic/storage';
+import { ICadastroPromocoes } from '../../interfaces/ICadastroPromocoes';
+import { IFavoritos } from '../../interfaces/IFavoritos';
 
 /*
   Generated class for the UserProvider provider.
@@ -45,6 +47,14 @@ export class UserProvider {
 
   loginUsuario(data: IUsuario) {
     return this.http.post<IUsuario>(this.url + 'login', data);
+  }
+
+  listaPromocoes(user: IUsuario) {
+    return this.http.get<ICadastroPromocoes[]>(this.url + 'promotionsuserlist',{"headers": {"authorization": "Bearer " + user.token}});
+  }
+
+  listaFavoritos(user: IUsuario) {
+    return this.http.get<IFavoritos[]>(this.url + 'favoriteuser', {"headers": {"authorization": "Bearer " + user.token}});
   }
 
 }

@@ -6,13 +6,51 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>sobre</ion-title>
-  </ion-navbar>
+  <ion-toolbar color="tema">
+    <ion-title style="font-family: 'Poppins', sans-serif;">Sobre o Aplicativo</ion-title>
+  </ion-toolbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
+  <ion-grid>
+    <ion-card-title style="text-align:center;">
+      O desenvolvimento deste projeto faz parte do trabalho de conclusão de curso desenvolvido pelos alunos:
+    </ion-card-title>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card>
+          <img src="assets/imgs/higorbelini.jpg" />
+        </ion-card>
+        <p style="text-align:center;">Higor Belini</p>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card>
+          <img src="assets/imgs/logo.png" />
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card>
+          <img src="assets/imgs/claudiomaia.jpg" />
+        </ion-card>
+        <p style="text-align:center;">Cláudio Maia</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div padding>
+    <p>
+      Este aplicativo tem como função principal auxiliar moradores e turistas da cidade de Passos, Minas Gerais, que frequentam a Avenida da Moda, a encontrar empresas ali estabelecidas.
+    </p>
+    <p>
+      Além disso, ele oferece diversas vantagens aos seus usuários, entre elas poder se cadastrar em promoções das empresas da avenida, de forma exclusiva.
+    </p>
+    <p>
+      Outra vantagem que a aplicação traz são os fatores de geolocalização. Com o app, os usuários poderão acessar a localização de qualquer um dos estabelecimentos da avenida, podendo até gerar uma rota de chegada até as mesmas.
+    </p>
+    <p>
+      Gostou do aplicativo e quer saber o que está na moda? Saiba quais são as empresas da avenida <a (click)="abrirLista()">clicando aqui</a>.
+    </p>
+  </div>
 </ion-content>

@@ -14,10 +14,9 @@
   <ion-refresher (ionRefresh)="recarregar($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-searchbar placeholder="Pesquisar empresa..." (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-searchbar placeholder="Pesquisar empresa..." (ionInput)="getLista($event)"></ion-searchbar>
   <ion-list>
     <div *ngFor="let itens of lista">
-      <ion-item-sliding #item>
         <ion-item (click)="abrirPagEmpresa(itens)">
           <ion-avatar item-start>
             <img [src]="itens?.logo">
@@ -25,10 +24,6 @@
           <h3 style="font-family: 'Poppins', sans-serif;">{{ itens?.fantasyname }}</h3>
           <p>{{ itens?.industry }}</p>
         </ion-item>
-        <ion-item-options side="right">
-          <button ion-button color="danger" (click)="favorito()">Favoritos</button>
-        </ion-item-options>
-      </ion-item-sliding>
     </div>
   </ion-list>
 </ion-content>

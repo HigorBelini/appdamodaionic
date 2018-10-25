@@ -5,6 +5,7 @@ import { ComochegarPage } from '../comochegar/comochegar';
 import { ListaPage } from '../lista/lista';
 import { PromocoesPage } from '../promocoes/promocoes';
 import { LoadingController } from 'ionic-angular';
+import { PromodaPage } from '../promoda/promoda';
 
 /**
  * Generated class for the HomemenuPage page.
@@ -52,6 +53,12 @@ export class HomemenuPage {
   abrirPromocoesBot(){
     this.carregar();
     this.navCtrl.push(PromocoesPage);
+    this.fechacarregar();
+  }
+
+  abrirPromodaBot(){
+    this.carregar();
+    this.navCtrl.push(PromodaPage);
     this.fechacarregar();
   }
 
