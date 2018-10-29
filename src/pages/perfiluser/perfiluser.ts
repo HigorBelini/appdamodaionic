@@ -9,6 +9,8 @@ import { MenuController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ToastController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+import { NovouserPage } from '../novouser/novouser';
 
 /**
  * Generated class for the PerfiluserPage page.
@@ -26,8 +28,37 @@ export class PerfiluserPage {
 
   user: IUsuario = { name: '', email: '', password: '', city: '', uf: '', gender: '', datebirth: '', profileimage: '' };
   public loader;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public alertCtrl: AlertController) {
   }
+
+  showConfirm() {
+    const confirm = this.alertCtrl.create({
+      title: 'Faça login pra acessar as configurações de usuário',
+      message: 'Você deve fazer login para alterar seus dados nas configurações. Caso não tenha uma conta clique em "Não tenho uma conta" e crie uma agora mesmo.',
+      buttons: [
+        {
+          text: 'Fazer Login',
+          handler: () => {
+            this.navCtrl.setRoot(LoginPage);
+          }
+        },
+        {
+          text: 'Não tenho Uma Conta',
+          handler: () => {
+            this.navCtrl.setRoot(NovouserPage);
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            this.navCtrl.setRoot(HomemenuPage);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
 
   carregar() {
     this.loader = this.loadingCtrl.create({
@@ -48,8 +79,8 @@ export class PerfiluserPage {
   }
 
   ionViewDidEnter() {
-    this.carregar();
     this.userProvider.getStorage("user").then(user => {
+      this.carregar();
       if (user) {
         this.user = user;
         this.userProvider.showUsuario(user).subscribe(res => {
@@ -60,9 +91,10 @@ export class PerfiluserPage {
         });
       } else {
         this.cancelar();
+        this.showConfirm();
       }
+      this.fechacarregar();
     });
-    this.fechacarregar();
   }
 
   cancelar() {

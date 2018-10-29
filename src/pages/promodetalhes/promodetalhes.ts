@@ -9,6 +9,9 @@ import { AlertController } from 'ionic-angular';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider } from '../../providers/user/user';
 import { UserpromotionProvider } from '../../providers/userpromotion/userpromotion';
+import { PromocoesPage } from '../promocoes/promocoes';
+import { LoginPage } from '../login/login';
+import { NovouserPage } from '../novouser/novouser';
 
 /**
  * Generated class for the PromodetalhesPage page.
@@ -29,6 +32,34 @@ export class PromodetalhesPage {
   public loader;
   constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public alertCtrl: AlertController , public userProvider: UserProvider, public userpromotionProvider: UserpromotionProvider, public promocoesProvider: PromocoesProvider) {
     this.itens = this.navParams.get('dados');
+  }
+
+  showConfirm() {
+    const confirm = this.alertCtrl.create({
+      title: 'Faça login para visualizar todos os detalhes desta promoção',
+      message: 'Com o login, você visualiza todos os detalhes, além de poder se cadastrar nas promoções e garantir descontos exclusivos na hora de sua compra. Caso não tenha uma conta clique em "Não tenho uma conta" e crie uma agora mesmo.',
+      buttons: [
+        {
+          text: 'Fazer Login',
+          handler: () => {
+            this.navCtrl.setRoot(LoginPage);
+          }
+        },
+        {
+          text: 'Não tenho Uma Conta',
+          handler: () => {
+            this.navCtrl.setRoot(NovouserPage);
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            this.navCtrl.setRoot(PromocoesPage);
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
   carregar(){
@@ -58,18 +89,30 @@ export class PromodetalhesPage {
     alert.present();
   }
 
-  ionViewDidLoad() {
+  /*ionViewDidLoad() {
     this.userProvider.getStorage("user").then(user => {
       if (user) {
         this.user = user;
       }
     });
+  }*/
+
+  cancelar() {
+    this.navCtrl.setRoot(PromocoesPage);
   }
 
   ionViewDidEnter() {
-    this.carregar();
-    console.log('ionViewDidEnter PromodetalhesPage');
-    this.fechacarregar();
+    this.userProvider.getStorage("user").then(user => {
+      this.carregar();
+      if (user) {
+      this.user = user;
+      console.log('ionViewDidEnter PromodetalhesPage');
+      } else {
+      this.cancelar();
+      this.showConfirm();
+      }
+      this.fechacarregar();
+    });
   }
 
   cadastroempromocao() {

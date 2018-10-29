@@ -6,6 +6,7 @@ import { ListaPage } from '../lista/lista';
 import { PromocoesPage } from '../promocoes/promocoes';
 import { LoadingController } from 'ionic-angular';
 import { PromodaPage } from '../promoda/promoda';
+import { FavoritosPage } from '../favoritos/favoritos';
 
 /**
  * Generated class for the HomemenuPage page.
@@ -59,6 +60,12 @@ export class HomemenuPage {
   abrirPromodaBot(){
     this.carregar();
     this.navCtrl.push(PromodaPage);
+    this.fechacarregar();
+  }
+
+  abrirMeusFavoritos(){
+    this.carregar();
+    this.navCtrl.push(FavoritosPage);
     this.fechacarregar();
   }
 

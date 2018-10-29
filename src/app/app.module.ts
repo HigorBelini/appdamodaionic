@@ -36,6 +36,9 @@ import { FavoritosProvider } from '../providers/favoritos/favoritos';
 import { UserpromotionProvider } from '../providers/userpromotion/userpromotion';
 import { PromodaPageModule } from '../pages/promoda/promoda.module';
 import { PromocoescadastradasPageModule } from '../pages/promocoescadastradas/promocoescadastradas.module';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
+
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 @NgModule({
   declarations: [
@@ -78,13 +81,15 @@ import { PromocoescadastradasPageModule } from '../pages/promocoescadastradas/pr
   providers: [
     StatusBar,
     SplashScreen,
+    GoogleMaps,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserProvider,
     EmpresasProvider,
     PromocoesProvider,
     ConfigProvider,
     FavoritosProvider,
-    UserpromotionProvider
+    UserpromotionProvider,
+    InAppBrowser
   ]
 })
 export class AppModule { }

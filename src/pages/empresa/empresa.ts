@@ -10,6 +10,10 @@ import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider } from '../../providers/user/user';
 import { FavoritosProvider } from '../../providers/favoritos/favoritos';
 import { AlertController } from 'ionic-angular';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { ListaPage } from '../lista/lista';
+import { LoginPage } from '../login/login';
+import { NovouserPage } from '../novouser/novouser';
 
 
 /**
@@ -33,9 +37,24 @@ export class EmpresaPage {
     this.navCtrl.push(MapaPage, { dados: itens });
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider, public alertCtrl: AlertController, private inAppBrowser: InAppBrowser) {
     this.itens = this.navParams.get('dados');
   }
+
+  abreMapa(){
+    this.navCtrl.push(MapaPage);
+  }
+
+  openwebpage(itens){
+
+    const options: InAppBrowserOptions = {
+      zoom: 'yes'
+    }
+
+    const browser = this.inAppBrowser.create(itens, '_self', options);
+
+  }
+
   carregar() {
     this.loader = this.loadingCtrl.create({
       content: "Carregando empresa...",
@@ -58,19 +77,59 @@ export class EmpresaPage {
     this.loader.dismiss();
   }
 
-  ionViewDidLoad() {
+  /*ionViewDidLoad() {
     this.userProvider.getStorage("user").then(user => {
       if (user) {
         this.user = user;
       }
     });
+  }*/
+
+  showConfirm() {
+    const confirm = this.alertCtrl.create({
+      title: 'Faça login para visualizar todos os detalhes desta empresa',
+      message: 'Com o login, você visualiza todos os detalhes, e ainda consegue adicionar o site em seus favoritos. Caso não tenha uma conta clique em "Não tenho uma conta" e crie uma agora mesmo.',
+      buttons: [
+        {
+          text: 'Fazer Login',
+          handler: () => {
+            this.navCtrl.setRoot(LoginPage);
+          }
+        },
+        {
+          text: 'Não tenho Uma Conta',
+          handler: () => {
+            this.navCtrl.setRoot(NovouserPage);
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            this.navCtrl.setRoot(ListaPage);
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
-  ionViewDidEnter() {
-    this.carregar();
-    console.log('ionViewDidEnter EmpresaPage');
+  cancelar() {
+    this.navCtrl.setRoot(ListaPage);
+  }
 
-    this.fechacarregar();
+
+  ionViewDidEnter() {
+    this.userProvider.getStorage("user").then(user => {
+      this.carregar();
+      if (user) {
+      this.user = user;
+      console.log('ionViewDidEnter EmpresaPage');
+      } else {
+      this.cancelar();
+      this.showConfirm();
+      }
+      this.fechacarregar();
+    });
   }
 
   showAlertSuccess(){

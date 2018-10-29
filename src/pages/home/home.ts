@@ -50,39 +50,57 @@ export class HomePage {
   }
 
   abrirHome() {
+    this.carregar();
     this.navCtrl.push(HomemenuPage);
+    this.fechacarregar();
   }
 
   abrirLogin() {
+    this.carregar();
     this.navCtrl.push(LoginPage);
+    this.fechacarregar();
   }
 
   abrirCadastro() {
+    this.carregar();
     this.navCtrl.push(NovouserPage);
+    this.fechacarregar();
   }
 
   abrirAvenida() {
+    this.carregar();
     this.navCtrl.push(AvenidaPage);
+    this.fechacarregar();
   }
 
   abrirComoChegar() {
+    this.carregar();
     this.navCtrl.push(ComochegarPage);
+    this.fechacarregar();
   }
 
   abrirLista() {
+    this.carregar();
     this.navCtrl.push(ListaPage);
+    this.fechacarregar();
   }
 
   abrirPromocoes() {
+    this.carregar();
     this.navCtrl.push(PromocoesPage);
+    this.fechacarregar();
   }
 
   perfilUserPage() {
+    this.carregar();
     this.navCtrl.push(UpdateuserPage);
+    this.fechacarregar();
   }
 
   abrirPromoda() {
+    this.carregar();
     this.navCtrl.push(PromodaPage);
+    this.fechacarregar();
   }
 
   exibeMensagem(position: string, msg: string, tempo: number = 3000) {
@@ -121,21 +139,17 @@ export class HomePage {
     // used for an example of ngFor and navigation
     this.pages1 = [
       { title: 'Home', component: HomemenuPage },
-      { title: 'A Avenida', component: AvenidaPage },
       { title: 'Como Chegar', component: ComochegarPage },
       { title: 'Buscar por Lojas', component: ListaPage },
-      { title: 'Promoções e Eventos', component: PromocoesPage },
-      { title: 'A Promoda', component: PromodaPage }
+      { title: 'Promoções e Eventos', component: PromocoesPage }
 
     ];
 
     this.pages2 = [
       { title: 'Home', component: HomemenuPage },
-      { title: 'A Avenida', component: AvenidaPage },
       { title: 'Como Chegar', component: ComochegarPage },
       { title: 'Buscar por Lojas', component: ListaPage },
-      { title: 'Promoções e Eventos', component: PromocoesPage },
-      { title: 'A Promoda', component: PromodaPage }
+      { title: 'Promoções e Eventos', component: PromocoesPage }
       
     ];
 
