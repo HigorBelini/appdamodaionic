@@ -56,8 +56,8 @@ export class ComochegarPage {
     let mapOptions: GoogleMapOptions = {
       camera: {
          target: {
-            lat: -20.727671,
-            lng: -46.6111575
+            lat: -20.7276478,
+            lng: -46.611137
          },
          zoom: 14,
          tilt: 40
@@ -71,13 +71,11 @@ export class ComochegarPage {
       icon: 'blue',
       animation: 'DROP',
       position: {
-        lat: -20.727671,
-        lng: -46.6111575
+        lat: -20.7276478,
+        lng: -46.611137
       }
     });
-    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-      alert('clicked');
-    });
+    marker.showInfoWindow();
 
 
     /*let marker: Marker = this.map.addMarkerSync({

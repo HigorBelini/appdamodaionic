@@ -37,6 +37,7 @@ import { UserpromotionProvider } from '../providers/userpromotion/userpromotion'
 import { PromodaPageModule } from '../pages/promoda/promoda.module';
 import { PromocoescadastradasPageModule } from '../pages/promocoescadastradas/promocoescadastradas.module';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { GoogleMaps } from '@ionic-native/google-maps';
 
@@ -82,6 +83,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     StatusBar,
     SplashScreen,
     GoogleMaps,
+    Geolocation,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserProvider,
     EmpresasProvider,
