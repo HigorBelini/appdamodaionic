@@ -12,9 +12,10 @@ import { UserpromotionProvider } from '../../providers/userpromotion/userpromoti
 import { PromocoesPage } from '../promocoes/promocoes';
 import { LoginPage } from '../login/login';
 import { NovouserPage } from '../novouser/novouser';
+import { ICadastroPromocoes } from '../../interfaces/ICadastroPromocoes';
 
 /**
- * Generated class for the PromodetalhesPage page.
+ * Generated class for the UserpromotiondetalhePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -22,14 +23,15 @@ import { NovouserPage } from '../novouser/novouser';
 
 @IonicPage()
 @Component({
-  selector: 'page-promodetalhes',
-  templateUrl: 'promodetalhes.html',
+  selector: 'page-userpromotiondetalhe',
+  templateUrl: 'userpromotiondetalhe.html',
 })
-export class PromodetalhesPage {
+export class UserpromotiondetalhePage {
 
-  itens:IListaPromocoes;
+  itens:ICadastroPromocoes;
   user: IUsuario;
   public loader;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public alertCtrl: AlertController , public userProvider: UserProvider, public userpromotionProvider: UserpromotionProvider, public promocoesProvider: PromocoesProvider) {
     this.itens = this.navParams.get('dados');
   }
@@ -103,21 +105,22 @@ export class PromodetalhesPage {
 
   ionViewDidEnter() {
     this.userProvider.getStorage("user").then(user => {
+      this.carregar();
       if (user) {
-        this.user = user;
+      this.user = user;
+      console.log('ionViewDidLoad UserpromotiondetalhePage');
+      } else {
+      this.cancelar();
+      this.showConfirm();
       }
-    });
+      this.fechacarregar();
+    });  
   }
 
-  cadastroempromocao() {
-    console.log('Cadastrado na promoção');
-    this.userpromotionProvider.userpromotion(this.itens, this.user).subscribe(res => {
-      if (res) {
-        //console.log(res);
-        this.showAlertSuccess();
-      }
-    }, erro => {
-      console.log("Erro: " + erro.message);
-    });
+  abrirPromocoes(){
+    this.carregar();
+    this.navCtrl.push(PromocoesPage);
+    this.fechacarregar();
   }
+
 }

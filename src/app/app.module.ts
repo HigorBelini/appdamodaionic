@@ -40,6 +40,9 @@ import {InAppBrowser} from '@ionic-native/in-app-browser';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { GoogleMaps } from '@ionic-native/google-maps';
+import { FavoritodetalhePageModule } from '../pages/favoritodetalhe/favoritodetalhe.module';
+import { UserpromotiondetalhePageModule } from '../pages/userpromotiondetalhe/userpromotiondetalhe.module';
+import { PromocoesporempresaPageModule } from '../pages/promocoesporempresa/promocoesporempresa.module';
 
 @NgModule({
   declarations: [
@@ -70,6 +73,9 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     PromodetalhesPageModule,
     PromodaPageModule,
     PromocoescadastradasPageModule,
+    FavoritodetalhePageModule,
+    UserpromotiondetalhePageModule,
+    PromocoesporempresaPageModule,
     IonicStorageModule.forRoot()
 
   ],

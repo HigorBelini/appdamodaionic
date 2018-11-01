@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 import { ICadastroPromocoes } from '../../interfaces/ICadastroPromocoes';
+import { UserpromotiondetalhePage } from '../userpromotiondetalhe/userpromotiondetalhe';
 
 /**
  * Generated class for the PromocoescadastradasPage page.
@@ -19,6 +20,10 @@ export class PromocoescadastradasPage {
   promocoes:ICadastroPromocoes[];
   public loader;
   
+  abrirPagPromoUserDetalhes(itens){
+    this.navCtrl.push(UserpromotiondetalhePage,{dados:itens});
+  }
+
   carregar() {
     this.loader = this.loadingCtrl.create({
       content: "Carregando favoritos...",
@@ -39,7 +44,7 @@ export class PromocoescadastradasPage {
       if (user) {
        
         this.userProvider.listaPromocoes(user).subscribe(res => {
-          console.log(res);
+          //console.log(res);
           this.promocoes = res;
         }, erro => {
           console.log("Erro: " + erro.message);

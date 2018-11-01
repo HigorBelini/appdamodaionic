@@ -93,7 +93,7 @@ export class ComochegarPage {
       enableHighAccuracy: true;
     };
 
-    /*LocationService.getMyLocation(option).then((location: MyLocation) => {
+    LocationService.getMyLocation(option).then((location: MyLocation) => {
       this.map = GoogleMaps.create({
         'camera': location.latLng,
         'zoom': 16

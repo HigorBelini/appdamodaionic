@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { IListaPromocoes } from '../../interfaces/IListaPromocoes';
 import { PromocoesProvider } from '../../providers/promocoes/promocoes';
 import { PromodetalhesPage } from '../promodetalhes/promodetalhes';
 import { LoadingController } from 'ionic-angular';
+import { UserProvider} from '../../providers/user/user';
+import { LoginPage } from '../login/login';
+import { NovouserPage } from '../novouser/novouser';
+import { ListaPage } from '../lista/lista';
+import { IUsuario } from '../../interfaces/IUsuario';
 
 /**
  * Generated class for the PromocoesPage page.
@@ -23,8 +28,53 @@ export class PromocoesPage {
   public loader;
   public refresher;
   public isRefreshing: boolean = false;
+  user: IUsuario;
+
   abrirPagPromoDetalhes(itens){
-    this.navCtrl.push(PromodetalhesPage,{dados:itens});
+
+    this.userProvider.getStorage("user").then(user => {
+      this.carregar();
+      if (user) {
+      this.user = user;
+      this.navCtrl.push(PromodetalhesPage,{dados:itens});
+      } else {
+      this.cancelar();
+      this.showConfirm();
+      }
+      this.fechacarregar();
+    });
+  }
+
+  showConfirm() {
+    const confirm = this.alertCtrl.create({
+      title: 'Faça login para visualizar todos os detalhes desta promoção',
+      message: 'Com o login, você visualiza todos os detalhes, e ainda consegue adicionar o site em seus favoritos. Caso não tenha uma conta clique em "Criar uma conta" e crie uma agora mesmo.',
+      buttons: [
+        {
+          text: 'Fazer Login',
+          handler: () => {
+            this.navCtrl.setRoot(LoginPage);
+          }
+        },
+        {
+          text: 'Criar uma conta',
+          handler: () => {
+            this.navCtrl.setRoot(NovouserPage);
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            this.navCtrl.setRoot(PromocoesPage);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  cancelar() {
+    this.navCtrl.setRoot(PromocoesPage);
   }
   
   carregar(){
@@ -44,7 +94,7 @@ export class PromocoesPage {
     this.carregarLista();
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public promocaoProvider: PromocoesProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public promocaoProvider: PromocoesProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
     //this.lista = this.promocaoProvider.all();
   }
 

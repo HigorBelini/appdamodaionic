@@ -11,6 +11,7 @@ import { NovouserPage } from '../novouser/novouser';
 import { ListaPage } from '../lista/lista';
 import { PerfiluserPage } from '../perfiluser/perfiluser';
 import { HomemenuPage } from '../homemenu/homemenu';
+import { FavoritodetalhePage } from '../favoritodetalhe/favoritodetalhe';
 
 /**
  * Generated class for the FavoritosPage page.
@@ -34,8 +35,8 @@ export class FavoritosPage {
     this.loader.present();
   }
 
-  abrirPagEmpresa(itens){
-    this.navCtrl.push(EmpresaPage,{dados:itens});
+  abrirPagEmpresaFav(itens){
+    this.navCtrl.push(FavoritodetalhePage,{dados:itens});
   }
 
   fechacarregar(){
@@ -51,7 +52,7 @@ export class FavoritosPage {
   showConfirm() {
     const confirm = this.alertCtrl.create({
       title: 'Faça login para visualizar suas lojas favoritas',
-      message: 'Com o login, você pode visualizar seus favoritos, além de ter várias outras vantagens. Caso não tenha uma conta clique em "Não tenho uma conta" e crie uma agora mesmo.',
+      message: 'Com o login, você pode visualizar seus favoritos, além de ter várias outras vantagens. Caso não tenha uma conta clique em "Criar uma conta" e crie uma agora mesmo.',
       buttons: [
         {
           text: 'Fazer Login',
@@ -60,7 +61,7 @@ export class FavoritosPage {
           }
         },
         {
-          text: 'Não tenho Uma Conta',
+          text: 'Criar uma conta',
           handler: () => {
             this.navCtrl.setRoot(NovouserPage);
           }
@@ -81,7 +82,7 @@ export class FavoritosPage {
       this.carregar();
       if (user) {
         this.userProvider.listaFavoritos(user).subscribe(res => {
-          console.log(res);
+          //console.log(res);
           this.favoritos = res;
           this.fechacarregar();
         }, erro => {

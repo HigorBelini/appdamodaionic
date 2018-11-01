@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EmpresaPage } from '../empresa/empresa';
 
 import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
@@ -10,6 +10,8 @@ import { IFavoritos } from '../../interfaces/IFavoritos';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider} from '../../providers/user/user';
 import { FavoritosProvider } from '../../providers/favoritos/favoritos';
+import { NovouserPage } from '../novouser/novouser';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the ListaPage page.
@@ -32,7 +34,49 @@ export class ListaPage {
   public isRefreshing: boolean = false;
   
     abrirPagEmpresa(itens){
-      this.navCtrl.push(EmpresaPage,{dados:itens});
+      this.userProvider.getStorage("user").then(user => {
+        this.carregar();
+        if (user) {
+        this.user = user;
+        this.navCtrl.push(EmpresaPage,{dados:itens});
+        } else {
+        this.cancelar();
+        this.showConfirm();
+        }
+        this.fechacarregar();
+      });
+    }
+
+    showConfirm() {
+      const confirm = this.alertCtrl.create({
+        title: 'Faça login para visualizar todos os detalhes desta empresa',
+        message: 'Com o login, você visualiza todos os detalhes, e ainda consegue adicionar o site em seus favoritos. Caso não tenha uma conta clique em "Criar uma conta" e crie uma agora mesmo.',
+        buttons: [
+          {
+            text: 'Fazer Login',
+            handler: () => {
+              this.navCtrl.setRoot(LoginPage);
+            }
+          },
+          {
+            text: 'Criar uma conta',
+            handler: () => {
+              this.navCtrl.setRoot(NovouserPage);
+            }
+          },
+          {
+            text: 'Cancelar',
+            handler: () => {
+              this.navCtrl.setRoot(ListaPage);
+            }
+          }
+        ]
+      });
+      confirm.present();
+    }
+  
+    cancelar() {
+      this.navCtrl.setRoot(ListaPage);
     }
 
     carregar(){
@@ -52,7 +96,7 @@ export class ListaPage {
       this.carregarLista();
     }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public empresaProvider: EmpresasProvider, public loadingCtrl: LoadingController, public userProvider:UserProvider, public favoritoProvider: FavoritosProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public empresaProvider: EmpresasProvider, public loadingCtrl: LoadingController, public userProvider:UserProvider, public favoritoProvider: FavoritosProvider, public alertCtrl: AlertController) {
    //this.lista = this.empresaProvider.all();
    
   }

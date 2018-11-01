@@ -5,7 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
 import { EmpresasProvider } from '../../providers/empresas/empresas';
 import { LoadingController } from 'ionic-angular';
-//import { IFavoritos } from '../../interfaces/IFavoritos';
+import { IFavoritos } from '../../interfaces/IFavoritos';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider } from '../../providers/user/user';
 import { FavoritosProvider } from '../../providers/favoritos/favoritos';
@@ -14,11 +14,9 @@ import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser'
 import { ListaPage } from '../lista/lista';
 import { LoginPage } from '../login/login';
 import { NovouserPage } from '../novouser/novouser';
-import { PromocoesporempresaPage } from '../promocoesporempresa/promocoesporempresa';
-
 
 /**
- * Generated class for the EmpresaPage page.
+ * Generated class for the FavoritodetalhePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -26,20 +24,40 @@ import { PromocoesporempresaPage } from '../promocoesporempresa/promocoesporempr
 
 @IonicPage()
 @Component({
-  selector: 'page-empresa',
-  templateUrl: 'empresa.html',
+  selector: 'page-favoritodetalhe',
+  templateUrl: 'favoritodetalhe.html',
 })
-export class EmpresaPage {
-
-  itens: IListaEmpresas;
+export class FavoritodetalhePage {
+  itens: IFavoritos;
   user: IUsuario;
+
   public loader;
   abrirPagMapa(itens) {
     this.navCtrl.push(MapaPage, { dados: itens });
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider, public alertCtrl: AlertController, private inAppBrowser: InAppBrowser) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider, favoritosProvider: FavoritosProvider, public alertCtrl: AlertController, private inAppBrowser: InAppBrowser) {
     this.itens = this.navParams.get('dados');
+  }
+
+  ionViewDidEnter() {
+    this.userProvider.getStorage("user").then(user => {
+      this.carregar();
+      if (user) {
+      this.user = user;
+      console.log('ionViewDidEnter FavoritodetalhePage');
+      } else {
+      this.cancelar();
+      this.showConfirm();
+      }
+      this.fechacarregar();
+    });
+  }
+
+  abrirLista(){
+    this.carregar();
+    this.navCtrl.push(ListaPage);
+    this.fechacarregar();
   }
 
   abreMapa(){
@@ -89,7 +107,7 @@ export class EmpresaPage {
   showConfirm() {
     const confirm = this.alertCtrl.create({
       title: 'Faça login para visualizar todos os detalhes desta empresa',
-      message: 'Com o login, você visualiza todos os detalhes, e ainda consegue adicionar o site em seus favoritos. Caso não tenha uma conta clique em "Criar uma conta" e crie uma agora mesmo.',
+      message: 'Com o login, você visualiza todos os detalhes, e ainda consegue adicionar o site em seus favoritos. Caso não tenha uma conta clique em "Não tenho uma conta" e crie uma agora mesmo.',
       buttons: [
         {
           text: 'Fazer Login',
@@ -98,7 +116,7 @@ export class EmpresaPage {
           }
         },
         {
-          text: 'Criar uma conta',
+          text: 'Não tenho Uma Conta',
           handler: () => {
             this.navCtrl.setRoot(NovouserPage);
           }
@@ -118,48 +136,6 @@ export class EmpresaPage {
     this.navCtrl.setRoot(ListaPage);
   }
 
-  ionViewDidEnter() {
-    this.userProvider.getStorage("user").then(user => {
-      if (user) {
-        this.user = user;
-      }
-    });
-  }
 
-  showAlertSuccess(){
-    const alert = this.alertCtrl.create({
-      title: 'Adicionado a sua lista de favoritos!',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  showAlertDenied(){
-    const alert = this.alertCtrl.create({
-      title: 'Ocorreu um erro inesperado. Certifique-se que você está logado no aplicativo',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  favorito() {
-    console.log('Favorito');
-    this.carregar2();
-    this.favoritoProvider.favorito(this.itens, this.user).subscribe(res => {
-      if (res) {
-        //console.log(res);
-        this.showAlertSuccess();
-      }
-    this.fechacarregar2();
-    }, erro => {
-      this.showAlertDenied();
-      console.log("Erro: " + erro.message);
-      this.fechacarregar2();
-    });
-  }
-
-  promocoes(){
-    this.navCtrl.setRoot(PromocoesporempresaPage);
-  }
 
 }

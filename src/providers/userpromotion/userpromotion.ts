@@ -23,4 +23,5 @@ export class UserpromotionProvider {
     return this.http.post<ICadastroPromocoes>(this.url + 'promotionregistration', promotion_id, { "headers": { "authorization": "Bearer " + user.token } });
   }
 
+  
 }

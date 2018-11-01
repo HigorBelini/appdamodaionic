@@ -1,0 +1,30 @@
+<ion-header>
+
+    <ion-navbar>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title style="font-family: 'Poppins', sans-serif;">{{itens?.promotion_name}}</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+    <ion-card>
+      <img [src]="itens?.promotion_promotionimage" />
+      <ion-card-content>
+        <ion-card-title>
+          {{itens?.promotion_name}}
+        </ion-card-title>
+        <p>
+          {{itens?.promotion_descriptive}}
+        </p>
+        <ion-row class="row" no-padding="">
+          <ion-col class="col">
+            <button ion-button block (click)="abrirPromocoes()">Veja outras promoções</button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

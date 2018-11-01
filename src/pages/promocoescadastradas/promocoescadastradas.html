@@ -15,9 +15,14 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let itens of promocoes">
+    <div *ngFor="let itens of promocoes">
+      <ion-item (click)="abrirPagPromoUserDetalhes(itens)">
+        <ion-avatar item-start>
+          <img [src]="itens?.promotion_logocompany">
+        </ion-avatar>
         <h2>{{itens.promotion_name}}</h2>
-      <p>Data de cadastro:  {{itens.date | date:"dd/MM/yyyy 'às' HH:mm"}}</p>
-    </button>
+        <p>Data de cadastro: {{itens.date | date:"dd/MM/yyyy 'às' HH:mm"}}</p>
+      </ion-item>
+    </div>
   </ion-list>
 </ion-content>
