@@ -13,7 +13,7 @@ import { ICadastroPromocoes } from '../../interfaces/ICadastroPromocoes';
 */
 @Injectable()
 export class UserpromotionProvider {
-  url: string = 'http://localhost:8000/api/';
+  url: string = 'http://192.168.0.28:8000/api/';
   constructor(public http: HttpClient) {
     console.log('Hello UserpromotionProvider Provider');
   }
@@ -23,5 +23,14 @@ export class UserpromotionProvider {
     return this.http.post<ICadastroPromocoes>(this.url + 'promotionregistration', promotion_id, { "headers": { "authorization": "Bearer " + user.token } });
   }
 
-  
+  userspromotion(promotion: IListaPromocoes[], user: IUsuario) {
+    let promotion_id = [];
+      
+    for (let i = 0; i < promotion.length; i++){
+      promotion_id[i] = promotion[i].id;
+    }
+
+    return this.http.post<ICadastroPromocoes>(this.url + 'promotionregistration', promotion_id, { "headers": { "authorization": "Bearer " + user.token } });
+  }
+
 }

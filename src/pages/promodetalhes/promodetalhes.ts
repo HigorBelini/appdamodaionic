@@ -36,7 +36,7 @@ export class PromodetalhesPage {
 
   showConfirm() {
     const confirm = this.alertCtrl.create({
-      title: 'Faça login para visualizar todos os detalhes desta promoção',
+      title: 'Faça login prar se cadastrar nesta promoção',
       message: 'Com o login, você visualiza todos os detalhes, além de poder se cadastrar nas promoções e garantir descontos exclusivos na hora de sua compra. Caso não tenha uma conta clique em "Não tenho uma conta" e crie uma agora mesmo.',
       buttons: [
         {

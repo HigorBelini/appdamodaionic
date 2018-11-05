@@ -18,23 +18,23 @@ export class EmpresasProvider {
   }
 
   listaEmpresas() {
-    return this.http.get<IListaEmpresas[]>('http://localhost:8000/api/companies');
+    return this.http.get<IListaEmpresas[]>('http://192.168.0.28:8000/api/companies');
   }
 
   show(data: IListaEmpresas) {
-    return this.http.get<IListaEmpresas>('http://localhost:8000/api/companies/' + data.id);
+    return this.http.get<IListaEmpresas>('http://192.168.0.28:8000/api/companies/' + data.id);
   }
 
   add(data: IListaEmpresas) {
-    return this.http.post<IListaEmpresas>('http://localhost:8000/api/companies/', data);
+    return this.http.post<IListaEmpresas>('http://192.168.0.28:8000/api/companies/', data);
   }
 
   edit(data: IListaEmpresas) {
-    return this.http.put<IListaEmpresas>('http://localhost:8000/api/companies/' + data.id, data);
+    return this.http.put<IListaEmpresas>('http://192.168.0.28:8000/api/companies/' + data.id, data);
   }
 
   delete(data: IListaEmpresas) {
-    return this.http.delete<IListaEmpresas>('http://localhost:8000/api/companies/' + data.id);
+    return this.http.delete<IListaEmpresas>('http://192.168.0.28:8000/api/companies/' + data.id);
   }
 
 }

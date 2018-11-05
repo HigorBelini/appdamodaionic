@@ -14,7 +14,7 @@
       <img src="assets/imgs/logo.png" alt="" style=" height:70px; width: 70px;">
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="royal">
+      <button ion-button icon-only color="royal" (click)="abrirListaBot()">
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
@@ -33,39 +33,21 @@
     </ul>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="assets/imgs/teste 2.jpg">
+        <img src="assets/imgs/todas-promocoes.jpg">
         <div class="carousel-caption">
-          <h1 class="display-2">50% OFF</h1>
-          <h3>Aproveite a promoção da Maria Maria e compre produtos com até 50% de desconto.</h3>
-          <button type="button" class="btn btn-outline-light btn-lg" (click)="carregar()">Veja Mais</button>
-          <button type="button" class="btn btn-primary btn-lg" (click)="carregar()">Participar</button>
+          <h1 class="display-2">Participe das Promoções</h1>
+          <h3>A cada semana, o aplicativo irá trazer novidades para você. Cadastre-se e ganhe descontos exclusivos.</h3>
+          <button type="button" class="btn btn-outline-light btn-lg" (click)="abrirDetFuncPromBot()">Ver regras</button>
+          <button type="button" class="btn btn-primary btn-lg" (click)="abrirPromocoesBot()">Ver promoções</button>
         </div>
       </div>
-      <div class="carousel-item">
-        <img src="assets/imgs/teste 1.jpeg">
+      <div class="carousel-item" *ngFor="let itens of lista">
+        <img [src]="itens?.promotionimage">
         <div class="carousel-caption">
-          <h1 class="display-2">Bootstrap</h1>
-          <h3>Complete Website Layout</h3>
-          <button type="button" class="btn btn-outline-light btn-lg" (click)="carregar()">VIEW DEMO</button>
-          <button type="button" class="btn btn-primary btn-lg" (click)="carregar()">Get Started</button>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="assets/imgs/teste 3.jpeg">
-        <div class="carousel-caption">
-          <h1 class="display-2">Bootstrap</h1>
-          <h3>Complete Website Layout</h3>
-          <button type="button" class="btn btn-outline-light btn-lg" (click)="carregar()">VIEW DEMO</button>
-          <button type="button" class="btn btn-primary btn-lg" (click)="carregar()">Get Started</button>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="assets/imgs/teste 4.jpeg">
-        <div class="carousel-caption">
-          <h1 class="display-2">Bootstrap</h1>
-          <h3>Complete Website Layout</h3>
-          <button type="button" class="btn btn-outline-light btn-lg" (click)="carregar()">VIEW DEMO</button>
-          <button type="button" class="btn btn-primary btn-lg" (click)="carregar()">Get Started</button>
+          <h1 class="display-2">{{itens?.name}}</h1>
+          <h3>{{itens?.descriptive}}</h3>
+          <button type="button" class="btn btn-outline-light btn-lg" (click)="abrirPagPromoDetalhes(itens)">Detalhes</button>
+          <button type="button" class="btn btn-primary btn-lg" (click)="abrirPromocoesBot()">Outras Promoções</button>
         </div>
       </div>
     </div>
@@ -140,7 +122,7 @@
         <div class="small-box bg-white">
           <div (click)="abrirPromodaBot()" class="inner">
 
-              <i class="fas fa-shopping-bag"></i>
+            <i class="fas fa-shopping-bag"></i>
 
             <h5>Pró Moda</h5>
           </div>

@@ -36,13 +36,15 @@ import { FavoritosProvider } from '../providers/favoritos/favoritos';
 import { UserpromotionProvider } from '../providers/userpromotion/userpromotion';
 import { PromodaPageModule } from '../pages/promoda/promoda.module';
 import { PromocoescadastradasPageModule } from '../pages/promocoescadastradas/promocoescadastradas.module';
-import {InAppBrowser} from '@ionic-native/in-app-browser';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { FavoritodetalhePageModule } from '../pages/favoritodetalhe/favoritodetalhe.module';
 import { UserpromotiondetalhePageModule } from '../pages/userpromotiondetalhe/userpromotiondetalhe.module';
 import { PromocoesporempresaPageModule } from '../pages/promocoesporempresa/promocoesporempresa.module';
+import { HomeProvider } from '../providers/home/home';
+import { DetfuncpromocaoPageModule } from '../pages/detfuncpromocao/detfuncpromocao.module';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,7 @@ import { PromocoesporempresaPageModule } from '../pages/promocoesporempresa/prom
     FavoritodetalhePageModule,
     UserpromotiondetalhePageModule,
     PromocoesporempresaPageModule,
+    DetfuncpromocaoPageModule,
     IonicStorageModule.forRoot()
 
   ],
@@ -97,7 +100,8 @@ import { PromocoesporempresaPageModule } from '../pages/promocoesporempresa/prom
     ConfigProvider,
     FavoritosProvider,
     UserpromotionProvider,
-    InAppBrowser
+    InAppBrowser,
+    HomeProvider
   ]
 })
 export class AppModule { }

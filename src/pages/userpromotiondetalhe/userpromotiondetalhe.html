@@ -20,6 +20,9 @@
         <p>
           {{itens?.promotion_descriptive}}
         </p>
+        <br>
+        <br>
+        <p style="font-family: 'Poppins', sans-serif;">Cadastro realizado em {{itens?.date | date:"dd/MM/yyyy 'às' HH:mm"}}</p>
         <ion-row class="row" no-padding="">
           <ion-col class="col">
             <button ion-button block (click)="abrirPromocoes()">Veja outras promoções</button>

@@ -1,114 +1,140 @@
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 import {
   GoogleMaps,
   GoogleMap,
-  Environment,
-  Marker,
   GoogleMapsEvent,
-  GoogleMapOptions,
-  MyLocationOptions,
-  LocationService,
-  MyLocation
-} from '@ionic-native/google-maps';
+  LatLng,
+  CameraPosition,
+  MarkerOptions,
+  Marker
+ } from '@ionic-native/google-maps';
 
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoadingController } from 'ionic-angular';
-
-/**
- * Generated class for the ComochegarPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+declare var google;
 
 @IonicPage()
 @Component({
   selector: 'page-comochegar',
-  templateUrl: 'comochegar.html',
+  templateUrl: 'comochegar.html'
 })
 export class ComochegarPage {
-  public loader;
-  map:GoogleMap;
-  carregar() {
-    this.loader = this.loadingCtrl.create({
-      content: "Carregando...",
-    });
-    this.loader.present();
+
+  @ViewChild('map') mapElement: ElementRef;
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  map: any;
+  startPosition: any;
+  originPosition: string;
+  destinationPosition: string;
+
+  constructor(public navCtrl: NavController,private googleMaps: GoogleMaps, private geolocation: Geolocation) {
+
   }
 
-  fechacarregar(){
-    this.loader.dismiss();
+  ionViewDidLoad() {
+    this.initializeMap();
   }
-
-  //ionic cordova plugin add https://github.com/mapsplugin/cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyBabdCU6NbXGT8Ld2VeuyFgtU181O9Syfw" --variable API_KEY_FOR_IOS="AIzaSyBabdCU6NbXGT8Ld2VeuyFgtU181O9Syfw"
-  //ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyBabdCU6NbXGT8Ld2VeuyFgtU181O9Syfw" --variable API_KEY_FOR_IOS="AIzaSyBabdCU6NbXGT8Ld2VeuyFgtU181O9Syfw"
  
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private googleMaps: GoogleMaps) {
+  initializeMap() {
+    this.startPosition = new google.maps.LatLng(-20.7241656, -46.6127178);
+ 
+    this.map = new google.maps.Map(this.mapElement.nativeElement, {
+      zoom: 16,
+      center: {lat: -20.7241656, lng: -46.6127178}
+    });
+
+    this.directionsDisplay.setMap(this.map);
+ 
+    const marker = new google.maps.Marker({
+      position: this.startPosition,
+      map: this.map,
+    });
   }
 
-  loadMap() {
-
-    Environment.setEnv({
-      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyBabdCU6NbXGT8Ld2VeuyFgtU181O9Syfw',
-      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyBabdCU6NbXGT8Ld2VeuyFgtU181O9Syfw'
-    });
-
-    let mapOptions: GoogleMapOptions = {
-      camera: {
-         target: {
-            lat: -20.7276478,
-            lng: -46.611137
-         },
-         zoom: 14,
-         tilt: 40
-       }
-    };
-
-    this.map = GoogleMaps.create('map_canvas', mapOptions);
-
-    let marker: Marker = this.map.addMarkerSync({
-      title: 'Avenida da Moda',
-      icon: 'blue',
-      animation: 'DROP',
-      position: {
-        lat: -20.7276478,
-        lng: -46.611137
+  /*calculateAndDisplayRoute() {
+    this.directionsService.route({
+      origin: this.start,
+      destination: this.end,
+      travelMode: 'DRIVING'
+    }, (response, status) => {
+      if (status === 'OK') {
+        this.directionsDisplay.setDirections(response);
+      } else {
+        window.alert('Directions request failed due to ' + status);
       }
     });
-    marker.showInfoWindow();
+  }*/
 
+  posicaoAtual(){
 
-    /*let marker: Marker = this.map.addMarkerSync({
-      title: 'Avenida da Moda',
-      icon: 'red',
-      animation: 'DROP',
-      position: {
-        lat: -20.727671,
-        lng: -46.6111575
-      }
-    });
-     marker.showInfoWindow();
+        /*this.geolocation.getCurrentPosition().then((resp) => {
+        const position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+ 
+        const mapOptions = {
+          zoom: 18,
+          target: position,
+          tilt: 30
+        }
+ 
+        this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+ 
+        const marker = new google.maps.Marker({
+          position: position,
+          map: this.map
+        });
 
-    let option: MyLocationOptions = {
-      enableHighAccuracy: true;
-    };
+        //this.map.moveCamera(mapOptions);
+ 
+      }).catch((error) => {
+        console.log('Erro ao recuperar sua posição', error);
+      });*/
 
-    LocationService.getMyLocation(option).then((location: MyLocation) => {
-      this.map = GoogleMaps.create({
-        'camera': location.latLng,
-        'zoom': 16
+      this.geolocation.getCurrentPosition()
+      .then((resp) => {
+        const position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+ 
+        const mapOptions = {
+          zoom: 18,
+          center: position
+        }
+ 
+        this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+ 
+        const marker = new google.maps.Marker({
+          position: position,
+          map: this.map
+        });
+ 
+      }).catch((error) => {
+        console.log('Erro ao recuperar sua posição', error);
       });
-    }).catch((error:any) => {
-      console.log(error);
-    });*/
-    
-  }
 
-  ionViewDidEnter() {
-    this.carregar();
-    console.log('ionViewDidLoad ComochegarPage');
-    this.loadMap();
-    this.fechacarregar();
+
+    /*this.geolocation.getCurrentPosition().then((resp) => {
+     // resp.coords.latitude
+     // resp.coords.longitude
+     let element: HTMLElement = document.getElementById('map');
+     let map: GoogleMap = this.googleMaps.create(element);
+
+     let posicao: LatLng = new LatLng(resp.coords.latitude,resp.coords.longitude);
+
+     // create CameraPosition
+     let position = {
+       target: posicao,
+       zoom: 16,
+       tilt: 30
+     };
+
+     // move the map's camera to position
+     map.moveCamera(position);
+
+
+
+    }).catch((error) => {
+      alert("Erro " + error.message);
+    });*/
   }
 
 }

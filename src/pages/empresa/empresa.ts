@@ -15,6 +15,8 @@ import { ListaPage } from '../lista/lista';
 import { LoginPage } from '../login/login';
 import { NovouserPage } from '../novouser/novouser';
 import { PromocoesporempresaPage } from '../promocoesporempresa/promocoesporempresa';
+import { IListaPromocoes } from '../../interfaces/IListaPromocoes';
+import { PromocoesProvider } from '../../providers/promocoes/promocoes';
 
 
 /**
@@ -32,13 +34,14 @@ import { PromocoesporempresaPage } from '../promocoesporempresa/promocoesporempr
 export class EmpresaPage {
 
   itens: IListaEmpresas;
+  item: IListaPromocoes;
   user: IUsuario;
   public loader;
   abrirPagMapa(itens) {
     this.navCtrl.push(MapaPage, { dados: itens });
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider, public alertCtrl: AlertController, private inAppBrowser: InAppBrowser) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public promocoesProvider: PromocoesProvider, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider, public alertCtrl: AlertController, private inAppBrowser: InAppBrowser) {
     this.itens = this.navParams.get('dados');
   }
 
@@ -160,6 +163,18 @@ export class EmpresaPage {
 
   promocoes(){
     this.navCtrl.setRoot(PromocoesporempresaPage);
+    //this.cadastroempromocao();
   }
 
+
+  /*cadastroempromocao() {
+    console.log('Cadastrado na promoção');
+    this.promocoesProvider.promotionscompany(this.item).subscribe(res => {
+      if (res) {
+        this.showAlertSuccess();
+      }
+    }, erro => {
+      console.log("Erro: " + erro.message);
+    });
+  }*/
 }
