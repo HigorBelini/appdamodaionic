@@ -1,6 +1,6 @@
 page-comochegar {
     ion-content {
-        background: #5099c3 !important; font-family: 'Poppins', sans-serif;
+        background: #f4f4f4 !important; font-family: 'Poppins', sans-serif;
     }
     /*#map_canvas {
       height: 100%;
@@ -20,6 +20,10 @@ page-comochegar {
         margin-top: 350px;
       }*/
       #map {
+        height: 100%;
+      }
+
+      #trajeto-texto{
         height: 100%;
       }
 

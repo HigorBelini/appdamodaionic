@@ -1,21 +1,31 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="tema">
     <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title style="font-family: 'Poppins', sans-serif;">Como Chegar</ion-title>
-    <ion-buttons end>
-      <button ion-button (click)="posicaoAtual()">
-        <ion-icon name="add"></ion-icon> Rota
-      </button>
-    </ion-buttons>
+    <!--<ion-buttons end>
+      <button ion-button (click)="calculateRoute()" style="font-family: 'Poppins', sans-serif; size: 0.8rem;">
+        Atualizar
+      </button>-->
+    <!--</ion-buttons>-->
   </ion-navbar>
+  <div style="padding: 7.5px 7.5px;">
+    <ion-segment color="tema">
+      <ion-segment-button value="null" (click)="calculateRouteByCar()">
+        Carro
+      </ion-segment-button>
+      <ion-segment-button value="nonull" (click)="calculateRouteByFoot()">
+        Caminhada
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 </ion-header>
 
 <ion-content>
-
   <div #map id="map"></div>
+  <div id="trajeto-texto"></div>
   <!--<div id="floating-panel">
           <b>De: </b>
           <select [(ngModel)]="start" id="start" (change)="calculateAndDisplayRoute()">

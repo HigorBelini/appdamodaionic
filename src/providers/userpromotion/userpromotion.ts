@@ -13,7 +13,7 @@ import { ICadastroPromocoes } from '../../interfaces/ICadastroPromocoes';
 */
 @Injectable()
 export class UserpromotionProvider {
-  url: string = 'http://192.168.0.28:8000/api/';
+  url: string = 'http://localhost:8000/api/';
   constructor(public http: HttpClient) {
     console.log('Hello UserpromotionProvider Provider');
   }
