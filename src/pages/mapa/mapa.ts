@@ -1,46 +1,53 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, DisplayWhen } from 'ionic-angular';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { IonicPage, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 import {
   GoogleMaps,
   GoogleMap,
-  GoogleMapOptions,
-  Environment,
   GoogleMapsEvent,
-  Marker,
-  LocationService,
-  MyLocation,
   LatLng,
-  CameraPosition
+  CameraPosition,
+  MarkerOptions,
+  Marker
 } from '@ionic-native/google-maps';
 
 import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
 import { LoadingController } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
 
-/**
- * Generated class for the MapaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+declare var google;
 
 @IonicPage()
 @Component({
   selector: 'page-mapa',
-  templateUrl: 'mapa.html',
+  templateUrl: 'mapa.html'
 })
 export class MapaPage {
-  map:GoogleMap;
+
+  @ViewChild('map') mapElement: ElementRef;
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  map: any;
+  startPosition: any;
+  originPosition: any;
+  destinationPosition: any;
+  zoomControl: boolean;
+  mapTypeControl: boolean;
+  scaleControl: boolean;
+  streetViewControl: boolean;
+  rotateControl: boolean;
+  fullscreenControl: boolean;
 
   itens:IListaEmpresas;
   public loader;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private googleMaps: GoogleMaps, private geolocation: Geolocation) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private googleMaps: GoogleMaps, private geolocation: Geolocation, public loadingCtrl: LoadingController, ) {
     this.itens = this.navParams.get('dados');
   }
-
+  
   carregar(){
     this.loader = this.loadingCtrl.create({
-      content: "Carregando localização...",
+      content: "Carregando...",
     }); 
     this.loader.present();
   }
@@ -49,112 +56,339 @@ export class MapaPage {
     this.loader.dismiss();
   }
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.carregar();
-    console.log('ionViewDidEnter MapaPage');
-    this.loadMap();
+    this.initializeMap();
     this.fechacarregar();
+    /*this.geolocation.getCurrentPosition()
+      .then((resp) => {
+        const position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+ 
+        const mapOptions = {
+          zoom: 18,
+          center: position
+        }
+ 
+        this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+ 
+        const marker = new google.maps.Marker({
+          position: position,
+          map: this.map
+        });
+ 
+      }).catch((error) => {
+        console.log('Erro ao recuperar sua posição', error);
+      });*/
   }
 
-  loadMap() {
-
-    Environment.setEnv({
-      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyBabdCU6NbXGT8Ld2VeuyFgtU181O9Syfw',
-      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyBabdCU6NbXGT8Ld2VeuyFgtU181O9Syfw'
+  initializeMap() {
+    this.startPosition = new google.maps.LatLng(-20.7241656, -46.6127178);
+    this.map = new google.maps.Map(this.mapElement.nativeElement, {
+      title: 'Avenida da Moda',
+      zoom: 16,
+      mapTypeControl: true,
+      scaleControl: true,
+      mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+      },
+      center: { lat: -20.7241656, lng: -46.6127178 },
+      styles: [
+        {
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "color": "#ebe3cd"
+            }
+          ]
+        },
+        {
+          "elementType": "labels.text.fill",
+          "stylers": [
+            {
+              "color": "#523735"
+            }
+          ]
+        },
+        {
+          "elementType": "labels.text.stroke",
+          "stylers": [
+            {
+              "color": "#f5f1e6"
+            }
+          ]
+        },
+        {
+          "featureType": "administrative",
+          "elementType": "geometry.stroke",
+          "stylers": [
+            {
+              "color": "#c9b2a6"
+            }
+          ]
+        },
+        {
+          "featureType": "administrative.land_parcel",
+          "elementType": "geometry.stroke",
+          "stylers": [
+            {
+              "color": "#dcd2be"
+            }
+          ]
+        },
+        {
+          "featureType": "administrative.land_parcel",
+          "elementType": "labels.text.fill",
+          "stylers": [
+            {
+              "color": "#ae9e90"
+            }
+          ]
+        },
+        {
+          "featureType": "landscape.natural",
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "color": "#dfd2ae"
+            }
+          ]
+        },
+        {
+          "featureType": "poi",
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "color": "#dfd2ae"
+            }
+          ]
+        },
+        {
+          "featureType": "poi",
+          "elementType": "labels.text.fill",
+          "stylers": [
+            {
+              "color": "#93817c"
+            }
+          ]
+        },
+        {
+          "featureType": "poi.park",
+          "elementType": "geometry.fill",
+          "stylers": [
+            {
+              "color": "#a5b076"
+            }
+          ]
+        },
+        {
+          "featureType": "poi.park",
+          "elementType": "labels.text.fill",
+          "stylers": [
+            {
+              "color": "#447530"
+            }
+          ]
+        },
+        {
+          "featureType": "poi.sports_complex",
+          "elementType": "geometry.fill",
+          "stylers": [
+            {
+              "color": "#aeae00"
+            }
+          ]
+        },
+        {
+          "featureType": "road",
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "color": "#f5f1e6"
+            }
+          ]
+        },
+        {
+          "featureType": "road.arterial",
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "color": "#fdfcf8"
+            }
+          ]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "color": "#f8c967"
+            }
+          ]
+        },
+        {
+          "featureType": "road.highway.controlled_access",
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "color": "#e98d58"
+            }
+          ]
+        },
+        {
+          "featureType": "road.highway.controlled_access",
+          "elementType": "geometry.stroke",
+          "stylers": [
+            {
+              "color": "#db8555"
+            }
+          ]
+        },
+        {
+          "featureType": "road.local",
+          "elementType": "labels.text.fill",
+          "stylers": [
+            {
+              "color": "#806b63"
+            }
+          ]
+        },
+        {
+          "featureType": "transit.line",
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "color": "#dfd2ae"
+            }
+          ]
+        },
+        {
+          "featureType": "transit.line",
+          "elementType": "labels.text.fill",
+          "stylers": [
+            {
+              "color": "#8f7d77"
+            }
+          ]
+        },
+        {
+          "featureType": "transit.line",
+          "elementType": "labels.text.stroke",
+          "stylers": [
+            {
+              "color": "#ebe3cd"
+            }
+          ]
+        },
+        {
+          "featureType": "transit.station",
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "color": "#dfd2ae"
+            }
+          ]
+        },
+        {
+          "featureType": "water",
+          "elementType": "geometry.fill",
+          "stylers": [
+            {
+              "color": "#92f5e9"
+            }
+          ]
+        },
+        {
+          "featureType": "water",
+          "elementType": "labels.text.fill",
+          "stylers": [
+            {
+              "color": "#92998d"
+            }
+          ]
+        }
+      ]
     });
 
-    /*LocationService.getMyLocation().then((myLocation: MyLocation) => {
+    this.directionsDisplay.setMap(this.map);
 
-      let options: GoogleMapOptions = {
+    const marker = new google.maps.Marker({
+      animation: 'DROP',
+      position: this.startPosition,
+      map: this.map,
+    });
+  }
+
+  calculateRouteByCar() {
+      if (this.destinationPosition) {
+        this.geolocation.getCurrentPosition().then((resp) => {
+          const lat = resp.coords.latitude;
+          const lng = resp.coords.longitude;
+          const teste = lat + ' ' + lng;
+          console.log(teste);
+          const request = {
+            // Pode ser uma coordenada (LatLng), uma string ou um lugar
+            origin: lat + " " + lng,
+            destination: this.destinationPosition,
+            travelMode: 'DRIVING'
+          };
+      
+          this.traceRoute(this.directionsService, this.directionsDisplay, request);
+          this.directionsDisplay.setPanel(document.getElementById("trajeto-texto"));
+          //console.log(teste);
+        }).catch((error) => {
+          console.log('Erro ao recuperar sua posição', error);
+        });
         
-        camera: {
-          target: myLocation.latLng,
-          zoom: 30,
+    }
+      
+    /*traceRoute(service: any, display: any, request: any) {
+      service.route(request, function (result, status) {
+        if (status == 'OK') {
+          display.setDirections(result);
         }
-      };
-      this.map = GoogleMaps.create('map_canvas', options);
+      });*/
+  }
 
+  calculateRouteByFoot() {
+    if (this.destinationPosition) {
+      this.geolocation.getCurrentPosition().then((resp) => {
+        const lat = resp.coords.latitude;
+        const lng = resp.coords.longitude;
+        const teste = lat + ' ' + lng;
+        console.log(teste);
+        const request = {
+          // Pode ser uma coordenada (LatLng), uma string ou um lugar
+          origin: lat + " " + lng,
+          destination: this.destinationPosition,
+          travelMode: 'WALKING'
+        };
+    
+        this.traceRoute(this.directionsService, this.directionsDisplay, request);
+        this.directionsDisplay.setPanel(document.getElementById("trajeto-texto"));
+        //console.log(teste);
+      }).catch((error) => {
+        console.log('Erro ao recuperar sua posição', error);
+      });
+      
+  } else {
+    alert('Deu ruim amigo');
+  }
+    
+  /*traceRoute(service: any, display: any, request: any) {
+    service.route(request, function (result, status) {
+      if (status == 'OK') {
+        display.setDirections(result);
+      }
     });*/
+}
 
-    /*let mapOptions: GoogleMapOptions = {
-      camera: {
-         target: {
-            lat: -20.7276478,
-            lng: -46.611137
-         },
-         zoom: 14,
-         tilt: 40
-       }
-    };
-
-    this.map = GoogleMaps.create('map_canvas', mapOptions);
-
-    let marker: Marker = this.map.addMarkerSync({
-      title: 'Avenida da Moda',
-      icon: 'blue',
-      animation: 'DROP',
-      position: {
-        lat: -20.7276478,
-        lng: -46.611137
-      }
-    });
-    marker.showInfoWindow();
-
-    /*let marker: Marker = this.map.addMarkerSync({
-      title: 'Avenida da Moda',
-      icon: 'red',
-      animation: 'DROP',
-      position: {
-        target: myLocation.latLng,
-      }
-    });
-     marker.showInfoWindow();
-    */
-
-  }
-
-  posicaoAtual(){
-    this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude
-      // resp.coords.longitude
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
-     
-     let watch = this.geolocation.watchPosition();
-     watch.subscribe((data) => {
-      // data can be a set of coordinates, or an error (if an error occurred).
-      // data.coords.latitude
-      // data.coords.longitude
-     });
-     
-
-    LocationService.getMyLocation().then((myLocation: MyLocation) => {
-
-      let semvergonha = myLocation.latLng;
-
-      let options: GoogleMapOptions = {
-        icon: 'blue',
-        camera: {
-          target: semvergonha,
-          zoom: 30,
-          tilt: 40
-        }
-      };
-      this.map = GoogleMaps.create('map_canvas', options);
-
-    });
-
-    let marker: Marker = this.map.addMarkerSync({
-      title: 'Avenida da Moda',
-      icon: 'blue',
-      animation: 'DROP',
-      position: {
-        lat: -20.7276478,
-        lng: -46.611137
-      }
-    });
-    marker.showInfoWindow();
-  }
+traceRoute(service: any, display: any, request: any) {
+  service.route(request, function (result, status) {
+    if (status == 'OK') {
+      display.setDirections(result);
+    }
+  });
+}
 
 }
+

@@ -19,6 +19,7 @@ export class EmpresasProvider {
 
   listaEmpresas() {
     return this.http.get<IListaEmpresas[]>('http://localhost:8000/api/companies');
+    //http://192.168.0.50:8000/api/companies/
   }
 
   show(data: IListaEmpresas) {
