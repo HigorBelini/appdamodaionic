@@ -30,6 +30,7 @@ export class LoginPage {
 
   user: IUsuario = { email: '', password: '' };
   public loader;
+  tipo: Boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
   }
 
@@ -104,5 +105,9 @@ export class LoginPage {
       position: position
     });
     toast.present();
+  }
+
+  exibeSenha(){
+    this.tipo = !this.tipo;
   }
 }

@@ -4,6 +4,8 @@ import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { NovouserPage } from '../novouser/novouser';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the IntroPage page.
@@ -39,6 +41,14 @@ export class IntroPage {
 
   goToTabs(){
     this.navCtrl.push(TabsPage);
+  }
+
+  goToRegister(){
+    this.navCtrl.push(NovouserPage);
+  }
+
+  goToFazerLogin(){
+    this.navCtrl.push(LoginPage);
   }
 
 }

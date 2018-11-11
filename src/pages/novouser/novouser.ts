@@ -21,6 +21,7 @@ export class NovouserPage {
 
   user:IUsuario = {name:'', email:'', password:'', password_confirmation:""};
   public loader;
+  tipo: Boolean;
   abrirLogBot(){
     this.navCtrl.push(LoginPage);
   }
@@ -99,5 +100,9 @@ export class NovouserPage {
       position: position
     });
     toast.present();
+  }
+
+  exibeSenha(){
+    this.tipo = !this.tipo;
   }
 }

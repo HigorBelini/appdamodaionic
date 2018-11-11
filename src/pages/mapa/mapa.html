@@ -1,19 +1,13 @@
 <ion-header>
-    <ion-navbar color="tema">
-      <button ion-button icon-only menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title style="font-family: 'Poppins', sans-serif;">{{itens?.fantasyname}}</ion-title>
-      <!--<ion-buttons end>
-          <button ion-button (click)="calculateRoute()" style="font-family: 'Poppins', sans-serif; size: 0.8rem;">
-            Atualizar
-          </button>-->
-      <!--</ion-buttons>-->
-  
-    </ion-navbar>
-  
-  
-        <!--<ion-item color="tema">
+  <ion-navbar color="tema">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="font-family: 'Poppins', sans-serif;">{{itens?.fantasyname}}</ion-title>
+  </ion-navbar>
+
+
+  <!--<ion-item color="tema">
           <ion-label>Selecione a loja</ion-label>
           <ion-select [(ngModel)]="destinationPosition" multiple="false" id="destinationPosition" (change)="calculateRouteByCar()">
             <ion-option value="" selected="true" >Selecione</ion-option>
@@ -40,50 +34,30 @@
           </ion-select>
         </ion-item>-->
 
-        <ion-item color="tema">
-            <ion-label>Selecione a loja</ion-label>
-            <ion-select [(ngModel)]="destinationPosition" multiple="false" id="destinationPosition" (change)="calculateRouteByCar()">
-              <ion-option value="" selected="true">Selecione</ion-option>
-              <ion-option value="-20.7304998 -46.6092075">Coisas da Terra</ion-option>
-              <ion-option value="-20.7297544 -46.6098849">Colégio Status</ion-option>
-              <ion-option value="-20.7324335 -46.6074614">Donna Gulla Pizzaria</ion-option>
-              <ion-option value="-20.727941 -46.6109891">Farrelli</ion-option>
-              <ion-option value="-20.7289351 -46.6105441">Formato Z</ion-option>
-              <ion-option value="-20.7314822 -46.6082882">Hinode Franquia Passos</ion-option>
-              <ion-option value="-20.7309435 -46.6086677">Hotel Class</ion-option>
-              <ion-option value="-20.7303841 -46.609214">Impressinho</ion-option>
-              <ion-option value="-20.723832 -46.612811">Luma Confecções</ion-option>
-              <ion-option value="-20.7255966 -46.612084">Maria Maria</ion-option>
-              <ion-option value="-20.7316068 -46.6080757">Móveis Melinho</ion-option>
-              <ion-option value="-20.730579 -46.609137">Nakza</ion-option>
-              <ion-option value="-20.7291172 -46.6104634">Netspeed</ion-option>
-              <ion-option value="-20.7261072 -46.611825">O Boticário</ion-option>
-              <ion-option value="-20.7280129 -46.6107614">Pão de queijo da Vó Lia</ion-option>
-              <ion-option value="-20.7256895 -46.6120308">PHD Store</ion-option>
-              <ion-option value="Pintado D'ouro - Avenida Comendador Francisco Avelino Maia - Muarama, Passos - MG">Pintado D'ouro</ion-option>
-              <ion-option value="-20.7272362 -46.6112324">Posto Muarama</ion-option>
-              <ion-option value="-20.7299966 -46.6096641">Solar Prime</ion-option>
-              <ion-option value="-20.7260651 -46.6117752">Via Ternos</ion-option>
-            </ion-select>
-          </ion-item>
-  
-  
-    <div style="padding: 7.5px 7.5px;">
-      <ion-segment color="tema">
-        <ion-segment-button value="null" (click)="calculateRouteByCar()">
-          Carro
-        </ion-segment-button>
-        <ion-segment-button value="nonull" (click)="calculateRouteByFoot()">
-          Caminhada
-        </ion-segment-button>
-      </ion-segment>
-    </div>
-  </ion-header>
-  
-  <ion-content>
-    <div #map id="map"></div>
-    <div id="trajeto-texto"></div>
-    <!--<div id="floating-panel">
+  <ion-item color="tema">
+    <ion-label>Selecione a loja</ion-label>
+    <ion-select [(ngModel)]="destinationPosition" multiple="false" id="destinationPosition" (change)="calculateRouteByCar()">
+      <ion-option value="" selected="true">Selecione</ion-option>
+      <ion-option [value]="itens?.latitudeandlongitude">{{itens?.fantasyname}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <div style="padding: 7.5px 7.5px;">
+    <ion-segment color="tema">
+      <ion-segment-button value="null" (click)="calculateRouteByCar()">
+        Carro
+      </ion-segment-button>
+      <ion-segment-button value="nonull" (click)="calculateRouteByFoot()">
+        Caminhada
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div #map id="map"></div>
+  <div id="trajeto-texto"></div>
+  <!--<div id="floating-panel">
             <b>De: </b>
             <select [(ngModel)]="start" id="start" (change)="calculateAndDisplayRoute()">
               <option value="Rua Aparecida P B - Loteamento A C M A, São Sebastião do Paraíso - MG">Paraíso</option>
@@ -115,4 +89,4 @@
               <option value="los angeles, ca">Los Angeles</option>
             </select>
             </div>-->
-  </ion-content>
+</ion-content>

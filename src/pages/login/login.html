@@ -21,7 +21,10 @@
         </ion-item>
         <ion-item>
           <ion-label style="color:#fff;">Senha</ion-label>
-          <ion-input input="password" type="password" [(ngModel)]="user.password"></ion-input>
+          <ion-input [type]="tipo ? 'text' : 'password'" input="password" [(ngModel)]="user.password"></ion-input>
+          <button color="login" (click)="exibeSenha()" ion-button item-right>
+            <ion-icon [name]="tipo ? 'ios-eye-off' : 'eye'" style="margin-left:8px;"></ion-icon>
+          </button>
         </ion-item>
         <a style="color:#fff;">Esqueceu sua senha?
           <b>Nós te ajudamos</b>

@@ -33,7 +33,7 @@ export class PromocoesProvider {
   }
 
   edit(data:IListaPromocoes){
-    return this.http.put<IListaPromocoes>('http:/localhost:8000/api/promotions/'+ data.id, data);
+    return this.http.put<IListaPromocoes>('http://localhost:8000/api/promotions/'+ data.id, data);
   }
 
   delete(data:IListaPromocoes){

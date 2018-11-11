@@ -1,12 +1,12 @@
 export interface IListaEmpresas {
+  toLowerCase(): any;
     id?: number;
     socialname?: string;
     fantasyname?: string;
     number?: number;
     logo?: string;
     shopfacade?: string;
-    latitude?: number;
-    longitude?: number;
+    latitudeandlongitude?: string;
     industry?: string;
     descriptive?: string;
     keywords?: string;

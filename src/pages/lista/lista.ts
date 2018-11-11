@@ -29,9 +29,11 @@ export class ListaPage {
   lista: IListaEmpresas[];
   favoritos: IFavoritos[];
   user: IUsuario;
+  items: any;
   public loader;
   public refresher;
   public isRefreshing: boolean = false;
+  searchQuery: string = '';
   
     abrirPagEmpresa(itens){
       this.userProvider.getStorage("user").then(user => {
@@ -45,6 +47,10 @@ export class ListaPage {
         }
         this.fechacarregar();
       });
+    }
+
+    search(event){
+      console.log(event.target.value);
     }
 
     showConfirm() {
@@ -98,7 +104,7 @@ export class ListaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public empresaProvider: EmpresasProvider, public loadingCtrl: LoadingController, public userProvider:UserProvider, public favoritoProvider: FavoritosProvider, public alertCtrl: AlertController) {
    //this.lista = this.empresaProvider.all();
-   
+   this.initializeItems();
   }
 
   ionViewDidLoad(){
@@ -116,7 +122,11 @@ export class ListaPage {
 carregarLista(){
   this.carregar();
     this.empresaProvider.listaEmpresas().subscribe(res =>{
-      this.lista = res;
+      //if(!this.items){
+        this.lista = res;
+      //}else{
+       //this.lista = [];
+      //}
       if(this.isRefreshing){
         this.refresher.complete();
         this.isRefreshing = false;
@@ -146,6 +156,24 @@ carregarLista(){
       console.log("Erro: "+erro.message);
     });
   }*/
+
+  initializeItems() {
+    this.items = this.lista;
+  }
   
+  getItems(ev: any) {
+    // Reset items back to all of the items
+    this.initializeItems();
+
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+        return (item.fantasyname.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
   
 }

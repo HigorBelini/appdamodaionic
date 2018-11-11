@@ -4,34 +4,59 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons end>
+      <button ion-button icon-right style="color:#5099c3" (click)="goToTabs()">
+        Pular
+        <ion-icon name="arrow-dropright"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <ion-slides pager>
 
     <ion-slide class="slide_image">
-      <img src="assets/imgs/slide1.png" alt="">
-      <h2>Bem vindo ao App da Moda</h2>
+      <img src="assets/imgs/tela-principal.png" alt="">
+      <h2 style="font-family: 'Poppins', sans-serif; color:#5099c3">Bem vindo ao App da Moda</h2>
       <div padding>
-        <p>Com o aplicativo da avenida mais popular da cidade de Passos, você contará com inúmeras vantagens, podendo acessá-las de onde e quando quiser.</p>
+        <p style="color:#5099c3">Com o aplicativo da avenida mais popular da cidade de Passos, você contará com
+          inúmeras vantagens, podendo
+          acessá-las de onde e quando quiser.</p>
       </div>
     </ion-slide>
 
     <ion-slide class="slide_image">
-      <img src="assets/imgs/slide2.png" alt="">
-      <h2>Localize suas lojas preferidas</h2>
+      <img src="assets/imgs/maps.jpg" alt="">
+      <h2 style="font-family: 'Poppins', sans-serif; color:#5099c3">Localize suas lojas preferidas</h2>
       <div padding>
-        <p>Com este aplicativo, você poderá buscar por sua loja preferida da avenida, além de ter a possibilidade de localiza-lá apenas com toque na tela.</p>
+        <p style="color:#5099c3">Você poderá buscar por sua loja preferida da avenida, além de ter
+          a possibilidade de traçar uma rota ate ela e adicioná-la aos favoritos.</p>
       </div>
     </ion-slide>
 
     <ion-slide class="slide_image">
-      <img src="assets/imgs/slide3.png" alt="">
-      <h2 padding>E tem mais vantagens para você</h2>
+      <img src="assets/imgs/lista.jpg" alt="" style="width: 200px;">
+      <h2 style="font-family: 'Poppins', sans-serif; color:#5099c3">Garanta descontos exclusivos</h2>
       <div padding>
-        <p>Nele, você contará com a possibilidade de participar de promoções e eventos de suas lojas favoritas, além de contar com inúmeras vantagens.</p>
-        <p>Ficou curioso para saber como funciona o aplicativo? <a (click)="goToTabs()">Entre e conheça suas funcionalidades</a></p>
+        <p style="color:#5099c3; size:0.8rem;">Você poderá participar de promoções das suas lojas favoritas, e garantir descontos exclusivos. Aproveite!</p>
       </div>
     </ion-slide>
 
   </ion-slides>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons class="col-md-offset-0">
+      <button ion-button icon-right style="color:#488aff" (click)="goToRegister()">
+        Fazer cadastro
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-right style="color:#488aff" (click)="goToFazerLogin()">
+        Entrar
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

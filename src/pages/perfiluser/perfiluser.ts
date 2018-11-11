@@ -28,6 +28,7 @@ export class PerfiluserPage {
 
   user: IUsuario = { name: '', email: '', password: '', city: '', uf: '', gender: '', datebirth: '', profileimage: '' };
   public loader;
+  tipo: Boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public alertCtrl: AlertController) {
   }
 
@@ -152,6 +153,10 @@ export class PerfiluserPage {
       position: position
     });
     toast.present();
+  }
+
+  exibeSenha(){
+    this.tipo = !this.tipo;
   }
 
 }

@@ -22,7 +22,10 @@
           </ion-item>
           <ion-item>
             <ion-label style="color:#fff;">Senha</ion-label>
-            <ion-input type="password" name="password" [(ngModel)]="user.password"></ion-input>
+            <ion-input [type]="tipo ? 'text' : 'password'" name="password" [(ngModel)]="user.password"></ion-input>
+            <button color="login" (click)="exibeSenha()" ion-button item-right>
+                <ion-icon [name]="tipo ? 'ios-eye-off' : 'eye'" style="margin-left:8px;"></ion-icon>
+              </button>
           </ion-item>
           <ion-item>
             <ion-label style="color:#fff;">Cidade</ion-label>
