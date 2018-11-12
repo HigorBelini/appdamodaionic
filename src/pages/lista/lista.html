@@ -15,20 +15,16 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-searchbar placeholder="Pesquisar empresa..." ng-model="myVar" (ionInput)="getItems($event)"></ion-searchbar>
-  <!--<ion-list>
-    <div *ngFor="let itens of items">
-      <ion-item (click)="abrirPagEmpresa(itens)">
-        <ion-avatar item-start>
-          <img [src]="itens?.logo">
-        </ion-avatar>
-        <h3 style="font-family: 'Poppins', sans-serif;">{{ itens?.fantasyname }}</h3>
-        <p>{{ itens?.industry }}</p>
-      </ion-item>
-    </div>
-  </ion-list>-->
-
-
   <ion-list>
+      <div *ngFor="let itens of items">
+          <ion-item (click)="abrirPagEmpresa(itens)">
+            <ion-avatar item-start>
+              <img [src]="itens?.logo">
+            </ion-avatar>
+            <h3 style="font-family: 'Poppins', sans-serif;">{{ itens?.fantasyname }}</h3>
+            <p>{{ itens?.industry }}</p>
+          </ion-item>
+      </div>
     <div *ngFor="let itens of lista">
       <ion-item (click)="abrirPagEmpresa(itens)">
         <ion-avatar item-start>

@@ -16,7 +16,7 @@ export class HomeProvider {
   }
 
   banner(){
-    return this.http.get<IListaPromocoes[]>('http://localhost:8000/api/promotionshome');
+    return this.http.get<IListaPromocoes[]>('http://192.168.0.107:8000/api/promotionshome');
   }
 
 }
