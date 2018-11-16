@@ -10,7 +10,6 @@ import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider } from '../../providers/user/user';
 import { FavoritosProvider } from '../../providers/favoritos/favoritos';
 import { AlertController } from 'ionic-angular';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { ListaPage } from '../lista/lista';
 import { LoginPage } from '../login/login';
 import { NovouserPage } from '../novouser/novouser';
@@ -41,22 +40,12 @@ export class EmpresaPage {
     this.navCtrl.push(MapaPage, { dados: itens });
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public promocoesProvider: PromocoesProvider, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider, public alertCtrl: AlertController, private inAppBrowser: InAppBrowser) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public promocoesProvider: PromocoesProvider, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider, public alertCtrl: AlertController) {
     this.itens = this.navParams.get('dados');
   }
 
   abreMapa(){
     this.navCtrl.push(MapaPage);
-  }
-
-  openwebpage(itens){
-
-    const options: InAppBrowserOptions = {
-      zoom: 'yes'
-    }
-
-    const browser = this.inAppBrowser.create(itens, '_self', options);
-
   }
 
   carregar() {
@@ -80,14 +69,6 @@ export class EmpresaPage {
   fechacarregar2() {
     this.loader.dismiss();
   }
-
-  /*ionViewDidLoad() {
-    this.userProvider.getStorage("user").then(user => {
-      if (user) {
-        this.user = user;
-      }
-    });
-  }*/
 
   showConfirm() {
     const confirm = this.alertCtrl.create({
@@ -126,6 +107,8 @@ export class EmpresaPage {
       if (user) {
         this.user = user;
       }
+    }).catch((error) => {
+      console.log('Erro ', error);
     });
   }
 

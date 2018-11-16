@@ -51,6 +51,8 @@ export class HomemenuPage {
       this.showConfirm();
       }
       this.fechacarregar();
+    }).catch((error) => {
+      console.log('Erro ', error);
     });
   }
 
@@ -148,6 +150,8 @@ export class HomemenuPage {
       if (user) {
         this.user = user;
       }
+    }).catch((error) => {
+      console.log('Erro ', error);
     });
     
     //console.log('ionViewDidLoad HomemenuPage');

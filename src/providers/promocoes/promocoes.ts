@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { IListaPromocoes} from '../../interfaces/IListaPromocoes';
-import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
 /*
   Generated class for the PromocoesProvider provider.
 

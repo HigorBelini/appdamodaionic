@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
-import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider } from '../../providers/user/user';
 import { IFavoritos } from '../../interfaces/IFavoritos';
-import { EmpresaPage } from '../empresa/empresa';
 import { AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { NovouserPage } from '../novouser/novouser';
-import { ListaPage } from '../lista/lista';
-import { PerfiluserPage } from '../perfiluser/perfiluser';
 import { HomemenuPage } from '../homemenu/homemenu';
 import { FavoritodetalhePage } from '../favoritodetalhe/favoritodetalhe';
 
@@ -94,6 +90,8 @@ export class FavoritosPage {
         this.fechacarregar();
         this.showConfirm();
       }
+    }).catch((error) => {
+      console.log('Erro ', error);
     });
   }
 

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { IListaPromocoes } from '../../interfaces/IListaPromocoes';
 import { PromocoesProvider } from '../../providers/promocoes/promocoes';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LoadingController } from 'ionic-angular';
@@ -91,14 +90,6 @@ export class UserpromotiondetalhePage {
     alert.present();
   }
 
-  /*ionViewDidLoad() {
-    this.userProvider.getStorage("user").then(user => {
-      if (user) {
-        this.user = user;
-      }
-    });
-  }*/
-
   cancelar() {
     this.navCtrl.setRoot(PromocoesPage);
   }
@@ -114,6 +105,8 @@ export class UserpromotiondetalhePage {
       this.showConfirm();
       }
       this.fechacarregar();
+    }).catch((error) => {
+      console.log('Erro ', error);
     });  
   }
 

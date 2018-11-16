@@ -4,7 +4,6 @@ import { NovouserPage } from '../novouser/novouser';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider } from '../../providers/user/user';
 import { MenuController } from 'ionic-angular';
-import { HomemenuPage } from '../homemenu/homemenu';
 import { HomePage } from '../home/home';
 import { ToastController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';

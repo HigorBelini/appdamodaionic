@@ -95,6 +95,8 @@ export class PerfiluserPage {
         this.showConfirm();
       }
       this.fechacarregar();
+    }).catch((error) => {
+      console.log('Erro ', error);
     });
   }
 

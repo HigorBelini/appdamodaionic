@@ -2,15 +2,6 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  LatLng,
-  CameraPosition,
-  MarkerOptions,
-  Marker
-} from '@ionic-native/google-maps';
 
 declare var google;
 
@@ -35,31 +26,12 @@ export class ComochegarPage {
   rotateControl: boolean;
   fullscreenControl: boolean;
 
-  constructor(public navCtrl: NavController, private googleMaps: GoogleMaps, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, private geolocation: Geolocation) {
 
   }
 
   ionViewDidLoad() {
     this.initializeMap();
-    /*this.geolocation.getCurrentPosition()
-      .then((resp) => {
-        const position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
- 
-        const mapOptions = {
-          zoom: 18,
-          center: position
-        }
- 
-        this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
- 
-        const marker = new google.maps.Marker({
-          position: position,
-          map: this.map
-        });
- 
-      }).catch((error) => {
-        console.log('Erro ao recuperar sua posição', error);
-      });*/
   }
 
   initializeMap() {
@@ -292,8 +264,7 @@ export class ComochegarPage {
 
     this.directionsDisplay.setMap(this.map);
 
-    const marker = new google.maps.Marker({
-      animation: 'DROP',
+    new google.maps.Marker({
       position: this.startPosition,
       map: this.map,
     });

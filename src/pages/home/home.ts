@@ -2,10 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { UserProvider } from './../../providers/user/user';
 import { NavController } from 'ionic-angular';
-import { PerfiluserPage } from '../perfiluser/perfiluser';
 import { AvenidaPage } from '../avenida/avenida';
 import { ComochegarPage } from '../comochegar/comochegar';
 import { ListaPage } from '../lista/lista';
@@ -161,7 +159,9 @@ export class HomePage {
         this.menuCtrl.enable(false, 'userComLogin');
         this.menuCtrl.enable(true, 'userSemLogin');
       }
-    })
+    }).catch((error) => {
+      console.log('Erro ', error);
+    });
   }
 
   initializeApp() {
@@ -170,6 +170,8 @@ export class HomePage {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    }).catch((error) => {
+      console.log('Erro ', error);
     });
   }
 

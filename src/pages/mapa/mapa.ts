@@ -2,16 +2,6 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  LatLng,
-  CameraPosition,
-  MarkerOptions,
-  Marker
-} from '@ionic-native/google-maps';
-
 import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
 import { LoadingController } from 'ionic-angular';
 
@@ -41,7 +31,7 @@ export class MapaPage {
   itens:IListaEmpresas;
   public loader;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private googleMaps: GoogleMaps, private geolocation: Geolocation, public loadingCtrl: LoadingController, ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation, public loadingCtrl: LoadingController, ) {
     this.itens = this.navParams.get('dados');
   }
   
@@ -60,25 +50,6 @@ export class MapaPage {
     this.carregar();
     this.initializeMap();
     this.fechacarregar();
-    /*this.geolocation.getCurrentPosition()
-      .then((resp) => {
-        const position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
- 
-        const mapOptions = {
-          zoom: 18,
-          center: position
-        }
- 
-        this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
- 
-        const marker = new google.maps.Marker({
-          position: position,
-          map: this.map
-        });
- 
-      }).catch((error) => {
-        console.log('Erro ao recuperar sua posição', error);
-      });*/
   }
 
   initializeMap() {
@@ -311,7 +282,7 @@ export class MapaPage {
 
     this.directionsDisplay.setMap(this.map);
 
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       animation: 'DROP',
       position: this.startPosition,
       map: this.map,

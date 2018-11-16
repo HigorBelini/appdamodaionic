@@ -7,7 +7,6 @@ import { LoadingController } from 'ionic-angular';
 import { UserProvider} from '../../providers/user/user';
 import { LoginPage } from '../login/login';
 import { NovouserPage } from '../novouser/novouser';
-import { ListaPage } from '../lista/lista';
 import { IUsuario } from '../../interfaces/IUsuario';
 
 /**
@@ -42,6 +41,8 @@ export class PromocoesPage {
       this.showConfirm();
       }
       this.fechacarregar();
+    }).catch((error) => {
+      console.log('Erro ', error);
     });
   }
 

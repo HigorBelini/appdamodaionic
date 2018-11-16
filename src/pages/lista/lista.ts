@@ -46,6 +46,8 @@ export class ListaPage {
         this.showConfirm();
         }
         this.fechacarregar();
+      }).catch((error) => {
+        console.log('Erro ', error);
       });
     }
 
@@ -112,6 +114,8 @@ export class ListaPage {
       if (user) {
         this.user = user;
       }
+    }).catch((error) => {
+      console.log('Erro ', error);
     });
   }
 

@@ -50,6 +50,8 @@ export class PromocoescadastradasPage {
           console.log("Erro: " + erro.message);
         });
       }
+    }).catch((error) => {
+      console.log('Erro ', error);
     });
     this.fechacarregar();
   }

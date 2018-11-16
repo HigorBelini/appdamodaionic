@@ -89,14 +89,6 @@ export class PromodetalhesPage {
     alert.present();
   }
 
-  /*ionViewDidLoad() {
-    this.userProvider.getStorage("user").then(user => {
-      if (user) {
-        this.user = user;
-      }
-    });
-  }*/
-
   cancelar() {
     this.navCtrl.setRoot(PromocoesPage);
   }
@@ -106,6 +98,8 @@ export class PromodetalhesPage {
       if (user) {
         this.user = user;
       }
+    }).catch((error) => {
+      console.log('Erro ', error);
     });
   }
 
