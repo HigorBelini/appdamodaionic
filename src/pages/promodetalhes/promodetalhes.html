@@ -20,6 +20,8 @@
       <p>
         {{itens?.descriptive}}
       </p>
+      <br>
+      <p ng-controller="datCtrl">Esta promoção é válida de {{itens?.startdate | date:'dd/MM/yyyy'}} a {{itens?.finaldate | date:'dd/MM/yyyy'}}</p>
       <ion-row class="row" no-padding="">
         <ion-col class="col">
           <button ion-button block (click)="cadastroempromocao()">Participar</button>

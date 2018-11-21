@@ -28,7 +28,7 @@
     "@ionic-native/status-bar": "~4.15.0",
     "@ionic/pro": "2.0.3",
     "@ionic/storage": "2.2.0",
-    "cordova-android": "7.0.0",
+    "cordova-android": "^7.1.2",
     "cordova-browser": "5.0.4",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.1",
@@ -74,8 +74,8 @@
       }
     },
     "platforms": [
-      "android",
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }
