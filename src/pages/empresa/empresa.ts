@@ -5,7 +5,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
 import { EmpresasProvider } from '../../providers/empresas/empresas';
 import { LoadingController } from 'ionic-angular';
-//import { IFavoritos } from '../../interfaces/IFavoritos';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { UserProvider } from '../../providers/user/user';
 import { FavoritosProvider } from '../../providers/favoritos/favoritos';
@@ -16,14 +15,6 @@ import { NovouserPage } from '../novouser/novouser';
 import { PromocoesporempresaPage } from '../promocoesporempresa/promocoesporempresa';
 import { IListaPromocoes } from '../../interfaces/IListaPromocoes';
 import { PromocoesProvider } from '../../providers/promocoes/promocoes';
-
-
-/**
- * Generated class for the EmpresaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -44,7 +35,7 @@ export class EmpresaPage {
     this.itens = this.navParams.get('dados');
   }
 
-  abreMapa(){
+  abreMapa() {
     this.navCtrl.push(MapaPage);
   }
 
@@ -112,7 +103,7 @@ export class EmpresaPage {
     });
   }
 
-  showAlertSuccess(){
+  showAlertSuccess() {
     const alert = this.alertCtrl.create({
       title: 'Adicionado a sua lista de favoritos!',
       buttons: ['OK']
@@ -120,7 +111,7 @@ export class EmpresaPage {
     alert.present();
   }
 
-  showAlertDenied(){
+  showAlertDenied() {
     const alert = this.alertCtrl.create({
       title: 'Ocorreu um erro inesperado. Certifique-se que você está logado no aplicativo',
       buttons: ['OK']
@@ -133,10 +124,9 @@ export class EmpresaPage {
     this.carregar2();
     this.favoritoProvider.favorito(this.itens, this.user).subscribe(res => {
       if (res) {
-        //console.log(res);
         this.showAlertSuccess();
       }
-    this.fechacarregar2();
+      this.fechacarregar2();
     }, erro => {
       this.showAlertDenied();
       console.log("Erro: " + erro.message);
@@ -144,20 +134,7 @@ export class EmpresaPage {
     });
   }
 
-  promocoes(){
+  promocoes() {
     this.navCtrl.setRoot(PromocoesporempresaPage);
-    //this.cadastroempromocao();
   }
-
-
-  /*cadastroempromocao() {
-    console.log('Cadastrado na promoção');
-    this.promocoesProvider.promotionscompany(this.item).subscribe(res => {
-      if (res) {
-        this.showAlertSuccess();
-      }
-    }, erro => {
-      console.log("Erro: " + erro.message);
-    });
-  }*/
 }

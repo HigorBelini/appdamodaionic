@@ -5,13 +5,6 @@ import { PromocoescadastradasPage } from '../promocoescadastradas/promocoescadas
 import { FavoritosPage } from '../favoritos/favoritos';
 import { LoadingController } from 'ionic-angular';
 
-/**
- * Generated class for the UpdateuserPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-updateuser',

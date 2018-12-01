@@ -1,15 +1,9 @@
 <ion-header>
-
-<ion-navbar color="tema">
+  <ion-navbar color="tema">
     <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title style="font-family: 'Poppins', sans-serif;">Como Chegar</ion-title>
-    <!--<ion-buttons end>
-      <button ion-button (click)="calculateRoute()" style="font-family: 'Poppins', sans-serif; size: 0.8rem;">
-        Atualizar
-      </button>-->
-    <!--</ion-buttons>-->
   </ion-navbar>
   <div style="padding: 7.5px 7.5px;">
     <ion-segment color="tema">
@@ -26,36 +20,4 @@
 <ion-content>
   <div #map id="map"></div>
   <div id="trajeto-texto"></div>
-  <!--<div id="floating-panel">
-          <b>De: </b>
-          <select [(ngModel)]="start" id="start" (change)="calculateAndDisplayRoute()">
-            <option value="Rua Aparecida P B - Loteamento A C M A, São Sebastião do Paraíso - MG">Paraíso</option>
-            <option value="st louis, mo">St Louis</option>
-            <option value="joplin, mo">Joplin, MO</option>
-            <option value="oklahoma city, ok">Oklahoma City</option>
-            <option value="amarillo, tx">Amarillo</option>
-            <option value="gallup, nm">Gallup, NM</option>
-            <option value="flagstaff, az">Flagstaff, AZ</option>
-            <option value="winona, az">Winona</option>
-            <option value="kingman, az">Kingman</option>
-            <option value="barstow, ca">Barstow</option>
-            <option value="san bernardino, ca">San Bernardino</option>
-            <option value="los angeles, ca">Los Angeles</option>
-          </select><br>
-          <b>Para: </b>
-          <select [(ngModel)]="end" id="end" (change)="calculateAndDisplayRoute()">
-            <option value="O Boticário - Av. Comendador Francisco Avelino Maia, 3116 - Canjeranus, Passos - MG, 37900-001">Passos</option>
-            <option value="st louis, mo">St Louis</option>
-            <option value="joplin, mo">Joplin, MO</option>
-            <option value="oklahoma city, ok">Oklahoma City</option>
-            <option value="amarillo, tx">Amarillo</option>
-            <option value="gallup, nm">Gallup, NM</option>
-            <option value="flagstaff, az">Flagstaff, AZ</option>
-            <option value="winona, az">Winona</option>
-            <option value="kingman, az">Kingman</option>
-            <option value="barstow, ca">Barstow</option>
-            <option value="san bernardino, ca">San Bernardino</option>
-            <option value="los angeles, ca">Los Angeles</option>
-          </select>
-          </div>-->
 </ion-content>

@@ -6,12 +6,6 @@ import { LoadingController } from 'ionic-angular';
 import { NovouserPage } from '../novouser/novouser';
 import { LoginPage } from '../login/login';
 
-/**
- * Generated class for the IntroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({

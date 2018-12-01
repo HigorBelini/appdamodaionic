@@ -1,5 +1,4 @@
 export interface IListaEmpresas {
-  toLowerCase(): any;
     id?: number;
     socialname?: string;
     fantasyname?: string;

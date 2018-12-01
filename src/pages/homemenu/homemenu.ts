@@ -18,13 +18,6 @@ import { PromocoesProvider } from '../../providers/promocoes/promocoes';
 import { UserpromotionProvider } from '../../providers/userpromotion/userpromotion';
 import { DetfuncpromocaoPage } from '../detfuncpromocao/detfuncpromocao';
 
-/**
- * Generated class for the HomemenuPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-homemenu',
@@ -100,15 +93,11 @@ export class HomemenuPage {
   }
 
   abrirAvenidaBot(){
-    //this.carregar();
     this.navCtrl.push(AvenidaPage);
-    //this.fechacarregar();
   }
 
   abrirDetFuncPromBot(){
-    //this.carregar();
     this.navCtrl.push(DetfuncpromocaoPage);
-    //this.fechacarregar();
   }
 
   abrirComoChegarBot(){
@@ -118,34 +107,25 @@ export class HomemenuPage {
   }
 
   abrirListaBot(){
-    //this.carregar();
     this.navCtrl.push(ListaPage);
-    //this.fechacarregar();
   }
 
   abrirPromocoesBot(){
-    //this.carregar();
     this.navCtrl.push(PromocoesPage);
-    //this.fechacarregar();
   }
 
   abrirPromodaBot(){
-    //this.carregar();
     this.navCtrl.push(PromodaPage);
-    //this.fechacarregar();
   }
 
   abrirMeusFavoritos(){
-    //this.carregar();
     this.navCtrl.push(FavoritosPage);
-    //this.fechacarregar();
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public userProvider: UserProvider, public alertCtrl: AlertController, public homeProvider:HomeProvider, public promocaoProvider: PromocoesProvider, public userpromotionProvider: UserpromotionProvider) {
   }
 
   ionViewDidEnter() {
-    //this.carregar();
     this.userProvider.getStorage("user").then(user => {
       if (user) {
         this.user = user;
@@ -153,16 +133,11 @@ export class HomemenuPage {
     }).catch((error) => {
       console.log('Erro ', error);
     });
-    
-    //console.log('ionViewDidLoad HomemenuPage');
-    //this.fechacarregar();
+
   }
 
   ionViewDidLoad(){
-    //this.carregar();
     this.carregarLista();
-   // console.log('ionViewDidLoad HomemenuPage');
-   // this.fechacarregar();
   }
 
   carregarLista(){
@@ -203,7 +178,6 @@ export class HomemenuPage {
     console.log('Cadastrado na promoção');
     this.userpromotionProvider.userspromotion(this.lista, this.user).subscribe(res => {
       if (res) {
-        //console.log(res);
         this.showAlertSuccess();
       }
     }, erro => {

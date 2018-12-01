@@ -13,13 +13,6 @@ import { ListaPage } from '../lista/lista';
 import { LoginPage } from '../login/login';
 import { NovouserPage } from '../novouser/novouser';
 
-/**
- * Generated class for the FavoritodetalhePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-favoritodetalhe',
@@ -63,16 +56,6 @@ export class FavoritodetalhePage {
   abreMapa(){
     this.navCtrl.push(MapaPage);
   }
-
-  /*openwebpage(itens){
-
-    const options: InAppBrowserOptions = {
-      zoom: 'yes'
-    }
-
-    const browser = this.inAppBrowser.create(itens, '_self', options);
-
-  }*/
 
   carregar() {
     this.loader = this.loadingCtrl.create({
@@ -127,7 +110,5 @@ export class FavoritodetalhePage {
   cancelar() {
     this.navCtrl.setRoot(ListaPage);
   }
-
-
 
 }

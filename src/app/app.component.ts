@@ -18,8 +18,6 @@ export class MyApp {
 
   constructor(platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, configProvider: ConfigProvider) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
 
       let config = configProvider.getConfigData();
       if(config == null){

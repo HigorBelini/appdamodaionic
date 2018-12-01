@@ -44,7 +44,6 @@ export class PromocoescadastradasPage {
       if (user) {
        
         this.userProvider.listaPromocoes(user).subscribe(res => {
-          //console.log(res);
           this.promocoes = res;
         }, erro => {
           console.log("Erro: " + erro.message);

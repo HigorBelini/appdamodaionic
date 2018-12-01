@@ -9,13 +9,6 @@ import { LoginPage } from '../login/login';
 import { NovouserPage } from '../novouser/novouser';
 import { IUsuario } from '../../interfaces/IUsuario';
 
-/**
- * Generated class for the PromocoesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-promocoes',
@@ -96,7 +89,6 @@ export class PromocoesPage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public promocaoProvider: PromocoesProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
-    //this.lista = this.promocaoProvider.all();
   }
 
   ionViewDidEnter(){

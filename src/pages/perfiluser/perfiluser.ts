@@ -118,7 +118,7 @@ export class PerfiluserPage {
           this.exibeMensagem('top', 'Perfil atualizado com sucesso!');
           this.ok();
         } else {
-          console.log(res); //validação
+          console.log(res);
           let erros = "";
           if (res.name) {
             for (let erro of res.name) {
@@ -138,7 +138,6 @@ export class PerfiluserPage {
           this.exibeMensagem('top', erros, 5000);
         }
       } else {
-        // Login com erro!
 
       }
     }, erro => {

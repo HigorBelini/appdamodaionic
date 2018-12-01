@@ -5,15 +5,9 @@ import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
 import { IFavoritos } from '../../interfaces/IFavoritos';
 import { IUsuario } from '../../interfaces/IUsuario';
 
-/*
-  Generated class for the FavoritosProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class FavoritosProvider {
-  url: string = 'http://192.168.0.107:8000/api/';
+  url: string = 'http://192.168.0.111:8000/api/';
   constructor(public http: HttpClient) {
     console.log('Hello FavoritosProvider Provider');
   }

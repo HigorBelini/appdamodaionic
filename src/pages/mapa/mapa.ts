@@ -297,7 +297,6 @@ export class MapaPage {
           const teste = lat + ' ' + lng;
           console.log(teste);
           const request = {
-            // Pode ser uma coordenada (LatLng), uma string ou um lugar
             origin: lat + " " + lng,
             destination: this.destinationPosition,
             travelMode: 'DRIVING'
@@ -305,19 +304,11 @@ export class MapaPage {
       
           this.traceRoute(this.directionsService, this.directionsDisplay, request);
           this.directionsDisplay.setPanel(document.getElementById("trajeto-texto"));
-          //console.log(teste);
         }).catch((error) => {
           console.log('Erro ao recuperar sua posição', error);
         });
         
     }
-      
-    /*traceRoute(service: any, display: any, request: any) {
-      service.route(request, function (result, status) {
-        if (status == 'OK') {
-          display.setDirections(result);
-        }
-      });*/
   }
 
   calculateRouteByFoot() {
@@ -328,7 +319,6 @@ export class MapaPage {
         const teste = lat + ' ' + lng;
         console.log(teste);
         const request = {
-          // Pode ser uma coordenada (LatLng), uma string ou um lugar
           origin: lat + " " + lng,
           destination: this.destinationPosition,
           travelMode: 'WALKING'
@@ -336,7 +326,6 @@ export class MapaPage {
     
         this.traceRoute(this.directionsService, this.directionsDisplay, request);
         this.directionsDisplay.setPanel(document.getElementById("trajeto-texto"));
-        //console.log(teste);
       }).catch((error) => {
         console.log('Erro ao recuperar sua posição', error);
       });
@@ -344,13 +333,6 @@ export class MapaPage {
   } else {
     alert('Deu ruim amigo');
   }
-    
-  /*traceRoute(service: any, display: any, request: any) {
-    service.route(request, function (result, status) {
-      if (status == 'OK') {
-        display.setDirections(result);
-      }
-    });*/
 }
 
 traceRoute(service: any, display: any, request: any) {

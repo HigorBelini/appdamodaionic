@@ -16,12 +16,10 @@ import { IFavoritos } from '../../interfaces/IFavoritos';
 @Injectable()
 export class UserProvider {
 
-  //url: string = 'http://localhost:3000/';
-  url: string = 'http://192.168.0.107:8000/api/';
+  url: string = 'http://192.168.0.111:8000/api/';
 
   headers: any;
   constructor(public http: HttpClient, private storage: Storage) {
-    //this.headers = {"headers": {"authorization": "Bearer "+this.token}};
     
   }
 

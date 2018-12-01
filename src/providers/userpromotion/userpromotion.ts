@@ -5,15 +5,9 @@ import { IListaPromocoes } from '../../interfaces/IListaPromocoes';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { ICadastroPromocoes } from '../../interfaces/ICadastroPromocoes';
 
-/*
-  Generated class for the UserpromotionProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class UserpromotionProvider {
-  url: string = 'http://192.168.0.107:8000/api/';
+  url: string = 'http://192.168.0.111:8000/api/';
   constructor(public http: HttpClient) {
     console.log('Hello UserpromotionProvider Provider');
   }

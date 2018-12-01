@@ -9,13 +9,6 @@ import { NovouserPage } from '../novouser/novouser';
 import { HomemenuPage } from '../homemenu/homemenu';
 import { FavoritodetalhePage } from '../favoritodetalhe/favoritodetalhe';
 
-/**
- * Generated class for the FavoritosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-favoritos',
@@ -78,7 +71,6 @@ export class FavoritosPage {
       this.carregar();
       if (user) {
         this.userProvider.listaFavoritos(user).subscribe(res => {
-          //console.log(res);
           this.favoritos = res;
           this.fechacarregar();
         }, erro => {

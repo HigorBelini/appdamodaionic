@@ -1,13 +1,13 @@
 <ion-header>
 
-    <ion-navbar color="login">
-        <button ion-button icon-only menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title style="font-family: 'Poppins', sans-serif;"></ion-title>
-    </ion-navbar>
-  
-  </ion-header>
+  <ion-navbar color="login">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="font-family: 'Poppins', sans-serif;"></ion-title>
+  </ion-navbar>
+
+</ion-header>
 <ion-content class="background">
   <ion-card>
     <ion-card-header>
@@ -27,14 +27,14 @@
           <ion-label style="color:#fff;">Senha</ion-label>
           <ion-input [type]="tipo ? 'text' : 'password'" name="password" [(ngModel)]="user.password"></ion-input>
           <button color="login" (click)="exibeSenha()" ion-button item-right>
-              <ion-icon [name]="tipo ? 'ios-eye-off' : 'eye'" style="margin-left:8px;"></ion-icon>
+            <ion-icon [name]="tipo ? 'ios-eye-off' : 'eye'" style="margin-left:8px;"></ion-icon>
           </button>
         </ion-item>
         <ion-item>
           <ion-label style="color:#fff;">Confirmar</ion-label>
           <ion-input [type]="tipo ? 'text' : 'password'" name="password_confirmation" [(ngModel)]="user.password_confirmation"></ion-input>
           <button color="login" (click)="exibeSenha()" ion-button item-right>
-              <ion-icon [name]="tipo ? 'ios-eye-off' : 'eye'" style="margin-left:8px;"></ion-icon>
+            <ion-icon [name]="tipo ? 'ios-eye-off' : 'eye'" style="margin-left:8px;"></ion-icon>
           </button>
         </ion-item>
         <button ion-button block outline color="light" (click)="addUser()">Cadastrar</button>

@@ -13,13 +13,6 @@ import { FavoritosProvider } from '../../providers/favoritos/favoritos';
 import { NovouserPage } from '../novouser/novouser';
 import { LoginPage } from '../login/login';
 
-/**
- * Generated class for the ListaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-lista',

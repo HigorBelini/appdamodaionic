@@ -8,14 +8,6 @@ import { HomePage } from '../home/home';
 import { ToastController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -70,7 +62,7 @@ export class LoginPage {
           this.exibeMensagem('top', 'Login realizado com sucesso!');
           this.cancelar();
         } else {
-          console.log(res); //validação
+          console.log(res);
           let erros = "";
           if (res.email) {
             for (let erro of res.email) {
@@ -85,7 +77,6 @@ export class LoginPage {
           this.exibeMensagem('top', erros, 5000);
         }
       } else {
-        // Login com erro!
         this.exibeMensagem('top', 'Senha incorreta', 5000);
       }
 
