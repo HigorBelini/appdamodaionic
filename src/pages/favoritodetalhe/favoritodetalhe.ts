@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { MapaPage } from '../mapa/mapa';
 import { DomSanitizer } from '@angular/platform-browser';
 import { EmpresasProvider } from '../../providers/empresas/empresas';
 import { LoadingController } from 'ionic-angular';
@@ -12,6 +11,7 @@ import { AlertController } from 'ionic-angular';
 import { ListaPage } from '../lista/lista';
 import { LoginPage } from '../login/login';
 import { NovouserPage } from '../novouser/novouser';
+import { FavoritomapaPage } from '../favoritomapa/favoritomapa';
 
 @IonicPage()
 @Component({
@@ -24,7 +24,7 @@ export class FavoritodetalhePage {
 
   public loader;
   abrirPagMapa(itens) {
-    this.navCtrl.push(MapaPage, { dados: itens });
+    this.navCtrl.push(FavoritomapaPage, { dados: itens });
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer: DomSanitizer, public loadingCtrl: LoadingController, public userProvider: UserProvider, public favoritoProvider: FavoritosProvider, public empresaProvider: EmpresasProvider, public alertCtrl: AlertController) {
@@ -54,7 +54,7 @@ export class FavoritodetalhePage {
   }
 
   abreMapa(){
-    this.navCtrl.push(MapaPage);
+    this.navCtrl.push(FavoritomapaPage);
   }
 
   carregar() {

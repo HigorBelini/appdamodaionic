@@ -2,17 +2,17 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavParams, AlertController } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import { IListaEmpresas } from '../../interfaces/IListaEmpresas';
 import { LoadingController } from 'ionic-angular';
+import { IFavoritos } from '../../interfaces/IFavoritos';
 
 declare var google;
 
 @IonicPage()
 @Component({
-  selector: 'page-mapa',
-  templateUrl: 'mapa.html'
+  selector: 'page-favoritomapa',
+  templateUrl: 'favoritomapa.html',
 })
-export class MapaPage {
+export class FavoritomapaPage {
 
   @ViewChild('map') mapElement: ElementRef;
   directionsService = new google.maps.DirectionsService();
@@ -28,21 +28,21 @@ export class MapaPage {
   rotateControl: boolean;
   fullscreenControl: boolean;
 
-  itens:IListaEmpresas;
+  itens: IFavoritos;
   public loader;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
     this.itens = this.navParams.get('dados');
   }
-  
-  carregar(){
+
+  carregar() {
     this.loader = this.loadingCtrl.create({
       content: "Carregando...",
-    }); 
+    });
     this.loader.present();
   }
 
-  fechacarregar(){
+  fechacarregar() {
     this.loader.dismiss();
   }
 
@@ -290,24 +290,24 @@ export class MapaPage {
   }
 
   calculateRouteByCar() {
-      if (this.destinationPosition) {
-        this.geolocation.getCurrentPosition().then((resp) => {
-          const lat = resp.coords.latitude;
-          const lng = resp.coords.longitude;
-          const teste = lat + ' ' + lng;
-          console.log(teste);
-          const request = {
-            origin: lat + " " + lng,
-            destination: this.destinationPosition,
-            travelMode: 'DRIVING'
-          };
-      
-          this.traceRoute(this.directionsService, this.directionsDisplay, request);
-          this.directionsDisplay.setPanel(document.getElementById("trajeto-texto"));
-        }).catch((error) => {
-          alert('Erro ao recuperar sua posição ' + error.message);
-        });
-    
+    if (this.destinationPosition) {
+      this.geolocation.getCurrentPosition().then((resp) => {
+        const lat = resp.coords.latitude;
+        const lng = resp.coords.longitude;
+        const teste = lat + ' ' + lng;
+        console.log(teste);
+        const request = {
+          origin: lat + " " + lng,
+          destination: this.destinationPosition,
+          travelMode: 'DRIVING'
+        };
+
+        this.traceRoute(this.directionsService, this.directionsDisplay, request);
+        this.directionsDisplay.setPanel(document.getElementById("trajeto-texto"));
+      }).catch((error) => {
+        alert('Erro ao recuperar sua posição ' + error.message);
+      });
+
     } else {
       this.showAlert();
     }
@@ -325,33 +325,33 @@ export class MapaPage {
           destination: this.destinationPosition,
           travelMode: 'WALKING'
         };
-    
+
         this.traceRoute(this.directionsService, this.directionsDisplay, request);
         this.directionsDisplay.setPanel(document.getElementById("trajeto-texto"));
       }).catch((error) => {
-       alert('Erro ao recuperar sua posição ' + error.message);
+        alert('Erro ao recuperar sua posição ' + error.message);
       });
-      
-  } else {
-    this.showAlert();
-  }
-}
 
-showAlert(){
-  const alert = this.alertCtrl.create({
-    title: 'Você deve selecionar a empresa.',
-    buttons: ['OK']
-  });
-  alert.present();
-}
-
-traceRoute(service: any, display: any, request: any) {
-  service.route(request, function (result, status) {
-    if (status == 'OK') {
-      display.setDirections(result);
+    } else {
+      this.showAlert();
     }
-  });
-}
+  }
+
+  showAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'Você deve selecionar a empresa.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  traceRoute(service: any, display: any, request: any) {
+    service.route(request, function (result, status) {
+      if (status == 'OK') {
+        display.setDirections(result);
+      }
+    });
+  }
 
 }
 

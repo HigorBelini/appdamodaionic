@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar color="tema">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="font-family: 'Poppins', sans-serif;">{{itens?.companies_fantasyname}}</ion-title>
+  </ion-navbar>
+
+  <ion-item color="tema">
+    <ion-label>Selecione a loja</ion-label>
+    <ion-select [(ngModel)]="destinationPosition" multiple="false" id="destinationPosition" (change)="calculateRouteByCar()">
+      <ion-option [value]="itens?.latitudeandlongitude" selected="true">Selecione</ion-option>
+      <ion-option [value]="itens?.latitudeandlongitude">{{itens?.companies_fantasyname}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <div style="padding: 7.5px 7.5px;">
+    <ion-segment color="tema">
+      <ion-segment-button value="null" (click)="calculateRouteByCar()">
+        Carro
+      </ion-segment-button>
+      <ion-segment-button value="nonull" (click)="calculateRouteByFoot()">
+        Caminhada
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div #map id="map"></div>
+  <div id="trajeto-texto"></div>
+</ion-content>

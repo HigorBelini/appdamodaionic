@@ -45,6 +45,7 @@ import { UserpromotiondetalhePageModule } from '../pages/userpromotiondetalhe/us
 import { PromocoesporempresaPageModule } from '../pages/promocoesporempresa/promocoesporempresa.module';
 import { HomeProvider } from '../providers/home/home';
 import { DetfuncpromocaoPageModule } from '../pages/detfuncpromocao/detfuncpromocao.module';
+import { FavoritomapaPageModule } from '../pages/favoritomapa/favoritomapa.module';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { DetfuncpromocaoPageModule } from '../pages/detfuncpromocao/detfuncpromo
     UserpromotiondetalhePageModule,
     PromocoesporempresaPageModule,
     DetfuncpromocaoPageModule,
+    FavoritomapaPageModule,
     IonicStorageModule.forRoot()
 
   ],

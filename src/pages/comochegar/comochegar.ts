@@ -286,7 +286,7 @@ export class ComochegarPage {
           this.traceRoute(this.directionsService, this.directionsDisplay, request);
           this.directionsDisplay.setPanel(document.getElementById("trajeto-texto"));
         }).catch((error) => {
-          console.log('Erro ao recuperar sua posição', error);
+          alert('Erro ao recuperar sua posição ' + error.message);
         });
         
     }
@@ -308,7 +308,7 @@ export class ComochegarPage {
         this.traceRoute(this.directionsService, this.directionsDisplay, request);
         this.directionsDisplay.setPanel(document.getElementById("trajeto-texto"));
       }).catch((error) => {
-        console.log('Erro ao recuperar sua posição', error);
+        alert('Erro ao recuperar sua posição ' + error.message);
       });
       
   }

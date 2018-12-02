@@ -12,6 +12,7 @@ import { UserProvider} from '../../providers/user/user';
 import { FavoritosProvider } from '../../providers/favoritos/favoritos';
 import { NovouserPage } from '../novouser/novouser';
 import { LoginPage } from '../login/login';
+import { IListaEmpresasBusca } from '../../interfaces/IListaEmpresasBusca';
 
 @IonicPage()
 @Component({
@@ -20,6 +21,7 @@ import { LoginPage } from '../login/login';
 })
 export class ListaPage {
   lista: IListaEmpresas[];
+  busca: IListaEmpresasBusca[];
   favoritos: IFavoritos[];
   user: IUsuario;
   items: any;
@@ -98,7 +100,6 @@ export class ListaPage {
     }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public empresaProvider: EmpresasProvider, public loadingCtrl: LoadingController, public userProvider:UserProvider, public favoritoProvider: FavoritosProvider, public alertCtrl: AlertController) {
-   //this.lista = this.empresaProvider.all();
    this.initializeItems();
   }
 
@@ -119,11 +120,8 @@ export class ListaPage {
 carregarLista(){
   this.carregar();
     this.empresaProvider.listaEmpresas().subscribe(res =>{
-      //if(!this.items){
         this.lista = res;
-      //}else{
-       //this.lista = [];
-      //}
+        this.busca = res;
       if(this.isRefreshing){
         this.refresher.complete();
         this.isRefreshing = false;
@@ -137,35 +135,19 @@ carregarLista(){
     });
     console.log('ionViewDidEnter ListaPage');
     this.fechacarregar();
-    /*if(this.isRefreshing){
-      this.refresher.complete();
-      this.isRefreshing = false;
-    }*/
   }
 
-  /*favorito(){
-    console.log('Favorito');
-    this.favoritoProvider.favorito(this.lista, this.user).subscribe(res => {
-      if(res){
-        console.log(res);
-      }
-    }, erro =>{
-      console.log("Erro: "+erro.message);
-    });
-  }*/
-
   initializeItems() {
-    this.items = this.lista;
+    this.items = this.busca;
+    this.lista = [];
   }
   
   getItems(ev: any) {
-    // Reset items back to all of the items
+
     this.initializeItems();
 
-    // set val to the value of the searchbar
     const val = ev.target.value;
 
-    // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
         return (item.fantasyname.toLowerCase().indexOf(val.toLowerCase()) > -1);
